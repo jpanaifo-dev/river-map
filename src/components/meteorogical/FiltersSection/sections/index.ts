@@ -1,4 +1,4 @@
-import { EstacionesData } from './EstacionesData'
+import { EstacionesMeteData } from './EstacionesData'
 import { ViewTypes } from './ViewTypes'
 
-export { EstacionesData, ViewTypes }
+export { EstacionesMeteData, ViewTypes }

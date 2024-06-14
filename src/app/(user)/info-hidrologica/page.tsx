@@ -21,7 +21,7 @@ export default function Page() {
   return (
     <>
       <main>
-        <MapSection />
+        {/* <MapSection /> */}
       </main>
     </>
   )
