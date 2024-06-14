@@ -1,3 +1,4 @@
+'use client'
 import { useCallback } from 'react'
 import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 
@@ -14,27 +15,19 @@ export const useFilterFromUrl = () => {
   const updateFilter = useCallback(
     (name: string, value: string) => {
       const params = new URLSearchParams(searchParams)
-
-      // Set the new filter
-      params.set(name, value)
-
-      // Remove the parameters that come after the updated parameter
-      let foundUpdatedParam = false
-      const keysToRemove: string[] = []
-      for (const key of Array.from(params.keys())) {
-        if (foundUpdatedParam) {
-          keysToRemove.push(key)
-        }
-        if (key === name) {
-          foundUpdatedParam = true
+      if (name === 'page') {
+        params.set(name, value)
+      } else {
+        params.delete('page')
+        if (value === '') {
+          params.delete(name)
+        } else {
+          params.set(name, value)
         }
       }
-      keysToRemove.forEach((key) => params.delete(key))
 
       const queryString = params.toString()
-      const url = `${pathname}${queryString ? `?${queryString}` : ''}`
-
-      router.push(url)
+      router.push(`${pathname}?${queryString}`)
     },
     [searchParams, router, pathname]
   )

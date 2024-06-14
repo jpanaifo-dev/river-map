@@ -16,7 +16,7 @@ export const ViewTypes = () => {
       <h1 className="text-sm font-medium">Vizualizar como</h1>
       <div className="flex">
         <Button
-          variant={pathname ? 'default' : 'link'}
+          variant={pathname === '' ? 'default' : 'link'}
           onClick={() => handleView('')}
         >
           Visor
