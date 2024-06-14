@@ -1,19 +1,25 @@
 'use client'
-import { HidrologicalTable, UmbralTable, MapSection } from '@/components'
+import dynamic from 'next/dynamic'
+import { HidrologicalTable, UmbralTable } from '@/components'
 import { useFilterFromUrl } from '@/hooks'
+
+// Solo desactivar SSR para MapSection
+const MapSection = dynamic(
+  () => import('@/components').then((mod) => mod.MapSection),
+  {
+    ssr: false,
+  }
+)
 
 export default function Page() {
   const { getParams } = useFilterFromUrl()
-
   const view = getParams('view', 'table')
 
   return (
-    <>
-      <main>
-        {view === '' && <MapSection />}
-        {view === 'table' && <HidrologicalTable />}
-        {view === 'umbral' && <UmbralTable />}
-      </main>
-    </>
+    <main>
+      {view === '' && <MapSection />}
+      {view === 'table' && <HidrologicalTable />}
+      {view === 'umbral' && <UmbralTable />}
+    </main>
   )
 }
