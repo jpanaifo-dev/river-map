@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 import { useEffect } from 'react'
-import { EstacionesData } from './sections'
+import { EstacionesData, ViewTypes } from './sections'
 import { useHidrological } from '@/hooks'
 
 export const FiltersSection = () => {
@@ -22,6 +22,7 @@ export const FiltersSection = () => {
           </p>
         </header>
         <article className="flex flex-col gap-2">
+          <ViewTypes />
           <EstacionesData
             options={data?.Estacion}
             loading={loading}
