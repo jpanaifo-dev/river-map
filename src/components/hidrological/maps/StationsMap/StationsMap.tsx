@@ -43,7 +43,7 @@ export const StationsMap = ({ dataStation }: IProps) => {
     setIsClient(true)
   }, [])
 
-  if (!isClient) {
+  if (typeof window === 'undefined' || !isClient) {
     // Retorna un loading o null si aún no estamos en el cliente
     return null
   }

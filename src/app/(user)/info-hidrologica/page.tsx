@@ -13,7 +13,7 @@ const MapSection = dynamic(
 
 export default function Page() {
   const { getParams } = useFilterFromUrl()
-  const view = getParams('view', 'table')
+  const view = getParams('view', '')
 
   return (
     <main>

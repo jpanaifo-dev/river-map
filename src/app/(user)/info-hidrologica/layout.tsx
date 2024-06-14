@@ -1,6 +1,19 @@
 'use client'
-import { FiltersSection } from '@/components'
-import { HidrologicalProvider } from '@/providers'
+import dynamic from 'next/dynamic'
+
+const FiltersSection = dynamic(
+  () => import('@/components').then((mod) => mod.FiltersSection),
+  {
+    ssr: false,
+  }
+)
+
+const HidrologicalProvider = dynamic(
+  () => import('@/providers').then((mod) => mod.HidrologicalProvider),
+  {
+    ssr: false,
+  }
+)
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
