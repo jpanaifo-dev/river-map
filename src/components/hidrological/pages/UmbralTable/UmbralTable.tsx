@@ -12,30 +12,22 @@ import {
 // import { ScrollArea } from '@/components/ui/scroll-area'
 
 import { useHidrologicalContext } from '@/providers/hidrologicalProvider'
-import { ILevel } from '@/types'
+import { IUmbral } from '@/types'
 import { useFilterFromUrl } from '@/hooks'
 
-const tableHeaders = [
-  '#',
-  'Estación',
-  'Nivel Actual',
-  'Nivel Pasado',
-  'Nivel Normal',
-  'Fecha',
-  'Fecha Actual',
-  'Fecha Pasado',
-]
-function filterByStation(data: ILevel[], id_station: string) {
+const tableHeaders = ['#', 'Estación', 'Valor', 'Valor 2', 'Periodo', 'Color']
+
+function filterByStation(data: IUmbral[], id_station: string) {
   if (id_station === '') return data
   return data.filter((item) => item.EstId.toString() === id_station)
 }
 
-export const HidrologicalTable = () => {
+export const UmbralTable = () => {
   const { data } = useHidrologicalContext()
   const { getParams } = useFilterFromUrl()
 
   const id_station = getParams('estacion', '')
-  const dataFiltered = filterByStation(data?.Nivel || [], id_station)
+  const dataFiltered = filterByStation(data?.Umbral || [], id_station)
 
   return (
     <>
@@ -63,21 +55,13 @@ export const HidrologicalTable = () => {
 
         <TableBody className="bg-white divide-y divide-gray-200">
           {dataFiltered.map((invoice, index) => (
-            <TableRow key={invoice.NivelId}>
+            <TableRow key={invoice.UmbId}>
               <TableCell>{index + 1}</TableCell>
               <TableCell>{invoice.EstId}</TableCell>
-              <TableCell className="font-medium">
-                {invoice.NivelAHActual}
-              </TableCell>
-              <TableCell>{invoice.NivelAHPasado}</TableCell>
-              <TableCell className="text-left">{invoice.NivelNormal}</TableCell>
-              <TableCell>{invoice.NivelFecha || 'No registrado'}</TableCell>
-              <TableCell className="text-left">
-                {invoice.NivelFechaActual || 'No registrado'}
-              </TableCell>
-              <TableCell className="text-left">
-                {invoice.NivelFechaPasado || 'No registrado'}
-              </TableCell>
+              <TableCell>{invoice.UmbValor}</TableCell>
+              <TableCell>{invoice.UmbValor2}</TableCell>
+              <TableCell>{invoice.UmbralPeriodo}</TableCell>
+              <TableCell>{invoice.UmbColor}</TableCell>
             </TableRow>
           ))}
         </TableBody>

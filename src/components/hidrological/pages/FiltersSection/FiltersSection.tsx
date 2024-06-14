@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 import { useEffect } from 'react'
-import { EstacionesData, ViewTypes } from './sections'
+import { EstacionesData, UmbralData, ViewTypes } from './sections'
 import { useHidrological } from '@/hooks'
 
 export const FiltersSection = () => {
@@ -27,6 +27,7 @@ export const FiltersSection = () => {
             options={data?.Estacion}
             loading={loading}
           />
+          <UmbralData />
         </article>
       </main>
     </>
