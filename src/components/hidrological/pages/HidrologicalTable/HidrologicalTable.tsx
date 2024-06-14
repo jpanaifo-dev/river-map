@@ -70,14 +70,14 @@ export const HidrologicalTable = () => {
                 {invoice.NivelAHActual}
               </TableCell>
               <TableCell>{invoice.NivelAHPasado}</TableCell>
-              <TableCell>{invoice.NivelFecha}</TableCell>
-              <TableCell className="text-right">
-                {invoice.NivelFechaActual}
+              <TableCell>{invoice.NivelFecha || 'No registrado'}</TableCell>
+              <TableCell className="text-left">
+                {invoice.NivelFechaActual || 'No registrado'}
               </TableCell>
-              <TableCell className="text-right">
-                {invoice.NivelFechaPasado}
+              <TableCell className="text-left">
+                {invoice.NivelFechaPasado || 'No registrado'}
               </TableCell>
-              <TableCell className="text-right">
+              <TableCell className="text-left">
                 {invoice.NivelNormal}
               </TableCell>
             </TableRow>

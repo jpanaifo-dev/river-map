@@ -20,8 +20,18 @@ export const EstacionesData = (props: IProps) => {
 
   const id_station = getParams('estacion', '')
 
+  const addAllOption = (data: IStation[]) => {
+    return [{ EstId: 0, EstNombre: 'Todas' }, ...data]
+  }
+
+  const optionsData = addAllOption(options || [])
+
   const handleStation = (value: string) => {
-    updateFilter('estacion', value)
+    if (value === '0') {
+      updateFilter('estacion', '')
+    } else {
+      updateFilter('estacion', value)
+    }
   }
 
   return (
@@ -48,7 +58,7 @@ export const EstacionesData = (props: IProps) => {
             {!loading && <SelectValue placeholder="Estaciones" />}
           </SelectTrigger>
           <SelectContent>
-            {options?.map((item) => (
+            {optionsData?.map((item) => (
               <SelectItem
                 key={item.EstId}
                 value={item.EstId.toString()}
