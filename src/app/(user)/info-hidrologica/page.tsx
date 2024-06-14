@@ -1,28 +1,26 @@
 import { fetchInfoHidro } from '@/api'
-import { MapSection } from '@/components'
 import { IDataHidro } from '@/types'
+import dynamic from 'next/dynamic'
+const StationsMap = dynamic(() =>
+  import('@/components').then((mod) => mod.StationsMap)
+)
 
 export default async function Page() {
   const res = await fetchInfoHidro()
-
-  if (!res.ok) {
+  if (!res.ok)
     return (
       <>
-        <main>
-          <h1>
-            Error: {res.status} - {res.statusText}
-          </h1>
-        </main>
+        <h1>Error</h1>
+        <p>Something went wrong</p>
       </>
     )
-  }
 
   const data: IDataHidro = (await res.json()) as IDataHidro
 
   return (
     <>
       <main>
-        <MapSection dataStation={data.Estacion} />
+        <StationsMap dataStation={data?.Estacion} />
       </main>
     </>
   )

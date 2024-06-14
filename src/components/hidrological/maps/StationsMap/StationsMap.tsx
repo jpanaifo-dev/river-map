@@ -45,7 +45,7 @@ export const StationsMap = (props: IProps) => {
           />
         )} */}
         {dataStation &&
-          dataStation.map((station) => (
+          dataStation?.map((station) => (
             <Marker
               key={station.EstId}
               position={[station.EstLatitud, station.EstLongitud]}
