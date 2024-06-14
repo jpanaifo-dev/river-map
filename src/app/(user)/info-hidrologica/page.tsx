@@ -2,12 +2,21 @@ import { fetchInfoHidro } from '@/api'
 import { GetServerSideProps } from 'next'
 
 export default async function Page() {
-  const data = await fetchInfoHidro()
-  if (!data) {
-    return {
-      notFound: true,
-    }
+  const res = await fetchInfoHidro()
+
+  if (!res.ok) {
+    return (
+      <>
+        <main>
+          <h1>
+            Error: {res.status} - {res.statusText}
+          </h1>
+        </main>
+      </>
+    )
   }
+
+  const data = await res.json()
 
   return (
     <>
