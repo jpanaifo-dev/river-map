@@ -1,34 +1,37 @@
 'use clien'
 import { Button } from '@/components/ui/button'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { useFilterFromUrl } from '@/hooks'
 
 export const ViewTypes = () => {
-  const pathname = usePathname()
+  const { getParams, updateFilter } = useFilterFromUrl()
+
+  const pathname = getParams('view', '')
+
+  const handleView = (view: string) => {
+    updateFilter('view', view)
+  }
 
   return (
-    <section className='flex flex-col gap-1'>
+    <section className="flex flex-col gap-1">
       <h1 className="text-sm font-medium">Vizualizar como</h1>
       <div className="flex">
         <Button
-          asChild
-          variant={pathname === '/info-hidrologica' ? 'default' : 'link'}
+          variant={pathname ? 'default' : 'link'}
+          onClick={() => handleView('')}
         >
-          <Link href="/info-hidrologica">Visor</Link>
+          Visor
         </Button>
         <Button
-          asChild
-          variant={pathname === '/info-hidrologica/tabla' ? 'default' : 'link'}
+          variant={pathname === 'table' ? 'default' : 'link'}
+          onClick={() => handleView('table')}
         >
-          <Link href="/info-hidrologica/tabla">Tabla</Link>
+          Tabla{' '}
         </Button>
         <Button
-          asChild
-          variant={
-            pathname === '/info-hidrologica/grafico' ? 'default' : 'link'
-          }
+          variant={pathname === 'graphic' ? 'default' : 'link'}
+          onClick={() => handleView('graphic')}
         >
-          <Link href="/info-hidrologica/grafico">Gráfico</Link>
+          Gráfico
         </Button>
       </div>
     </section>

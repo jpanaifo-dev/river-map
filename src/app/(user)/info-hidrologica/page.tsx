@@ -1,27 +1,17 @@
-import { MapSection } from '@/components'
-// import { fetchInfoHidro } from '@/api'
-// import { IDataHidro } from '@/types'
-// import dynamic from 'next/dynamic'
-// const StationsMap = dynamic(() =>
-//   import('@/components').then((mod) => mod.MapSection)
-// )
+import { HidrologicalTable, MapSection } from '@/components'
 
-export default function Page() {
-  // const res = await fetchInfoHidro()
-  // if (!res.ok)
-  //   return (
-  //     <>
-  //       <h1>Error</h1>
-  //       <p>Something went wrong</p>
-  //     </>
-  //   )
+interface IProps {
+  searchParams: { [key: string]: string | string[] | undefined }
+}
 
-  // const data: IDataHidro = (await res.json()) as IDataHidro
+export default function Page(props: IProps) {
+  const { view } = props.searchParams
 
   return (
     <>
       <main>
-        <MapSection />
+        {view === undefined && <MapSection />}
+        {view === 'table' && <HidrologicalTable />}
       </main>
     </>
   )

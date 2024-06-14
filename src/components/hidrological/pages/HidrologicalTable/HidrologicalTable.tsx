@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { ScrollArea } from '@/components/ui/scroll-area'
+// import { ScrollArea } from '@/components/ui/scroll-area'
 
 import { useHidrologicalContext } from '@/providers/hidrologicalProvider'
 import { ILevel } from '@/types'
@@ -17,12 +17,12 @@ import { useFilterFromUrl } from '@/hooks'
 
 const tableHeaders = [
   '#',
+  'Estación',
   'Nivel Actual',
   'Nivel Pasado',
   'Fecha',
   'Fecha Actual',
   'Fecha Pasado',
-  'Id',
   'Normal',
 ]
 function filterByStation(data: ILevel[], id_station: string) {
@@ -39,53 +39,58 @@ export const HidrologicalTable = () => {
 
   return (
     <>
-      <ScrollArea className="h-full w-full rounded-md border p-4">
-        <Table>
-          <TableCaption>A list of your recent invoices.</TableCaption>
-          <TableHeader className="sticky top-0">
-            <TableRow>
-              {tableHeaders.map((header) => (
-                <TableHead
-                  key={header}
-                  className="font-medium"
-                >
-                  {header}
-                </TableHead>
-              ))}
-            </TableRow>
-          </TableHeader>
-
-          <TableBody className="bg-white divide-y divide-gray-200">
-            {dataFiltered.map((invoice, index) => (
-              <TableRow key={invoice.EstId}>
-                <TableCell>{index + 1}</TableCell>
-                <TableCell className="font-medium">
-                  {invoice.NivelAHActual}
-                </TableCell>
-                <TableCell>{invoice.NivelAHPasado}</TableCell>
-                <TableCell>{invoice.NivelFecha}</TableCell>
-                <TableCell className="text-right">
-                  {invoice.NivelFechaActual}
-                </TableCell>
-                <TableCell className="text-right">
-                  {invoice.NivelFechaPasado}
-                </TableCell>
-                <TableCell className="text-right">{invoice.NivelId}</TableCell>
-                <TableCell className="text-right">
-                  {invoice.NivelNormal}
-                </TableCell>
-              </TableRow>
+      {/* <ScrollArea className="h-full w-full rounded-md border p-4">
+      
+      </ScrollArea> */}
+      <Table
+        className="h-screen
+      max-h-[calc(100vh-18rem)] overflow-y-auto w-full
+      "
+      >
+        <TableCaption>A list of your recent invoices.</TableCaption>
+        <TableHeader className="sticky top-0">
+          <TableRow>
+            {tableHeaders.map((header) => (
+              <TableHead
+                key={header}
+                className="font-medium"
+              >
+                {header}
+              </TableHead>
             ))}
-          </TableBody>
+          </TableRow>
+        </TableHeader>
 
-          <TableFooter>
-            {/* <TableRow>
-            <TableCell colSpan={3}>Total</TableCell>
-            <TableCell className="text-right">$2,500.00</TableCell>
-          </TableRow> */}
-          </TableFooter>
-        </Table>
-      </ScrollArea>
+        <TableBody className="bg-white divide-y divide-gray-200">
+          {dataFiltered.map((invoice, index) => (
+            <TableRow key={invoice.NivelId}>
+              <TableCell>{index + 1}</TableCell>
+              <TableCell>{invoice.EstId}</TableCell>
+              <TableCell className="font-medium">
+                {invoice.NivelAHActual}
+              </TableCell>
+              <TableCell>{invoice.NivelAHPasado}</TableCell>
+              <TableCell>{invoice.NivelFecha}</TableCell>
+              <TableCell className="text-right">
+                {invoice.NivelFechaActual}
+              </TableCell>
+              <TableCell className="text-right">
+                {invoice.NivelFechaPasado}
+              </TableCell>
+              <TableCell className="text-right">
+                {invoice.NivelNormal}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+
+        <TableFooter>
+          <TableRow>
+            <TableCell colSpan={tableHeaders.length - 1}>Total</TableCell>
+            <TableCell className="text-right">{dataFiltered.length}</TableCell>
+          </TableRow>
+        </TableFooter>
+      </Table>
     </>
   )
 }
