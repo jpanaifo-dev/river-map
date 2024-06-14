@@ -1,3 +1,4 @@
 import { fetchInfoHidro } from './fetchInfoHidro'
+import { fetchInfoMeteorological } from './fetchInfoMeteo'
 
-export { fetchInfoHidro }
+export { fetchInfoHidro, fetchInfoMeteorological }
