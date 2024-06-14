@@ -10,17 +10,17 @@ interface IProps {
 const transformData = (data: IAutoValoresHM[]) => {
   return data.map((entry) => ({
     date: entry.AutoFechaHora.split(" ")[0], // Obtener solo la fecha
-    temperature: entry.AutoTemp,
-    humidity: entry.AutoHR,
-    radiation: entry.AutoRadiacion,
-    windDirection: entry.AutoWindDir,
-    windSpeed: entry.AutoWindVel,
-    precipitation: entry.AutoPP,
+    Temperatura: entry.AutoTemp,
+    Humedad_relativa: entry.AutoHR,
+    Radiación: entry.AutoRadiacion,
+    Dir_del_viento: entry.AutoWindDir,
+    Vel_del_viento: entry.AutoWindVel,
+    Precipitación_acumulada: entry.AutoPP,
   }));
 };
 
 const dataFormatter = (number: number) =>
-  `:  ${Intl.NumberFormat("es").format(number).toString()}`;
+  `${Intl.NumberFormat("es").format(number).toString()}`;
 
 export const WeatherChart = (props: IProps) => {
   const { data } = props;
@@ -33,12 +33,12 @@ export const WeatherChart = (props: IProps) => {
 
       <MainLineChart
         categories={[
-          "temperature",
-          "humidity",
-          "radiation",
-          "windDirection",
-          "windSpeed",
-          "precipitation",
+          "Temperatura",
+          "Humedad_relativa",
+          "Radiación",
+          "Dir_del_viento",
+          "Vel_del_viento",
+          "Precipitación_acumulada",
         ]}
         colors={[
           "red-700",
