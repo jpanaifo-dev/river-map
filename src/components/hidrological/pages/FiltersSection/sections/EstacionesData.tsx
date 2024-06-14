@@ -7,6 +7,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { IStation } from '@/types'
+import { useFilterFromUrl } from '@/hooks'
 
 interface IProps {
   options?: IStation[]
@@ -15,6 +16,13 @@ interface IProps {
 
 export const EstacionesData = (props: IProps) => {
   const { options, loading } = props
+  const { getParams, updateFilter } = useFilterFromUrl()
+
+  const id_station = getParams('estacion', '')
+
+  const handleStation = (value: string) => {
+    updateFilter('estacion', value)
+  }
 
   return (
     <>
@@ -25,7 +33,10 @@ export const EstacionesData = (props: IProps) => {
         >
           Estaciones Hidrológicas
         </label>
-        <Select>
+        <Select
+          value={id_station}
+          onValueChange={handleStation}
+        >
           <SelectTrigger className="w-full">
             {loading && (
               <SelectValue
