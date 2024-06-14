@@ -3,7 +3,7 @@ import { IStation } from '@/types/hydrological'
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import L from 'leaflet'
 interface IProps {
-  dataStation?: IStation[]
+  dataStation: IStation[]
 }
 
 const customIcon = new L.Icon({

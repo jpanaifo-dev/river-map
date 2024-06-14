@@ -1,35 +1,34 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 import { useState, useEffect } from 'react'
-import { IDataHidro, IStation } from '@/types'
-import { fetchInfoHidro } from '@/api'
+import { IStation } from '@/types'
 import { StationsMap } from '../../maps'
 import { useFilterFromUrl } from '@/hooks'
+import { useHidrological } from '@/hooks'
 
 function filterData(data: IStation[], id_estacion: string) {
-  return data.filter((item) => item.EstId === Number(id_estacion))
+  if (id_estacion === '') return data
+  return data.filter((item) => item.EstId.toString() === id_estacion)
 }
 
 export const MapSection = () => {
-  const [data, setData] = useState<IDataHidro | null>(null)
-  // const [dataFilter, setDataFilter] = useState<IStation[]>([])
-
+  const { getHidroData, data, loading } = useHidrological()
+  const [dataStation, setDataSation] = useState<IStation[]>([])
   const { getParams } = useFilterFromUrl()
 
   const id_estacion = getParams('estacion', '')
-  const dataFilterd = filterData(data?.Estacion || [], id_estacion)
-
-  const getHidroData = async () => {
-    const res = await fetchInfoHidro()
-    if (res) {
-      const data: IDataHidro = (await res.json()) as IDataHidro
-      setData(data)
-    } else {
-      setData(null)
-    }
-  }
-
+  const dataFilterd = filterData(dataStation || [], id_estacion)
+  console.log(dataFilterd, 'data filterd')
   useEffect(() => {
     getHidroData()
+  }, [id_estacion])
+
+  useEffect(() => {
+    if (data?.Estacion) {
+      setDataSation(data.Estacion)
+    } else {
+      setDataSation([])
+    }
   }, [data])
 
   return (
