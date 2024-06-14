@@ -1,12 +1,9 @@
 import { fetchInfoHidro } from '@/api'
-import { IDataHidro, IStation } from '@/types'
-import dynamic from 'next/dynamic'
+import { IDataHidro } from '@/types'
 
-const StationsMap = dynamic(
-  () => import('@/components').then((mod) => mod.StationsMap),
-  {
-    ssr: false,
-  }
+import dynamic from 'next/dynamic'
+const StationsMap = dynamic(() =>
+  import('@/components').then((mod) => mod.StationsMap)
 )
 
 export default async function Page() {
