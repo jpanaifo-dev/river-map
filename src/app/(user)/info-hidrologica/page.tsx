@@ -1,4 +1,5 @@
-import { HidrologicalTable, MapSection, UmbralTable } from '@/components'
+'use client'
+import { HidrologicalTable, UmbralTable, MapSection } from '@/components'
 
 interface IProps {
   searchParams: { [key: string]: string | string[] | undefined }
@@ -10,7 +11,7 @@ export default function Page(props: IProps) {
   return (
     <>
       <main>
-        {view === undefined && <MapSection />}
+        {!view && <MapSection />}
         {view === 'table' && <HidrologicalTable />}
         {view === 'umbral' && <UmbralTable />}
       </main>
