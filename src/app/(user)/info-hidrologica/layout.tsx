@@ -1,3 +1,4 @@
+'use client'
 import { FiltersSection } from '@/components'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
