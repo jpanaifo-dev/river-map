@@ -26,7 +26,7 @@ export const HidrologicalProvider = ({
   const { data, getHidroData, loading } = useHidrological()
   const { getParams } = useFilterFromUrl()
 
-  const id_station = getParams('id_station', '')
+  const id_station = getParams('estacion', '')
   const dataFiltered = filterData(dataStation || [], id_station)
 
   useEffect(() => {

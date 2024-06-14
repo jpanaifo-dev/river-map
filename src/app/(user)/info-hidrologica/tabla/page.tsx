@@ -1,3 +1,9 @@
+import { HidrologicalTable } from '@/components'
+
 export default function Page() {
-  return <></>
+  return (
+    <>
+      <HidrologicalTable />
+    </>
+  )
 }
