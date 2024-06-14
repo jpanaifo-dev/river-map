@@ -1,17 +1,16 @@
 'use client'
 import { HidrologicalTable, UmbralTable, MapSection } from '@/components'
+import { useFilterFromUrl } from '@/hooks'
 
-interface IProps {
-  searchParams: { [key: string]: string | string[] | undefined }
-}
+export default function Page() {
+  const { getParams } = useFilterFromUrl()
 
-export default function Page(props: IProps) {
-  const { view } = props.searchParams
+  const view = getParams('view', 'table')
 
   return (
     <>
       <main>
-        {!view && <MapSection />}
+        {view === '' && <MapSection />}
         {view === 'table' && <HidrologicalTable />}
         {view === 'umbral' && <UmbralTable />}
       </main>

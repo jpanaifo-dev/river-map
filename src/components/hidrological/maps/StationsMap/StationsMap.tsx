@@ -1,7 +1,28 @@
 'use client'
+
+import dynamic from 'next/dynamic'
 import { IStation } from '@/types/hydrological'
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import { useEffect, useState } from 'react'
 import L from 'leaflet'
+import 'leaflet/dist/leaflet.css'
+
+// Importa `MapContainer`, `Marker`, `Popup`, y `TileLayer` dinámicamente sin SSR
+const MapContainer = dynamic(
+  () => import('react-leaflet').then((mod) => mod.MapContainer),
+  { ssr: false }
+)
+const Marker = dynamic(
+  () => import('react-leaflet').then((mod) => mod.Marker),
+  { ssr: false }
+)
+const Popup = dynamic(() => import('react-leaflet').then((mod) => mod.Popup), {
+  ssr: false,
+})
+const TileLayer = dynamic(
+  () => import('react-leaflet').then((mod) => mod.TileLayer),
+  { ssr: false }
+)
+
 interface IProps {
   dataStation: IStation[]
 }
@@ -14,10 +35,48 @@ const customIcon = new L.Icon({
   shadowSize: [41, 41], // tamaño de la sombra
 })
 
-export const StationsMap = (props: IProps) => {
-  const { dataStation } = props
+export const StationsMap = ({ dataStation }: IProps) => {
+  const [isClient, setIsClient] = useState(false)
 
-  //   console.log(dataStation)
+  useEffect(() => {
+    // Indica que estamos en el cliente
+    setIsClient(true)
+  }, [])
 
-  return <></>
+  if (!isClient) {
+    // Retorna un loading o null si aún no estamos en el cliente
+    return null
+  }
+
+  return (
+    <>
+      <MapContainer
+        style={{ width: '100%', height: 'calc(100vh - 6rem)' }}
+        center={[-3.7437, -73.2516]}
+        zoom={7}
+        scrollWheelZoom={false}
+      >
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
+        />
+        {dataStation &&
+          dataStation.map((station) => (
+            <Marker
+              key={station.EstId}
+              position={[station.EstLatitud, station.EstLongitud]}
+              icon={customIcon}
+            >
+              <Popup>
+                <b>{station.EstNombre}</b>
+                <br />
+                Río: {station.EstRio}
+                <br />
+                Institución: {station.EstInstitucion}
+              </Popup>
+            </Marker>
+          ))}
+      </MapContainer>
+    </>
+  )
 }
