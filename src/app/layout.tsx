@@ -2,6 +2,10 @@ import type { Metadata } from 'next'
 import { Inter as FontSans } from 'next/font/google'
 import './globals.css'
 import { cn } from '@/lib/utils'
+import 'leaflet/dist/leaflet.css'
+import 'react-toastify/dist/ReactToastify.css'
+
+import { ToastContainer } from 'react-toastify'
 
 const fontSans = FontSans({
   subsets: ['latin'],

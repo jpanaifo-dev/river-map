@@ -1,5 +1,13 @@
 import { fetchInfoHidro } from '@/api'
-import { GetServerSideProps } from 'next'
+import { IDataHidro, IStation } from '@/types'
+import dynamic from 'next/dynamic'
+
+const StationsMap = dynamic(
+  () => import('@/components').then((mod) => mod.StationsMap),
+  {
+    ssr: false,
+  }
+)
 
 export default async function Page() {
   const res = await fetchInfoHidro()
@@ -16,11 +24,13 @@ export default async function Page() {
     )
   }
 
-  const data = await res.json()
+  const data: IDataHidro = (await res.json()) as IDataHidro
 
   return (
     <>
-      <main></main>
+      <main>
+        <StationsMap dataStation={data?.Estacion} />
+      </main>
     </>
   )
 }
