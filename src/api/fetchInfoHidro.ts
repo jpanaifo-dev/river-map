@@ -1,7 +1,9 @@
-const API_URL = 'https://www.siam.imida.es/servicios/rest/api/v1/estacion'
+const API_URL =
+  'https://etechgroup-001-site2.dtempurl.com/estacion/listardatos/estacion'
 
 export async function fetchInfoHidro() {
-  const response = await fetch(API_URL)
-  const data = await response.json()
-  return data
+  const response = await fetch(API_URL, {
+    method: 'GET',
+  })
+  return response
 }
