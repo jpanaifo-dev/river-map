@@ -1,6 +1,6 @@
 'use client'
 import { Suspense } from 'react'
-import { HidrologicalTable } from '@/components'
+import { HidroLineChart, HidrologicalTable } from '@/components'
 
 import { useFilterFromUrl } from '@/hooks'
 
@@ -13,6 +13,7 @@ export default function Page() {
     <>
       <Suspense fallback={<div>Loading...</div>}>
         {view === 'table' && <HidrologicalTable />}
+        {view === 'graphic' && <HidroLineChart />}
       </Suspense>
     </>
   )
