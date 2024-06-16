@@ -11,29 +11,60 @@ import {
 } from '@/components/ui/table'
 // import { ScrollArea } from '@/components/ui/scroll-area'
 
-import { useHidrologicalContext } from '@/providers'
-import { ILevel } from '@/types'
+import { IDataHidro, IDataTable, ILevel, IStation, IUmbral } from '@/types'
 import { useFilterFromUrl } from '@/hooks'
+import { useHidrologicalContext } from '@/providers'
+import { TableCustom } from '@/components'
 
 const tableHeaders = [
-  '#',
-  'ID de Estación',
-  'Estación',
-  'Color de Estación',
-  'Período de Estación',
-  'Río',
-  'Institución',
-  'Fecha',
-  'Fecha Pasada',
-  'Fecha Actual',
-  'Nivel Normal',
-  'Nivel Actual',
-  'Nivel Pasado',
-  'Período',
-  'Umbral Bajo',
-  'Umbral Alto',
-  'Estado del Umbral',
-  'Color',
+  {
+    key: 'station',
+    value: 'Estación',
+  },
+  {
+    key: 'river',
+    value: 'Río',
+  },
+  {
+    key: 'institution',
+    value: 'Institución',
+  },
+  {
+    key: 'date',
+    value: 'Fecha',
+  },
+  {
+    key: 'normal_level',
+    value: 'Nivel normal',
+  },
+  {
+    key: 'current_level',
+    value: 'Nivel actual',
+  },
+  {
+    key: 'past_level',
+    value: 'Nivel pasado',
+  },
+  {
+    key: 'period',
+    value: 'Periodo',
+  },
+  {
+    key: 'station_period',
+    value: 'Periodo estación',
+  },
+  {
+    key: 'high_threshold',
+    value: 'Umbral alto',
+  },
+  {
+    key: 'low_threshold',
+    value: 'Umbral bajo',
+  },
+  {
+    key: 'threshold_status',
+    value: 'Estado',
+  },
 ]
 
 function filterByStation(data: ILevel[], id_station: string) {
@@ -41,65 +72,73 @@ function filterByStation(data: ILevel[], id_station: string) {
   return data.filter((item) => item.EstId.toString() === id_station)
 }
 
+function getThresholdStatus(
+  current_level: number,
+  low_threshold: number,
+  high_threshold: number
+) {
+  if (current_level < low_threshold) return 'Bajo'
+  if (current_level > high_threshold) return 'Alto'
+  return 'Normal'
+}
+
+function getStation(stations: IStation[], id_station: string) {
+  return stations.find((item) => item.EstId.toString() === id_station)
+}
+
+function getUmbral(umbrals: IUmbral[], id_umbral: string) {
+  return umbrals.find((item) => item.EstId.toString() === id_umbral)
+}
+
+function converData(data: IDataHidro): IDataTable[] {
+  const { Nivel, Estacion, Umbral } = data
+
+  const newList: IDataTable[] = Nivel?.map((item) => {
+    const station = getStation(Estacion, item.EstId.toString())
+    const umbral = getUmbral(Umbral, item.EstId.toString())
+    return {
+      station_id: item.EstId.toString(),
+      station: station?.EstNombre || 'No registrado',
+      station_color: station?.EstColor || 'No registrado',
+      river: station?.EstRio || 'No registrado',
+      institution: station?.EstInstitucion || 'No registrado',
+      date: item?.NivelFecha || 'No registrado',
+      past_date: item?.NivelFechaPasado || 'No registrado',
+      current_date: item?.NivelFechaActual || 'No registrado',
+      normal_level: item?.NivelNormal.toString() || 'No registrado',
+      current_level: item?.NivelAHActual?.toString() || 'No registrado',
+      past_level: item?.NivelAHPasado?.toString() || 'No registrado',
+      period: umbral?.UmbralPeriodo || 'No registrado',
+      station_period: station?.Periodo || 'No registrado',
+      high_threshold: umbral?.UmbValor.toString() || 'No registrado',
+      low_threshold: umbral?.UmbValor2.toString() || 'No registrado',
+      threshold_status: getThresholdStatus(
+        Number(item?.NivelAHActual) || 0,
+        Number(item?.NivelAHActual) || 0,
+        Number(item?.NivelAHPasado) || 0
+      ),
+      color: umbral?.UmbColor || 'No registrado',
+    }
+  })
+
+  return newList
+}
+
 export const HidrologicalTable = () => {
   const { data } = useHidrologicalContext()
   const { getParams } = useFilterFromUrl()
 
-  const id_station = getParams('estacion', '')
-  const dataFiltered = filterByStation(data?.Nivel || [], id_station)
+  //   const id_station = getParams('estacion', '')
+  //   const dataFiltered = filterByStation(data?.Nivel || [], id_station)
+
+  const rows: IDataTable[] = data ? converData(data) : []
 
   return (
     <>
-      {/* <ScrollArea className="h-full w-full rounded-md border p-4">
-      
-      </ScrollArea> */}
-      <Table
-        className="h-screen
-      max-h-[calc(100vh-18rem)] overflow-y-auto w-full
-      "
-      >
-        <TableCaption>A list of your recent invoices.</TableCaption>
-        <TableHeader className="sticky top-0">
-          <TableRow>
-            {tableHeaders.map((header) => (
-              <TableHead
-                key={header}
-                className="font-medium"
-              >
-                {header}
-              </TableHead>
-            ))}
-          </TableRow>
-        </TableHeader>
-
-        <TableBody className="bg-white divide-y divide-gray-200">
-          {dataFiltered.map((invoice, index) => (
-            <TableRow key={invoice.NivelId}>
-              <TableCell>{index + 1}</TableCell>
-              <TableCell>{invoice.EstId}</TableCell>
-              <TableCell className="font-medium">
-                {invoice.NivelAHActual}
-              </TableCell>
-              <TableCell>{invoice.NivelAHPasado}</TableCell>
-              <TableCell className="text-left">{invoice.NivelNormal}</TableCell>
-              <TableCell>{invoice.NivelFecha || 'No registrado'}</TableCell>
-              <TableCell className="text-left">
-                {invoice.NivelFechaActual || 'No registrado'}
-              </TableCell>
-              <TableCell className="text-left">
-                {invoice.NivelFechaPasado || 'No registrado'}
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-
-        <TableFooter>
-          <TableRow>
-            <TableCell colSpan={tableHeaders.length - 1}>Total</TableCell>
-            <TableCell className="text-right">{dataFiltered.length}</TableCell>
-          </TableRow>
-        </TableFooter>
-      </Table>
+      <TableCustom
+        headers={tableHeaders}
+        rows={rows}
+      />
     </>
   )
 }

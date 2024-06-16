@@ -9,15 +9,21 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-// import { ScrollArea } from '@/components/ui/scroll-area'
 
-interface IProps {
-  headers: string[]
-  rows: Array<string[] | number[] | JSX.Element[]>
+interface IProps<T extends Record<string, any>> {
+  headers: {
+    key: string
+    value: string
+  }[]
+  rows: T[]
 }
 
-export const HidrologicalTable = (props: IProps) => {
+export const TableCustom = <T extends Record<string, any>>(
+  props: IProps<T>
+) => {
   const { headers, rows } = props
+
+  console.log('TableCustom', headers, rows)
 
   return (
     <>
@@ -30,21 +36,26 @@ export const HidrologicalTable = (props: IProps) => {
         <TableHeader className="sticky top-0">
           <TableRow>
             {headers.map((header) => (
-              <TableHead
-                key={header}
-                className="font-medium"
+              <TableCell
+                key={header.key}
+                className="text-xs font-medium"
               >
-                {header}
-              </TableHead>
+                {header.value}
+              </TableCell>
             ))}
           </TableRow>
         </TableHeader>
 
         <TableBody className="bg-white divide-y divide-gray-200">
-          {rows.map((invoice, index) => (
-            <TableRow key={index}>
-              {invoice.map((cell, index) => (
-                <TableCell key={index}>{cell}</TableCell>
+          {rows.map((row, rowIndex) => (
+            <TableRow key={rowIndex}>
+              {headers.map((header) => (
+                <TableCell
+                  key={`${rowIndex}-${header}`}
+                  className="text-left text-xs"
+                >
+                  {row[header.key as keyof T]}
+                </TableCell>
               ))}
             </TableRow>
           ))}
