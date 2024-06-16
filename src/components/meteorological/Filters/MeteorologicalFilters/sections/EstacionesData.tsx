@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/select'
 import { IStationHM } from '@/types'
 import { useFilterFromUrl } from '@/hooks'
+import { useRouter } from 'next/navigation'
 
 interface IProps {
   options?: IStationHM[]
@@ -17,6 +18,7 @@ interface IProps {
 export const EstacionesData = (props: IProps) => {
   const { options, loading } = props
   const { getParams, updateFilter } = useFilterFromUrl()
+  const router = useRouter()
 
   const id_station = getParams('estacion', '')
 
@@ -28,7 +30,7 @@ export const EstacionesData = (props: IProps) => {
 
   const handleStation = (value: string) => {
     if (value === '0') {
-      updateFilter('estacion', '')
+      router.push('/info-meteorologica')
     } else {
       updateFilter('estacion', value)
     }
