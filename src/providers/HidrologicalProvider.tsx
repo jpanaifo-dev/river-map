@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
-import { useContext, createContext, useEffect, useState } from 'react'
+import { useContext, createContext, useEffect, useState, Suspense } from 'react'
 import { useHidrological } from '@/hooks'
 import { IDataHidro, IStation } from '@/types'
 import { useFilterFromUrl } from '@/hooks'
@@ -48,7 +48,7 @@ export const HidrologicalProvider = ({
         loading,
       }}
     >
-      {children}
+      <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
     </HidrologicalContext.Provider>
   )
 }

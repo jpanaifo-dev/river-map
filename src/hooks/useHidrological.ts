@@ -1,3 +1,4 @@
+'use client'
 import { useState } from 'react'
 import { fetchInfoHidro } from '@/api'
 import { IDataHidro } from '@/types'
