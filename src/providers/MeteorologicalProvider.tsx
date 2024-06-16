@@ -1,8 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 import { useContext, createContext, useEffect, useState, Suspense } from 'react'
-import { useHidrological } from '@/hooks'
-import { IDataHidro, IDataTable, IStation, IUmbral } from '@/types'
+import { useMeteorological } from '@/hooks'
+import {
+  IAutoValoresHM,
+  IDataMet,
+  IDataTableMet,
+  IStation,
+  IStationHM,
+} from '@/types'
 import { useFilterFromUrl } from '@/hooks'
 
 function filterData(data: IStation[], id_estacion: string) {
@@ -10,66 +16,44 @@ function filterData(data: IStation[], id_estacion: string) {
   return data.filter((item) => item.EstId.toString() === id_estacion)
 }
 
-function getThresholdStatus(
-  current_level: number,
-  low_threshold: number,
-  high_threshold: number
-) {
-  if (current_level < low_threshold) return 'Bajo'
-  if (current_level > high_threshold) return 'Alto'
-  return 'Normal'
+function getStation(stations: IStationHM[], id_station: string) {
+  return stations.find((item) => item.EstacionId.toString() === id_station)
 }
 
-function getStation(stations: IStation[], id_station: string) {
-  return stations.find((item) => item.EstId.toString() === id_station)
-}
+function converData(data: IDataMet): IDataTableMet[] {
+  const { EstacionHM, AutoValoresHM } = data
 
-function getUmbral(umbrals: IUmbral[], id_umbral: string) {
-  return umbrals.find((item) => item.EstId.toString() === id_umbral)
-}
-
-function converData(data: IDataHidro): IDataTable[] {
-  const { Nivel, Estacion, Umbral } = data
-
-  const newList: IDataTable[] = Nivel?.map((item) => {
-    const station = getStation(Estacion, item.EstId.toString())
-    const umbral = getUmbral(Umbral, item.EstId.toString())
+  const newList: IDataTableMet[] = AutoValoresHM?.map((item) => {
+    const station = getStation(EstacionHM, item.EstacionId.toString())
     return {
-      station_id: item.EstId.toString(),
-      station: station?.EstNombre || 'No registrado',
-      station_color: station?.EstColor || 'No registrado',
-      river: station?.EstRio || 'No registrado',
-      institution: station?.EstInstitucion || 'No registrado',
-      date: item?.NivelFecha || 'No registrado',
-      past_date: item?.NivelFechaPasado || 'No registrado',
-      current_date: item?.NivelFechaActual || 'No registrado',
-      normal_level: item?.NivelNormal.toString() || 'No registrado',
-      current_level: item?.NivelAHActual?.toString() || 'No registrado',
-      past_level: item?.NivelAHPasado?.toString() || 'No registrado',
-      period: umbral?.UmbralPeriodo || 'No registrado',
-      station_period: station?.Periodo || 'No registrado',
-      high_threshold: umbral?.UmbValor.toString() || 'No registrado',
-      low_threshold: umbral?.UmbValor2.toString() || 'No registrado',
-      threshold_status: getThresholdStatus(
-        Number(item?.NivelAHActual) || 0,
-        Number(item?.NivelAHActual) || 0,
-        Number(item?.NivelAHPasado) || 0
-      ),
-      color: umbral?.UmbColor || 'No registrado',
+      station_id: item.EstacionId.toString(),
+      station: station?.EstacionNombre || 'Sin nombre',
+      station_type: station?.EstacionTipo.toString() || 'Sin tipo',
+      station_lng: station?.EstacionLongitud.toString() || 'No registrado',
+      station_lat: station?.EstacionLatitud.toString() || 'No registrado',
+      station_alt: station?.EstacionAltitud.toString() || 'No registrado',
+      auto_id: item.AutoId.toString(),
+      auto_date: item.AutoFechaHora || 'No registrado',
+      auto_temp: item.AutoTemp.toString() || 'No registrado',
+      auto_hr: item.AutoHR.toString() || 'No registrado',
+      auto_precip: item.AutoPP.toString() || 'No registrado',
+      auto_radiacion: item.AutoRadiacion.toString() || 'No registrado',
+      auto_wind_dir: item.AutoWindDir.toString() || 'No registrado',
+      auto_wind_vel: item.AutoWindVel.toString() || 'No registrado',
     }
   })
 
   return newList
 }
 
-function filterByStation(data: IDataTable[], id_station: string) {
+function filterByStation(data: IDataTableMet[], id_station: string) {
   if (id_station === '') return data
   return data.filter((item) => item.station_id.toString() === id_station)
 }
 
 const MeteorologicalContext = createContext({
-  data: [] as IDataTable[],
-  dataFiltered: [] as IStation[],
+  data: [] as IDataTableMet[],
+  // dataFiltered: [] as IStation[],
   loading: false,
 })
 
@@ -78,33 +62,31 @@ export const MeteorologicalProvider = ({
 }: {
   children: React.ReactNode
 }) => {
-  const [dataStation, setDataSation] = useState<IStation[]>([])
-  const { data, getHidroData, loading } = useHidrological()
+  const [dataStation, setDataSation] = useState<IStationHM[]>([])
+  const { data, getMeteoroData, loading } = useMeteorological()
   const { getParams } = useFilterFromUrl()
 
   const id_station = getParams('estacion', '')
-  const dataFiltered = filterData(dataStation || [], id_station)
 
   useEffect(() => {
-    getHidroData()
+    getMeteoroData()
   }, [id_station])
 
   useEffect(() => {
-    if (data?.Estacion) {
-      setDataSation(data.Estacion)
+    if (data?.AutoValoresHM) {
+      setDataSation(data.EstacionHM)
     } else {
       setDataSation([])
     }
   }, [data])
 
-  const rows: IDataTable[] = data ? converData(data) : []
+  const rows: IDataTableMet[] = data ? converData(data) : []
   const filteredByStation = filterByStation(rows || [], id_station)
 
   return (
     <MeteorologicalContext.Provider
       value={{
         data: filteredByStation,
-        dataFiltered,
         loading,
       }}
     >
