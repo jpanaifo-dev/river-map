@@ -2,13 +2,7 @@
 'use client'
 import { useContext, createContext, useEffect, useState, Suspense } from 'react'
 import { useMeteorological } from '@/hooks'
-import {
-  IAutoValoresHM,
-  IDataMet,
-  IDataTableMet,
-  IStation,
-  IStationHM,
-} from '@/types'
+import { IDataMet, IDataTableMet, IStation, IStationHM } from '@/types'
 import { useFilterFromUrl } from '@/hooks'
 
 function filterData(data: IStation[], id_estacion: string) {
