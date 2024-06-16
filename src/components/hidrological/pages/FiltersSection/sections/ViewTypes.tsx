@@ -1,6 +1,7 @@
 'use clien'
 import { Button } from '@/components/ui/button'
 import { useFilterFromUrl } from '@/hooks'
+import Link from 'next/link'
 
 export const ViewTypes = () => {
   const { getParams, updateFilter } = useFilterFromUrl()
@@ -28,10 +29,11 @@ export const ViewTypes = () => {
           Tabla{' '}
         </Button>
         <Button
-          variant={pathname === 'graphic' ? 'default' : 'link'}
-          onClick={() => handleView('graphic')}
+          // variant={pathname === 'graphic' ? 'default' : 'link'}
+          // onClick={() => handleView('graphic')}
+          asChild
         >
-          Gráfico
+          <Link href="/info-hidrologica/grafico">Gráfico</Link>
         </Button>
       </div>
     </section>
