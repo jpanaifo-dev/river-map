@@ -1,7 +1,7 @@
 'use client'
-import { Suspense } from 'react'
 import { useHidrologicalContext } from '@/providers/hidrologicalProvider'
 import { StationsMap } from '../../maps'
+import { Suspense } from 'react'
 
 export const MapSection = () => {
   const { dataFiltered } = useHidrologicalContext()
