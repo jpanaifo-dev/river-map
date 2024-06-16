@@ -2,7 +2,7 @@
 'use client'
 import { useEffect } from 'react'
 import { useHidrological } from '@/hooks'
-import { EstacionesData, ViewTypes } from './sections'
+import { EstacionDetails, EstacionesData } from './sections'
 
 export const HidrologicalFilters = () => {
   const { getHidroData, data, loading } = useHidrological()
@@ -26,8 +26,7 @@ export const HidrologicalFilters = () => {
             options={data?.Estacion}
             loading={loading}
           />
-          <ViewTypes />
-          {/* <UmbralData /> */}
+          <EstacionDetails />
         </article>
       </main>
     </>

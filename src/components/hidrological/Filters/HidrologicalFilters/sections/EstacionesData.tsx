@@ -50,7 +50,7 @@ export const EstacionesData = (props: IProps) => {
         <section className="">
           <label
             htmlFor="estaciones"
-            className="text-sm font-medium"
+            className="text-xs font-medium"
           >
             Estaciones Hidrológicas
           </label>
