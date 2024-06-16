@@ -27,7 +27,6 @@ function getMinMax(data: DataItem[]): {
   minimo: number
   maximo: number
 } {
-  console.log('data', data)
   // Extraemos todos los valores numéricos de los niveles
   let valores: number[] = data
     .flatMap((item) => [
