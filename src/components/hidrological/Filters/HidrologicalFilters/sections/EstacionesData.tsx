@@ -1,4 +1,5 @@
 'use client'
+import { Suspense } from 'react'
 import {
   Select,
   SelectContent,
@@ -36,40 +37,41 @@ export const EstacionesData = (props: IProps) => {
 
   return (
     <>
-      <section className="">
-        <label
-          htmlFor="estaciones"
-          className="text-sm font-medium"
-        >
-          Estaciones Hidrológicas
-        </label>
-        <Select
-          value={id_station}
-          onValueChange={handleStation}
-        >
-          <SelectTrigger className="w-full">
-            {loading && (
-              <SelectValue
-                className="animate-pulse"
-                placeholder="Cargando.."
-              />
-            )}
+      <Suspense fallback={<div>Loading...</div>}>
+        <section className="">
+          <label
+            htmlFor="estaciones"
+            className="text-sm font-medium"
+          >
+            Estaciones Hidrológicas
+          </label>
+          <Select
+            value={id_station}
+            onValueChange={handleStation}
+          >
+            <SelectTrigger className="w-full">
+              {loading && (
+                <SelectValue
+                  className="animate-pulse"
+                  placeholder="Cargando.."
+                />
+              )}
 
-            {!loading && <SelectValue placeholder="Estaciones" />}
-          </SelectTrigger>
-          <SelectContent>
-            {optionsData?.map((item) => (
-              <SelectItem
-                key={item.EstId}
-                value={item.EstId.toString()}
-              >
-                {item.EstNombre}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </section>
-      <section></section>
+              {!loading && <SelectValue placeholder="Estaciones" />}
+            </SelectTrigger>
+            <SelectContent>
+              {optionsData?.map((item) => (
+                <SelectItem
+                  key={item.EstId}
+                  value={item.EstId.toString()}
+                >
+                  {item.EstNombre}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </section>
+      </Suspense>
     </>
   )
 }
