@@ -33,6 +33,9 @@ export const HidrologicalTable = () => {
           Estación Hidrológica {data[0]?.station || 'No registrado'} - Niveles
           de Agua - Río {data[0]?.river || 'No registrado'}
         </h1>
+        <p className="text-xs text-gray-500">
+          Niveles de agua de la estación hidrológica en el río
+        </p>
       </header>
       <Suspense fallback={<div>Loading...</div>}>
         <TableCustom

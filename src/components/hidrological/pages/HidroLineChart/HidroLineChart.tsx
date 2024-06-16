@@ -9,6 +9,8 @@ function convertToChartData(data: IDataTable[]) {
     'Nivel actual': item?.current_level,
     'Nivel normal': item?.normal_level,
     'Nivel pasado': item?.past_level,
+    'Umbral bajo': item?.low_threshold,
+    'Umbral alto': item?.high_threshold,
   }))
 }
 
@@ -16,6 +18,8 @@ interface DataItem {
   'Nivel actual': string
   'Nivel normal': string
   'Nivel pasado': string
+  'Umbral bajo': string
+  'Umbral alto': string
   date: string
 }
 
@@ -33,8 +37,6 @@ function getMinMax(data: DataItem[]): {
     ])
     .filter((valor) => !isNaN(valor))
 
-  console.log('valores', valores)
-
   // Calcula el mínimo y máximo de los valores
   let minimo = Math.min(...valores)
   let maximo = Math.max(...valores)
@@ -44,7 +46,6 @@ function getMinMax(data: DataItem[]): {
 
 export const HidroLineChart = () => {
   const { data } = useHidrologicalContext()
-
   const dataChart = convertToChartData(data) || []
 
   const { minimo, maximo } = getMinMax(dataChart)
@@ -56,10 +57,13 @@ export const HidroLineChart = () => {
           Estación Hidrológica {data[0]?.station || 'No registrado'} - Niveles
           de Agua - Río {data[0]?.river || 'No registrado'}
         </h1>
+        <p className="text-xs text-gray-500">
+          Niveles de agua de la estación hidrológica en el río
+        </p>
       </header>
       {dataChart && (
         <LineChart
-          // className="mt-4 h-72"
+          className="h-full max-h-[450px] w-full"
           data={dataChart}
           index="date"
           minValue={minimo}
@@ -67,8 +71,14 @@ export const HidroLineChart = () => {
           xAxisLabel="Tiempo (día)/(mes)/(año)"
           yAxisLabel="Nivel de agua (m)"
           yAxisWidth={65}
-          categories={['Nivel actual', 'Nivel normal', 'Nivel pasado']}
-          colors={['indigo', 'cyan', 'red']}
+          categories={[
+            'Nivel actual',
+            'Nivel normal',
+            'Nivel pasado',
+            'Umbral bajo',
+            'Umbral alto',
+          ]}
+          colors={['indigo', 'green', 'cyan', 'yellow', 'red']}
         />
       )}
     </>
