@@ -79,6 +79,9 @@ export const HidroLineChart = () => {
             'Umbral alto',
           ]}
           colors={['indigo', 'green', 'cyan', 'yellow', 'red']}
+          onValueChange={(value) => {
+            console.log('value', value)
+          }}
         />
       )}
     </>
