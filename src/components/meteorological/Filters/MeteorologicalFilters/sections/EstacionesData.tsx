@@ -38,6 +38,13 @@ export const EstacionesData = (props: IProps) => {
 
   return (
     <>
+      {!id_station && (
+        <section className="bg-yellow-100 p-2 rounded-md animate-pulse">
+          <h1 className="text-xs font-bold text-yellow-700">
+            Selecciona una estación para comenzar
+          </h1>
+        </section>
+      )}
       <section className="">
         <label
           htmlFor="estaciones"
