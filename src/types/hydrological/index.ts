@@ -4,7 +4,7 @@ import { IUmbral } from './IUmbral'
 import { EPeriodo, EUmbralPeriodo } from './IPeriod'
 import { IStation } from './IStation'
 import { IDataHidro } from './IDataHidro'
-
+import { IDataTable } from './IDataTable'
 export type {
   IColor,
   ILevel,
@@ -13,4 +13,5 @@ export type {
   EUmbralPeriodo,
   IStation,
   IDataHidro,
+  IDataTable,
 }
