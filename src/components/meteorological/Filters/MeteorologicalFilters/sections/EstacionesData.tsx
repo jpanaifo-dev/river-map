@@ -6,11 +6,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { IStation } from '@/types'
+import { IStationHM } from '@/types'
 import { useFilterFromUrl } from '@/hooks'
 
 interface IProps {
-  options?: IStation[]
+  options?: IStationHM[]
   loading: boolean
 }
 
@@ -20,8 +20,8 @@ export const EstacionesData = (props: IProps) => {
 
   const id_station = getParams('estacion', '')
 
-  const addAllOption = (data: IStation[]) => {
-    return [{ EstId: 0, EstNombre: 'Todas' }, ...data]
+  const addAllOption = (data: IStationHM[]) => {
+    return [{ EstacionId: 0, EstacionNombre: 'Todas' }, ...data]
   }
 
   const optionsData = addAllOption(options || [])
@@ -60,10 +60,10 @@ export const EstacionesData = (props: IProps) => {
           <SelectContent>
             {optionsData?.map((item) => (
               <SelectItem
-                key={item.EstId}
-                value={item.EstId.toString()}
+                key={item.EstacionId.toString()}
+                value={item.EstacionId.toString()}
               >
-                {item.EstNombre}
+                {item.EstacionNombre}
               </SelectItem>
             ))}
           </SelectContent>
