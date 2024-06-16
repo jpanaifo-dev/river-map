@@ -3,5 +3,15 @@ import { ILevel } from './ILevel'
 import { IUmbral } from './IUmbral'
 import { EPeriodo, EUmbralPeriodo } from './IPeriod'
 import { IStation } from './IStation'
-
-export type { IColor, ILevel, IUmbral, EPeriodo, EUmbralPeriodo, IStation }
+import { IDataHidro } from './IDataHidro'
+import { IDataTable } from './IDataTable'
+export type {
+  IColor,
+  ILevel,
+  IUmbral,
+  EPeriodo,
+  EUmbralPeriodo,
+  IStation,
+  IDataHidro,
+  IDataTable,
+}
