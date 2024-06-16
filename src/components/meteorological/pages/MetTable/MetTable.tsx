@@ -1,45 +1,41 @@
 'use client'
 import { Suspense } from 'react'
-import { useHidrologicalContext } from '@/providers'
+import { useMeteorologicalContext } from '@/providers'
 import { TableCustom } from '@/components'
 
-const tableHeaders = [
+const tableHeadersMet = [
   { key: 'station_id', value: 'ID de Estación' },
   { key: 'station', value: 'Estación' },
-  { key: 'station_color', value: 'Color de Estación' },
-  { key: 'station_period', value: 'Periodo de Estación' },
-  { key: 'river', value: 'Río' },
-  { key: 'institution', value: 'Institución' },
-  { key: 'date', value: 'Fecha' },
-  { key: 'past_date', value: 'Fecha Pasada' },
-  { key: 'current_date', value: 'Fecha Actual' },
-  { key: 'normal_level', value: 'Nivel Normal' },
-  { key: 'current_level', value: 'Nivel Actual' },
-  { key: 'past_level', value: 'Nivel Pasado' },
-  { key: 'period', value: 'Periodo' },
-  { key: 'low_threshold', value: 'Umbral Bajo' },
-  { key: 'high_threshold', value: 'Umbral Alto' },
-  { key: 'threshold_status', value: 'Estado de Umbral' },
-  { key: 'color', value: 'Color' },
+  { key: 'station_type', value: 'Tipo de Estación' },
+  { key: 'station_lat', value: 'Latitud de la Estación' },
+  { key: 'station_lng', value: 'Longitud de la Estación' },
+  { key: 'station_alt', value: 'Altitud de la Estación' },
+  { key: 'auto_date', value: 'Fecha Automática' },
+  { key: 'auto_temp', value: 'Temperatura Automática' },
+  { key: 'auto_hr', value: 'Humedad Relativa Automática' },
+  { key: 'auto_radiacion', value: 'Radiación Automática' },
+  { key: 'auto_wind_dir', value: 'Dirección del Viento Automática' },
+  { key: 'auto_wind_vel', value: 'Velocidad del Viento Automática' },
+  { key: 'auto_precip', value: 'Precipitación Automática' },
 ]
 
 export const MetTable = () => {
-  const { data } = useHidrologicalContext()
+  const { data } = useMeteorologicalContext()
 
   return (
     <>
       <header className="pb-2">
         <h1 className="font-bold text-sm uppercase">
-          Estación Hidrológica {data[0]?.station || 'No registrado'} - Niveles
-          de Agua - Río {data[0]?.river || 'No registrado'}
+          Estación Hidrológica {data[0]?.station || 'No registrado'} - Datos
+          Meteorológicos
         </h1>
         <p className="text-xs text-gray-500">
-          Niveles de agua de la estación hidrológica en el río
+          Información meteorológica de la estación hidrológica seleccionada
         </p>
       </header>
       <Suspense fallback={<div>Loading...</div>}>
         <TableCustom
-          headers={tableHeaders}
+          headers={tableHeadersMet}
           rows={data}
         />
       </Suspense>
