@@ -1,6 +1,5 @@
 'use client'
-import { Suspense } from 'react'
-import { IDataHidro, IDataTable, ILevel, IStation, IUmbral } from '@/types'
+import { IDataHidro, IDataTable, IStation, IUmbral } from '@/types'
 import { useFilterFromUrl } from '@/hooks'
 import { useHidrologicalContext } from '@/providers'
 import { TableCustom } from '@/components'
@@ -83,12 +82,12 @@ function converData(data: IDataHidro): IDataTable[] {
 }
 
 export const HidrologicalTable = () => {
-  const { data } = useHidrologicalContext()
-  const { getParams } = useFilterFromUrl()
+  // const { data } = useHidrologicalContext()
+  // const { getParams } = useFilterFromUrl()
 
-  const id_station = getParams('estacion', '')
-  const rows: IDataTable[] = data ? converData(data) : []
-  const dataFiltered = filterByStation(rows || [], id_station)
+  // const id_station = getParams('estacion', '')
+  // const rows: IDataTable[] = data ? converData(data) : []
+  // const dataFiltered = filterByStation(rows || [], id_station)
 
   return (
     <>
@@ -97,12 +96,10 @@ export const HidrologicalTable = () => {
           Niveles de ríos según estaciones hidrológicas
         </h1>
       </header>
-      <Suspense fallback={<div>Loading...</div>}>
-        <TableCustom
-          headers={tableHeaders}
-          rows={dataFiltered}
-        />
-      </Suspense>
+      <TableCustom
+        headers={tableHeaders}
+        rows={[]}
+      />
     </>
   )
 }

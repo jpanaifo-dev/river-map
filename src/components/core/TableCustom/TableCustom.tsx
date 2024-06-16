@@ -1,12 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-// import {
-//   Table,
-//   TableBody,
-//   TableCell,
-//   TableHeader,
-//   TableRow,
-// } from '@/components/ui/table' // Adjust imports based on your actual file structure
+
 import {
   Table,
   TableHead,
@@ -15,7 +9,6 @@ import {
   TableRow,
   TableCell,
   TableFoot,
-  // TablerFooterCell,
 } from '@tremor/react'
 import { Button } from '@/components/ui/button'
 
