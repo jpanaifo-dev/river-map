@@ -10,7 +10,7 @@ export const FilterLayout = (props: IProps) => {
   return (
     <>
       <main className="flex flex-col md:flex-row sm:pt-12">
-        <aside className="w-full md:w-64 md:min-w-64 md:max-w-64 sticky top-14 h-screen border-r">
+        <aside className="w-full md:w-64 md:min-w-64 md:max-w-64 sticky top-14 h-screen border-r max-h-[calc(100vh-4rem)] overflow-y-auto">
           <div className="bg-white">{filters}</div>
         </aside>
         <article className="w-full bg-white p-4">{children}</article>

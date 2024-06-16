@@ -1,75 +1,33 @@
 'use client'
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableFooter,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table'
-// import { ScrollArea } from '@/components/ui/scroll-area'
-
+import { Suspense } from 'react'
 import { IDataHidro, IDataTable, ILevel, IStation, IUmbral } from '@/types'
 import { useFilterFromUrl } from '@/hooks'
 import { useHidrologicalContext } from '@/providers'
 import { TableCustom } from '@/components'
 
 const tableHeaders = [
-  {
-    key: 'station',
-    value: 'Estación',
-  },
-  {
-    key: 'river',
-    value: 'Río',
-  },
-  {
-    key: 'institution',
-    value: 'Institución',
-  },
-  {
-    key: 'date',
-    value: 'Fecha',
-  },
-  {
-    key: 'normal_level',
-    value: 'Nivel normal',
-  },
-  {
-    key: 'current_level',
-    value: 'Nivel actual',
-  },
-  {
-    key: 'past_level',
-    value: 'Nivel pasado',
-  },
-  {
-    key: 'period',
-    value: 'Periodo',
-  },
-  {
-    key: 'station_period',
-    value: 'Periodo estación',
-  },
-  {
-    key: 'high_threshold',
-    value: 'Umbral alto',
-  },
-  {
-    key: 'low_threshold',
-    value: 'Umbral bajo',
-  },
-  {
-    key: 'threshold_status',
-    value: 'Estado',
-  },
+  { key: 'station_id', value: 'ID de Estación' },
+  { key: 'station', value: 'Estación' },
+  { key: 'station_color', value: 'Color de Estación' },
+  { key: 'station_period', value: 'Periodo de Estación' },
+  { key: 'river', value: 'Río' },
+  { key: 'institution', value: 'Institución' },
+  { key: 'date', value: 'Fecha' },
+  { key: 'past_date', value: 'Fecha Pasada' },
+  { key: 'current_date', value: 'Fecha Actual' },
+  { key: 'normal_level', value: 'Nivel Normal' },
+  { key: 'current_level', value: 'Nivel Actual' },
+  { key: 'past_level', value: 'Nivel Pasado' },
+  { key: 'period', value: 'Periodo' },
+  { key: 'low_threshold', value: 'Umbral Bajo' },
+  { key: 'high_threshold', value: 'Umbral Alto' },
+  { key: 'threshold_status', value: 'Estado de Umbral' },
+  { key: 'color', value: 'Color' },
 ]
 
-function filterByStation(data: ILevel[], id_station: string) {
+function filterByStation(data: IDataTable[], id_station: string) {
   if (id_station === '') return data
-  return data.filter((item) => item.EstId.toString() === id_station)
+  return data.filter((item) => item.station_id.toString() === id_station)
 }
 
 function getThresholdStatus(
@@ -128,17 +86,23 @@ export const HidrologicalTable = () => {
   const { data } = useHidrologicalContext()
   const { getParams } = useFilterFromUrl()
 
-  //   const id_station = getParams('estacion', '')
-  //   const dataFiltered = filterByStation(data?.Nivel || [], id_station)
-
+  const id_station = getParams('estacion', '')
   const rows: IDataTable[] = data ? converData(data) : []
+  const dataFiltered = filterByStation(rows || [], id_station)
 
   return (
     <>
-      <TableCustom
-        headers={tableHeaders}
-        rows={rows}
-      />
+      <header className="pb-2">
+        <h1 className="font-bold">
+          Niveles de ríos según estaciones hidrológicas
+        </h1>
+      </header>
+      <Suspense fallback={<div>Loading...</div>}>
+        <TableCustom
+          headers={tableHeaders}
+          rows={dataFiltered}
+        />
+      </Suspense>
     </>
   )
 }
