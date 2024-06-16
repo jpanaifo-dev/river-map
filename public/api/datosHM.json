@@ -1,0 +1,278 @@
+{
+  "EstacionHM": [
+    {
+      "EstacionId": 1059,
+      "EstacionNombre": "QUISTOCOCHA",
+      "EstacionTipo": "03",
+      "EstacionLatitud": -3.75,
+      "EstacionLongitud": -73.25,
+      "EstacionAltitud": 100
+    }
+  ],
+  "AutoValoresHM": [
+    {
+      "AutoId": 3705,
+      "EstacionId": 1059,
+      "AutoFechaHora": "07/05/2024 08:00",
+      "AutoTemp": 21.3,
+      "AutoHR": 89,
+      "AutoRadiacion": 253,
+      "AutoWindDir": 119.7409,
+      "AutoWindVel": 0.87955,
+      "AutoPP": 0
+    },
+    {
+      "AutoId": 3704,
+      "EstacionId": 1059,
+      "AutoFechaHora": "07/05/2024 07:00",
+      "AutoTemp": 20.1,
+      "AutoHR": 96,
+      "AutoRadiacion": 52,
+      "AutoWindDir": 57.05589,
+      "AutoWindVel": 1.065688,
+      "AutoPP": 0
+    },
+    {
+      "AutoId": 3703,
+      "EstacionId": 1059,
+      "AutoFechaHora": "07/05/2024 06:00",
+      "AutoTemp": 20,
+      "AutoHR": 93,
+      "AutoRadiacion": 0,
+      "AutoWindDir": 149.2387,
+      "AutoWindVel": 1.061983,
+      "AutoPP": 0
+    },
+    {
+      "AutoId": 3702,
+      "EstacionId": 1059,
+      "AutoFechaHora": "07/05/2024 05:00",
+      "AutoTemp": 19.8,
+      "AutoHR": 92,
+      "AutoRadiacion": 0,
+      "AutoWindDir": -28.31826,
+      "AutoWindVel": 1.922921,
+      "AutoPP": 0
+    },
+    {
+      "AutoId": 3701,
+      "EstacionId": 1059,
+      "AutoFechaHora": "07/05/2024 04:00",
+      "AutoTemp": 20.3,
+      "AutoHR": 97,
+      "AutoRadiacion": 0,
+      "AutoWindDir": 47.13852,
+      "AutoWindVel": 1.789381,
+      "AutoPP": 0
+    },
+    {
+      "AutoId": 3700,
+      "EstacionId": 1059,
+      "AutoFechaHora": "07/05/2024 03:00",
+      "AutoTemp": 20,
+      "AutoHR": 96,
+      "AutoRadiacion": 0,
+      "AutoWindDir": 83.34393,
+      "AutoWindVel": 2.864744,
+      "AutoPP": 0.1
+    },
+    {
+      "AutoId": 3699,
+      "EstacionId": 1059,
+      "AutoFechaHora": "07/05/2024 02:00",
+      "AutoTemp": 19.8,
+      "AutoHR": 97,
+      "AutoRadiacion": 0,
+      "AutoWindDir": 66.05766,
+      "AutoWindVel": 3.132079,
+      "AutoPP": 0.3
+    },
+    {
+      "AutoId": 3698,
+      "EstacionId": 1059,
+      "AutoFechaHora": "07/05/2024 01:00",
+      "AutoTemp": 19.9,
+      "AutoHR": 97,
+      "AutoRadiacion": 0,
+      "AutoWindDir": 55.50003,
+      "AutoWindVel": 1.891742,
+      "AutoPP": 0.1
+    },
+    {
+      "AutoId": 3697,
+      "EstacionId": 1059,
+      "AutoFechaHora": "07/05/2024 00:00",
+      "AutoTemp": 20.4,
+      "AutoHR": 97,
+      "AutoRadiacion": 0,
+      "AutoWindDir": 131.6725,
+      "AutoWindVel": 0.977102,
+      "AutoPP": 0
+    },
+    {
+      "AutoId": 3696,
+      "EstacionId": 1059,
+      "AutoFechaHora": "06/05/2024 23:00",
+      "AutoTemp": 20.2,
+      "AutoHR": 96,
+      "AutoRadiacion": 0,
+      "AutoWindDir": -52.54698,
+      "AutoWindVel": 0.936769,
+      "AutoPP": 0
+    },
+    {
+      "AutoId": 3695,
+      "EstacionId": 1059,
+      "AutoFechaHora": "06/05/2024 22:00",
+      "AutoTemp": 20.1,
+      "AutoHR": 96,
+      "AutoRadiacion": 0,
+      "AutoWindDir": 178.6052,
+      "AutoWindVel": 0.992098,
+      "AutoPP": 0
+    },
+    {
+      "AutoId": 3694,
+      "EstacionId": 1059,
+      "AutoFechaHora": "06/05/2024 21:00",
+      "AutoTemp": 20,
+      "AutoHR": 97,
+      "AutoRadiacion": 0,
+      "AutoWindDir": 166.4382,
+      "AutoWindVel": 1.730479,
+      "AutoPP": 0
+    },
+    {
+      "AutoId": 3693,
+      "EstacionId": 1059,
+      "AutoFechaHora": "06/05/2024 20:00",
+      "AutoTemp": 20.1,
+      "AutoHR": 94,
+      "AutoRadiacion": 0,
+      "AutoWindDir": 165.3919,
+      "AutoWindVel": 2.689487,
+      "AutoPP": 0
+    },
+    {
+      "AutoId": 3692,
+      "EstacionId": 1059,
+      "AutoFechaHora": "06/05/2024 19:00",
+      "AutoTemp": 21.4,
+      "AutoHR": 90,
+      "AutoRadiacion": 0,
+      "AutoWindDir": 169.4184,
+      "AutoWindVel": 2.265029,
+      "AutoPP": 0
+    },
+    {
+      "AutoId": 3691,
+      "EstacionId": 1059,
+      "AutoFechaHora": "06/05/2024 18:00",
+      "AutoTemp": 22.4,
+      "AutoHR": 89,
+      "AutoRadiacion": 22,
+      "AutoWindDir": 201.4983,
+      "AutoWindVel": 1.189741,
+      "AutoPP": 0
+    },
+    {
+      "AutoId": 3690,
+      "EstacionId": 1059,
+      "AutoFechaHora": "06/05/2024 17:00",
+      "AutoTemp": 24.3,
+      "AutoHR": 89,
+      "AutoRadiacion": 139,
+      "AutoWindDir": -31.80623,
+      "AutoWindVel": 1.179057,
+      "AutoPP": 0
+    },
+    {
+      "AutoId": 3689,
+      "EstacionId": 1059,
+      "AutoFechaHora": "06/05/2024 16:00",
+      "AutoTemp": 22.4,
+      "AutoHR": 83,
+      "AutoRadiacion": 91,
+      "AutoWindDir": 9.32436,
+      "AutoWindVel": 2.027906,
+      "AutoPP": 0
+    },
+    {
+      "AutoId": 3688,
+      "EstacionId": 1059,
+      "AutoFechaHora": "06/05/2024 15:00",
+      "AutoTemp": 25.1,
+      "AutoHR": 87,
+      "AutoRadiacion": 314,
+      "AutoWindDir": -34.78621,
+      "AutoWindVel": 1.195746,
+      "AutoPP": 0
+    },
+    {
+      "AutoId": 3687,
+      "EstacionId": 1059,
+      "AutoFechaHora": "06/05/2024 14:00",
+      "AutoTemp": 25,
+      "AutoHR": 74,
+      "AutoRadiacion": 372,
+      "AutoWindDir": -48.99776,
+      "AutoWindVel": 1.957346,
+      "AutoPP": 0
+    },
+    {
+      "AutoId": 3686,
+      "EstacionId": 1059,
+      "AutoFechaHora": "06/05/2024 13:00",
+      "AutoTemp": 26.1,
+      "AutoHR": 69,
+      "AutoRadiacion": 637,
+      "AutoWindDir": -45.8105,
+      "AutoWindVel": 2.182579,
+      "AutoPP": 0
+    },
+    {
+      "AutoId": 3685,
+      "EstacionId": 1059,
+      "AutoFechaHora": "06/05/2024 12:00",
+      "AutoTemp": 24.9,
+      "AutoHR": 71,
+      "AutoRadiacion": 757,
+      "AutoWindDir": -45.26097,
+      "AutoWindVel": 2.529102,
+      "AutoPP": 0
+    },
+    {
+      "AutoId": 3684,
+      "EstacionId": 1059,
+      "AutoFechaHora": "06/05/2024 11:00",
+      "AutoTemp": 23.8,
+      "AutoHR": 78,
+      "AutoRadiacion": 660,
+      "AutoWindDir": -32.57163,
+      "AutoWindVel": 1.779658,
+      "AutoPP": 0
+    },
+    {
+      "AutoId": 3683,
+      "EstacionId": 1059,
+      "AutoFechaHora": "06/05/2024 10:00",
+      "AutoTemp": 22.9,
+      "AutoHR": 82,
+      "AutoRadiacion": 497,
+      "AutoWindDir": -4.67819,
+      "AutoWindVel": 1.144696,
+      "AutoPP": 0
+    },
+    {
+      "AutoId": 3682,
+      "EstacionId": 1059,
+      "AutoFechaHora": "06/05/2024 09:00",
+      "AutoTemp": 22.6,
+      "AutoHR": 85,
+      "AutoRadiacion": 373,
+      "AutoWindDir": 30.23927,
+      "AutoWindVel": 0.777458,
+      "AutoPP": 0
+    }
+  ]
+}

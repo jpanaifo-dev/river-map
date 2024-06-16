@@ -6,29 +6,31 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { IStation } from '@/types'
+import { IStationHM } from '@/types'
 import { useFilterFromUrl } from '@/hooks'
+import { useRouter } from 'next/navigation'
 
 interface IProps {
-  options?: IStation[]
+  options?: IStationHM[]
   loading: boolean
 }
 
 export const EstacionesData = (props: IProps) => {
   const { options, loading } = props
   const { getParams, updateFilter } = useFilterFromUrl()
+  const router = useRouter()
 
   const id_station = getParams('estacion', '')
 
-  const addAllOption = (data: IStation[]) => {
-    return [{ EstId: 0, EstNombre: 'Todas' }, ...data]
+  const addAllOption = (data: IStationHM[]) => {
+    return [{ EstacionId: 0, EstacionNombre: 'Todas' }, ...data]
   }
 
   const optionsData = addAllOption(options || [])
 
   const handleStation = (value: string) => {
     if (value === '0') {
-      updateFilter('estacion', '')
+      router.push('/info-meteorologica')
     } else {
       updateFilter('estacion', value)
     }
@@ -60,10 +62,10 @@ export const EstacionesData = (props: IProps) => {
           <SelectContent>
             {optionsData?.map((item) => (
               <SelectItem
-                key={item.EstId}
-                value={item.EstId.toString()}
+                key={item.EstacionId.toString()}
+                value={item.EstacionId.toString()}
               >
-                {item.EstNombre}
+                {item.EstacionNombre}
               </SelectItem>
             ))}
           </SelectContent>

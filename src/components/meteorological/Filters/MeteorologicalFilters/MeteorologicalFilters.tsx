@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 import { useEffect, Suspense } from 'react'
-import { useHidrological } from '@/hooks'
-import { EstacionesData } from './sections'
+import { useMeteorological } from '@/hooks'
+import { EstacionesData, ViewTypes } from './sections'
 
 export const MeteorologicalFilters = () => {
-  const { getHidroData, data, loading } = useHidrological()
+  const { getMeteoroData, data, loading } = useMeteorological()
 
   useEffect(() => {
-    getHidroData()
+    getMeteoroData()
   }, [])
 
   return (
@@ -22,13 +22,14 @@ export const MeteorologicalFilters = () => {
           </p>
         </header>
         <article className="flex flex-col gap-2">
-          {/* <ViewTypes /> */}
           <Suspense fallback={<div>Loading...</div>}>
             <EstacionesData
-              options={data?.Estacion}
+              options={data?.EstacionHM || []}
               loading={loading}
             />
+            <ViewTypes />
           </Suspense>
+
           {/* <UmbralData /> */}
         </article>
       </main>
