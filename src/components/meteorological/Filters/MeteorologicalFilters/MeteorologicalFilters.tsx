@@ -23,12 +23,12 @@ export const MeteorologicalFilters = () => {
         </header>
         <article className="flex flex-col gap-2">
           {/* <ViewTypes /> */}
-          {/* <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<div>Loading...</div>}>
             <EstacionesData
               options={data?.Estacion}
               loading={loading}
             />
-          </Suspense> */}
+          </Suspense>
           {/* <UmbralData /> */}
         </article>
       </main>
