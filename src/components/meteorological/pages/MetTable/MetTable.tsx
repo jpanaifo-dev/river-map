@@ -11,12 +11,12 @@ const tableHeadersMet = [
   { key: 'station_lng', value: 'Longitud de la Estación' },
   { key: 'station_alt', value: 'Altitud de la Estación' },
   { key: 'auto_date', value: 'Fecha Automática' },
-  { key: 'auto_temp', value: 'Temperatura Automática' },
-  { key: 'auto_hr', value: 'Humedad Relativa Automática' },
-  { key: 'auto_radiacion', value: 'Radiación Automática' },
-  { key: 'auto_wind_dir', value: 'Dirección del Viento Automática' },
-  { key: 'auto_wind_vel', value: 'Velocidad del Viento Automática' },
-  { key: 'auto_precip', value: 'Precipitación Automática' },
+  { key: 'auto_temp', value: 'Temperatura Automática (°C)' },
+  { key: 'auto_hr', value: 'Humedad Relativa Automática (%)' },
+  { key: 'auto_radiacion', value: 'Radiación Automática (W/m²)' },
+  { key: 'auto_wind_dir', value: 'Dirección del Viento Automática (°)' },
+  { key: 'auto_wind_vel', value: 'Velocidad del Viento Automática (m/s)' },
+  { key: 'auto_precip', value: 'Precipitación Automática (mm)' },
 ]
 
 export const MetTable = () => {

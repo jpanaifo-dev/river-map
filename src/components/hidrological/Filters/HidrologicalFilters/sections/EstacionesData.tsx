@@ -40,10 +40,17 @@ export const EstacionesData = (props: IProps) => {
   return (
     <>
       <Suspense fallback={<div>Loading...</div>}>
+        {!id_station && (
+          <section className="bg-yellow-100 p-2 rounded-md animate-pulse">
+            <h1 className="text-xs font-bold text-yellow-700">
+              Selecciona una estación para comenzar
+            </h1>
+          </section>
+        )}
         <section className="">
           <label
             htmlFor="estaciones"
-            className="text-sm font-medium"
+            className="text-xs font-medium"
           >
             Estaciones Hidrológicas
           </label>

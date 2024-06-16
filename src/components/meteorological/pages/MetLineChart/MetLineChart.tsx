@@ -1,25 +1,25 @@
 'use client'
-import { useHidrologicalContext } from '@/providers'
-import { IDataTable } from '@/types'
+import { useMeteorologicalContext } from '@/providers'
+import { IDataTableMet } from '@/types'
 import { LineChart } from '@tremor/react'
 
-function convertToChartData(data: IDataTable[]) {
-  return data?.map((item: IDataTable) => ({
-    date: item?.past_date,
-    'Nivel actual': item?.current_level,
-    'Nivel normal': item?.normal_level,
-    'Nivel pasado': item?.past_level,
-    'Umbral bajo': item?.low_threshold,
-    'Umbral alto': item?.high_threshold,
+function convertToChartData(data: IDataTableMet[]) {
+  return data?.map((item: IDataTableMet) => ({
+    date: item?.auto_date,
+    'Humedad (%)': item?.auto_hr,
+    'Radiación (W/m²)': item?.auto_radiacion,
+    'Temperatura (°C)': item?.auto_temp,
+    'Velocidad del Viento (m/s)': item?.auto_wind_vel,
+    'Dirección del Viento (°)': item?.auto_wind_dir,
   }))
 }
 
 interface DataItem {
-  'Nivel actual': string
-  'Nivel normal': string
-  'Nivel pasado': string
-  'Umbral bajo': string
-  'Umbral alto': string
+  'Humedad (%)': string
+  'Radiación (W/m²)': string
+  'Temperatura (°C)': string
+  'Velocidad del Viento (m/s)': string
+  'Dirección del Viento (°)': string
   date: string
 }
 
@@ -27,13 +27,13 @@ function getMinMax(data: DataItem[]): {
   minimo: number
   maximo: number
 } {
-  console.log('data', data)
   // Extraemos todos los valores numéricos de los niveles
   let valores: number[] = data
     .flatMap((item) => [
-      parseFloat(item['Nivel actual']),
-      parseFloat(item['Nivel normal']),
-      parseFloat(item['Nivel pasado']),
+      parseFloat(item['Humedad (%)']),
+      parseFloat(item['Radiación (W/m²)']),
+      parseFloat(item['Temperatura (°C)']),
+      parseFloat(item['Velocidad del Viento (m/s)']),
     ])
     .filter((valor) => !isNaN(valor))
 
@@ -45,7 +45,7 @@ function getMinMax(data: DataItem[]): {
 }
 
 export const MetLineChart = () => {
-  const { data } = useHidrologicalContext()
+  const { data } = useMeteorologicalContext()
   const dataChart = convertToChartData(data) || []
 
   const { minimo, maximo } = getMinMax(dataChart)
@@ -54,11 +54,11 @@ export const MetLineChart = () => {
     <>
       <header className="pb-2">
         <h1 className="font-bold text-sm uppercase">
-          Estación Hidrológica {data[0]?.station || 'No registrado'} - Niveles
-          de Agua - Río {data[0]?.river || 'No registrado'}
+          Estación Hidrológica {data[0]?.station || 'No registrado'} - Datos
+          Meteorológicos
         </h1>
         <p className="text-xs text-gray-500">
-          Niveles de agua de la estación hidrológica en el río
+          Información meteorológica de la estación hidrológica seleccionada
         </p>
       </header>
       {dataChart && (
@@ -72,11 +72,11 @@ export const MetLineChart = () => {
           yAxisLabel="Nivel de agua (m)"
           yAxisWidth={65}
           categories={[
-            'Nivel actual',
-            'Nivel normal',
-            'Nivel pasado',
-            'Umbral bajo',
-            'Umbral alto',
+            'Humedad (%)',
+            'Radiación (W/m²)',
+            'Temperatura (°C)',
+            'Velocidad del Viento (m/s)',
+            'Dirección del Viento (°)',
           ]}
           colors={['indigo', 'green', 'cyan', 'yellow', 'red']}
           onValueChange={(value) => {
