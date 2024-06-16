@@ -93,8 +93,9 @@ export const HidrologicalTable = () => {
   return (
     <>
       <header className="pb-2">
-        <h1 className="font-bold">
-          Niveles de ríos según estaciones hidrológicas
+        <h1 className="font-bold text-sm uppercase">
+          Estación Hidrológica {dataFiltered[0]?.station || 'No registrado'} -
+          Niveles de Agua
         </h1>
       </header>
       <Suspense fallback={<div>Loading...</div>}>

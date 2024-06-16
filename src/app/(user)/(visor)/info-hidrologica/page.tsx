@@ -2,11 +2,17 @@
 import { Suspense } from 'react'
 import { HidrologicalTable } from '@/components'
 
+import { useFilterFromUrl } from '@/hooks'
+
 export default function Page() {
+  const { getParams } = useFilterFromUrl()
+
+  const view = getParams('view', '')
+
   return (
     <>
       <Suspense fallback={<div>Loading...</div>}>
-        <HidrologicalTable />
+        {view === 'table' && <HidrologicalTable />}
       </Suspense>
     </>
   )
