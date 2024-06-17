@@ -38,9 +38,9 @@ export const DataMap = (props: IProps) => {
           scrollWheelZoom={false}
         >
           <TileLayer
-            //   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             //mapa de ríos
-            url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
+            // url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
             attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
           />
           {dataStation &&
