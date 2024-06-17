@@ -1,5 +1,5 @@
 'use client'
-import { Suspense } from 'react'
+import { Suspense, useState } from 'react'
 import { IStation } from '@/types/hydrological'
 import L from 'leaflet'
 import { MapContainer, TileLayer, Marker } from 'react-leaflet'
@@ -65,23 +65,31 @@ interface IProps {
 }
 
 export const DataMap = (props: IProps) => {
+  const [activeStation, setActiveStation] = useState<IStation | null>(null)
   const { dataStation } = props
   const { getParams, updateFilter } = useFilterFromUrl()
 
-  console.log(dataStation)
+  const estacion = getParams('estacion', '')
 
   const handleMarkerClick = (station: IStation) => {
     // Puedes realizar cualquier otra acción aquí, como actualizar el estado o navegar a otra página
+    setActiveStation(station)
     updateFilter('estacion', station.EstId.toString())
   }
+
+  const center: [number, number] = activeStation
+    ? [activeStation.EstLatitud, activeStation.EstLongitud]
+    : [-3.7437, -73.2516]
+
+  const zoom = estacion !== '' ? 9 : 7
 
   return (
     <>
       <Suspense fallback={<div>Loading...</div>}>
         <MapContainer
           style={{ width: '100%', height: 'calc(100vh - 6rem)' }}
-          center={[-3.7437, -73.2516]}
-          zoom={7}
+          center={center}
+          zoom={zoom}
           scrollWheelZoom={false}
         >
           <TileLayer
