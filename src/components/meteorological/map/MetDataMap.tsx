@@ -8,11 +8,11 @@ import { useFilterFromUrl } from '@/hooks'
 import { IStationHM } from '@/types'
 
 const customIcon = new L.Icon({
-  iconUrl: 'https://cdn-icons-png.flaticon.com/512/252/252025.png', // URL del ícono
+  iconUrl: 'https://cdn-icons-png.flaticon.com/512/9092/9092499.png', // URL del ícono
   iconSize: [34, 36], // tamaño del ícono
   iconAnchor: [12, 41], // punto del ícono que se anclará en la posición de latitud/longitud
   popupAnchor: [1, -34], // punto donde se abrirá el popup
-  shadowSize: [41, 41], // tamaño de la sombra
+  shadowSize: [56, 56], // tamaño de la sombra
 })
 
 interface IProps {
