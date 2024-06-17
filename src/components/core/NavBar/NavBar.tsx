@@ -11,8 +11,10 @@ import {
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 
 export const NavBar = () => {
+  const pathname = usePathname()
   return (
     <nav className="bg-white shadow-lg fixed top-0 w-full z-50">
       <NavigationMenu>
@@ -39,7 +41,10 @@ export const NavBar = () => {
               legacyBehavior
               passHref
             >
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              <NavigationMenuLink
+                className={navigationMenuTriggerStyle()}
+                active={pathname === '/'}
+              >
                 Inicio
               </NavigationMenuLink>
             </Link>
@@ -50,7 +55,10 @@ export const NavBar = () => {
               legacyBehavior
               passHref
             >
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              <NavigationMenuLink
+                className={navigationMenuTriggerStyle()}
+                active={pathname === '/info-hidrologica'}
+              >
                 Información Hidrológica
               </NavigationMenuLink>
             </Link>
@@ -61,7 +69,10 @@ export const NavBar = () => {
               legacyBehavior
               passHref
             >
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              <NavigationMenuLink
+                className={navigationMenuTriggerStyle()}
+                active={pathname === '/info-meteorologica'}
+              >
                 Información Meteorológica
               </NavigationMenuLink>
             </Link>

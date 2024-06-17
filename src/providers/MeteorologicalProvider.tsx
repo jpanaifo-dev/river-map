@@ -47,7 +47,7 @@ function filterByStation(data: IDataTableMet[], id_station: string) {
 
 const MeteorologicalContext = createContext({
   data: [] as IDataTableMet[],
-  // dataFiltered: [] as IStation[],
+  stations: [] as IStationHM[],
   loading: false,
 })
 
@@ -81,6 +81,7 @@ export const MeteorologicalProvider = ({
     <MeteorologicalContext.Provider
       value={{
         data: filteredByStation,
+        stations: dataStation,
         loading,
       }}
     >

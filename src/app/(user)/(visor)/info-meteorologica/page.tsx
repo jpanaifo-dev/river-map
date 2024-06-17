@@ -1,6 +1,6 @@
 'use client'
 import { Suspense } from 'react'
-import { MetLineChart, MetTable } from '@/components'
+import { MetLineChart, MetMap, MetTable } from '@/components'
 
 import { useFilterFromUrl } from '@/hooks'
 
@@ -12,6 +12,7 @@ export default function Page() {
   return (
     <>
       <Suspense fallback={<div>Loading...</div>}>
+        {view === '' && <MetMap />}
         {view === 'table' && <MetTable />}
         {view === 'graphic' && <MetLineChart />}
       </Suspense>
