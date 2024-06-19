@@ -2,7 +2,7 @@
 import { Suspense, useState } from 'react'
 import { IStation } from '@/types/hydrological'
 import L from 'leaflet'
-import { MapContainer, TileLayer, Marker } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Tooltip } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 
 import { useFilterFromUrl } from '@/hooks'
@@ -42,21 +42,13 @@ const colorPin = [
   },
 ]
 
-// const customIcon = new L.Icon({
-//   iconUrl: 'https://cdn-icons-png.flaticon.com/512/252/252025.png', // URL del ícono
-//   iconSize: [34, 36], // tamaño del ícono
-//   iconAnchor: [12, 41], // punto del ícono que se anclará en la posición de latitud/longitud
-//   popupAnchor: [1, -34], // punto donde se abrirá el popup
-//   shadowSize: [41, 41], // tamaño de la sombra
-// })
-
 const getColorMarkerIcon = (color: string) => {
   return L.divIcon({
-    className: 'custom-div-icon', // Clase CSS para el div del ícono
+    className: 'custom-div-icon',
     html: `<div style="background-color: ${color}; width: 20px; height: 20px; border-radius: 50%; border: 2px solid white;"></div>`,
-    iconSize: [20, 20], // Tamaño del ícono
-    iconAnchor: [10, 10], // Punto del ícono que se anclará en la posición de latitud/longitud
-    popupAnchor: [0, -10], // Punto donde se abrirá el popup
+    iconSize: [20, 20],
+    iconAnchor: [10, 10],
+    popupAnchor: [0, -10],
   })
 }
 
@@ -66,15 +58,25 @@ interface IProps {
 
 export const DataMap = (props: IProps) => {
   const [activeStation, setActiveStation] = useState<IStation | null>(null)
+  const [hoveredStationId, setHoveredStationId] = useState<number | null>(null)
   const { dataStation } = props
   const { getParams, updateFilter } = useFilterFromUrl()
 
   const estacion = getParams('estacion', '')
 
   const handleMarkerClick = (station: IStation) => {
-    // Puedes realizar cualquier otra acción aquí, como actualizar el estado o navegar a otra página
     setActiveStation(station)
     updateFilter('estacion', station.EstId.toString())
+  }
+
+  const handleMouseOver = (stationId: number) => {
+    setHoveredStationId(stationId)
+  }
+
+  const handleMouseOut = () => {
+    setTimeout(() => {
+      setHoveredStationId(null)
+    }, 500)
   }
 
   const center: [number, number] = activeStation
@@ -94,17 +96,14 @@ export const DataMap = (props: IProps) => {
         >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            //mapa de ríos
-            // url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
             attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
           />
           {dataStation &&
             dataStation.map((station) => {
-              // Encuentra el color correspondiente para la estación
               const colorConfig = colorPin.find(
                 (pin) => pin.key === station.EstColor
               )
-              const markerColor = colorConfig ? colorConfig.color : '#000' // Default color if not found
+              const markerColor = colorConfig ? colorConfig.color : '#000'
 
               return (
                 <Marker
@@ -113,8 +112,29 @@ export const DataMap = (props: IProps) => {
                   icon={getColorMarkerIcon(markerColor)}
                   eventHandlers={{
                     click: () => handleMarkerClick(station),
+                    mouseover: () => handleMouseOver(station.EstId),
+                    mouseout: handleMouseOut,
                   }}
-                ></Marker>
+                >
+                  {hoveredStationId === station.EstId && (
+                    <Tooltip
+                      permanent
+                      className="rounded-md"
+                    >
+                      <div className="p-2">
+                        <h1 className="text-lg font-bold">
+                          Nombre: {station.EstNombre}
+                        </h1>
+                        <div>
+                          <strong>Lat:</strong> {station.EstLatitud}
+                        </div>
+                        <div>
+                          <strong>Lon:</strong> {station.EstLongitud}
+                        </div>
+                      </div>
+                    </Tooltip>
+                  )}
+                </Marker>
               )
             })}
         </MapContainer>
