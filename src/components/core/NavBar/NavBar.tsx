@@ -59,7 +59,7 @@ export const NavBar = () => {
                 className={navigationMenuTriggerStyle()}
                 active={pathname === '/info-hidrologica'}
               >
-                Información Hidrológica
+                Estación Hidrológica
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
@@ -73,7 +73,7 @@ export const NavBar = () => {
                 className={navigationMenuTriggerStyle()}
                 active={pathname === '/info-meteorologica'}
               >
-                Información Meteorológica
+                Estación Automática
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
