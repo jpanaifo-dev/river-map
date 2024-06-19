@@ -50,7 +50,7 @@ export const EstacionesData = (props: IProps) => {
           htmlFor="estaciones"
           className="text-sm font-medium"
         >
-          Estaciones Hidrológicas
+          Estaciones automáticas
         </label>
         <Select
           value={id_station}
