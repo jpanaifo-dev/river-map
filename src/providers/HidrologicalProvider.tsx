@@ -28,6 +28,33 @@ function getUmbral(umbrals: IUmbral[], id_umbral: string) {
   return umbrals.find((item) => item.EstId.toString() === id_umbral)
 }
 
+const convertDate = (dateStr: string) => {
+  if (dateStr === '') return 'No registrado'
+  const months = [
+    'Ene',
+    'Feb',
+    'Mar',
+    'Abr',
+    'May',
+    'Jun',
+    'Jul',
+    'Ago',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dic',
+  ]
+
+  // Divide la cadena de fecha en componentes día, mes y año
+  const [day, month, year] = dateStr.split('/')
+
+  // Convierte el número de mes en el nombre del mes correspondiente
+  const monthName = months[parseInt(month, 10) - 1]
+
+  // Forma la nueva cadena de fecha
+  return `${parseInt(day, 10)} de ${monthName} ${year}`
+}
+
 function converData(data: IDataHidro): IDataTable[] {
   const { Nivel, Estacion, Umbral } = data
 
@@ -41,8 +68,10 @@ function converData(data: IDataHidro): IDataTable[] {
       river: station?.EstRio || 'No registrado',
       institution: station?.EstInstitucion || 'No registrado',
       date: item?.NivelFecha || 'No registrado',
-      past_date: item?.NivelFechaPasado || 'No registrado',
-      current_date: item?.NivelFechaActual || 'No registrado',
+      // past_date: item?.NivelFechaPasado || 'No registrado',
+      // current_date: item?.NivelFechaActual || 'No registrado',
+      past_date: convertDate(item?.NivelFechaPasado || ''),
+      current_date: convertDate(item?.NivelFechaActual || ''),
       normal_level: item?.NivelNormal.toString() || 'No registrado',
       current_level: item?.NivelAHActual?.toString() || 'No registrado',
       past_level: item?.NivelAHPasado?.toString() || 'No registrado',
