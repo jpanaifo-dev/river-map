@@ -16,8 +16,9 @@ const AreaChart = dynamic(
 )
 
 interface IData {
-  name: string
-  data: number[]
+  type: string
+  data: Array<number | string>
+  smooth?: boolean
 }
 
 // import { AreaChart } from '../../Chart'
@@ -31,22 +32,25 @@ function convertToChartData(data: IDataTable[]): IData[] {
 
   return [
     {
-      name: 'Nivel actual',
+      type: 'line',
       data: data
         ?.map((item) => filterValidNumbers(item?.current_level))
         .filter(isValidNumber),
+      smooth: true,
     },
     {
-      name: 'Nivel normal',
+      type: 'line',
       data: data
         ?.map((item) => filterValidNumbers(item?.normal_level))
         .filter(isValidNumber),
+      smooth: true,
     },
     {
-      name: 'Nivel pasado',
+      type: 'line',
       data: data
         ?.map((item) => filterValidNumbers(item?.past_level))
         .filter(isValidNumber),
+      smooth: true,
     },
     // {
     //   name: 'Umbral bajo',
@@ -100,33 +104,25 @@ function createCategories(data: IData[]): string[] {
 //   date: string
 // }
 
-// function getMinMax(data: DataItem[]): {
-//   minimo: number
-//   maximo: number
-// } {
-//   // Extraemos todos los valores numéricos de los niveles
-//   let valores: number[] = data
-//     .flatMap((item) => [
-//       parseFloat(item['Nivel actual']),
-//       parseFloat(item['Nivel normal']),
-//       parseFloat(item['Nivel pasado']),
-//     ])
-//     .filter((valor) => !isNaN(valor))
+function getMinMax(data: IData[]): { minimo: number; maximo: number } {
+  const values = data
+    .map((item) => item.data)
+    .reduce((acc, item) => acc.concat(item), [])
+    .map((value) => Number(value))
 
-//   // Calcula el mínimo y máximo de los valores
-//   let minimo = Math.min(...valores)
-//   let maximo = Math.max(...valores)
-
-//   return { minimo, maximo }
-// }
+  return {
+    minimo: Math.min(...values),
+    maximo: Math.max(...values),
+  }
+}
 
 export const HidroLineChart = () => {
   const { data } = useHidrologicalContext()
   const dataChart = convertToChartData(data) || []
 
-  // const categories = createCategories(dataChart)
+  const categories = createCategories(dataChart)
 
-  // const { minimo, maximo } = getMinMax(dataChart)
+  const { minimo, maximo } = getMinMax(dataChart)
 
   return (
     <>
@@ -162,7 +158,16 @@ export const HidroLineChart = () => {
           }}
         />
       )} */}
-      {dataChart && <AreaChart series={dataChart} />}
+      {dataChart && (
+        <AreaChart
+          series={dataChart}
+          categories={categories}
+          yAxis={{
+            max: maximo,
+            min: minimo,
+          }}
+        />
+      )}
     </>
   )
 }
