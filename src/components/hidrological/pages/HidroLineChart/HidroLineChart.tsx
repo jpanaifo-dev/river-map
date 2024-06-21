@@ -3,7 +3,17 @@ import { useHidrologicalContext } from '@/providers'
 import dynamic from 'next/dynamic'
 
 import { IDataTable } from '@/types'
-import { LineChart } from '@tremor/react'
+// import { LineChart } from '@tremor/react'
+
+const AreaChart = dynamic(
+  () =>
+    import('@/components/hidrological/Chart/AreaChart').then(
+      (mod) => mod.AreaChart
+    ),
+  {
+    ssr: false,
+  }
+)
 
 interface IData {
   name: string
@@ -152,6 +162,7 @@ export const HidroLineChart = () => {
           }}
         />
       )} */}
+      {dataChart && <AreaChart series={dataChart} />}
     </>
   )
 }
