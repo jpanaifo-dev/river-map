@@ -2,14 +2,6 @@
 import { useHidrologicalContext } from '@/providers'
 import dynamic from 'next/dynamic'
 
-const AreaChart = dynamic(
-  () =>
-    import('@/components/hidrological/Chart/AreaChart').then(
-      (mod) => mod.AreaChart
-    ),
-  { ssr: false }
-)
-
 import { IDataTable } from '@/types'
 import { LineChart } from '@tremor/react'
 
@@ -61,20 +53,22 @@ function convertToChartData(data: IDataTable[]): IData[] {
   ]
 }
 
-// function createCategories(data: IData[]): string[] {
-//   const uniqueCategories = new Set<string>();
+function createCategories(data: IData[]): string[] {
+  const uniqueCategories = new Set<string>()
 
-//   data.forEach((item) => {
-//     item.data.forEach((_, index) => {
-//       const date = new Date();
-//       date.setDate(date.getDate() + index);
-//       const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
-//       uniqueCategories.add(formattedDate);
-//     });
-//   });
+  data.forEach((item) => {
+    item.data.forEach((_, index) => {
+      const date = new Date()
+      date.setDate(date.getDate() + index)
+      const formattedDate = `${date.getDate()}/${
+        date.getMonth() + 1
+      }/${date.getFullYear()}`
+      uniqueCategories.add(formattedDate)
+    })
+  })
 
-//   return Array.from(uniqueCategories);
-// }
+  return Array.from(uniqueCategories)
+}
 
 // function convertToChartData(data: IDataTable[]) {
 //   return data?.map((item: IDataTable) => ({
@@ -158,10 +152,6 @@ export const HidroLineChart = () => {
           }}
         />
       )} */}
-      <AreaChart
-        series={dataChart}
-        // categories={categories}
-      />
     </>
   )
 }
