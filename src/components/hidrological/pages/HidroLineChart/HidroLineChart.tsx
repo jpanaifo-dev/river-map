@@ -20,6 +20,7 @@ interface IData {
   name?: string
   data: Array<number | string>
   smooth?: boolean
+  symbol?: string
 }
 
 function convertToChartData(data: IDataTable[]): IData[] {
@@ -33,6 +34,7 @@ function convertToChartData(data: IDataTable[]): IData[] {
     {
       type: 'line',
       name: 'Nivel actual',
+      symbol: 'none',
       data: data
         ?.map((item) => filterValidNumbers(item?.current_level))
         .filter(isValidNumber),
@@ -41,6 +43,7 @@ function convertToChartData(data: IDataTable[]): IData[] {
     {
       type: 'line',
       name: 'Nivel normal',
+      symbol: 'none',
       data: data
         ?.map((item) => filterValidNumbers(item?.normal_level))
         .filter(isValidNumber),
@@ -49,6 +52,7 @@ function convertToChartData(data: IDataTable[]): IData[] {
     {
       type: 'line',
       name: 'Nivel pasado',
+      symbol: 'none',
       data: data
         ?.map((item) => filterValidNumbers(item?.past_level))
         .filter(isValidNumber),
@@ -165,6 +169,7 @@ export const HidroLineChart = () => {
           series={dataChart}
           categories={categories}
           yAxis={{
+            name: 'Nivel de agua (m)',
             max: maximo,
             min: minimo,
           }}
