@@ -1,6 +1,7 @@
 'use client'
 import ReactECharts from 'echarts-for-react'
 interface data {
+  name?: string
   type: string
   data: Array<number | string>
   smooth?: boolean
@@ -34,6 +35,9 @@ export const AreaChart = (props: IProps) => {
     series: series || [],
     tooltip: {
       trigger: 'axis',
+    },
+    legend: {
+      data: series.map((item) => item.name),
     },
   }
 

@@ -17,11 +17,10 @@ const AreaChart = dynamic(
 
 interface IData {
   type: string
+  name?: string
   data: Array<number | string>
   smooth?: boolean
 }
-
-// import { AreaChart } from '../../Chart'
 
 function convertToChartData(data: IDataTable[]): IData[] {
   // Utilidad para convertir y filtrar valores válidos
@@ -33,6 +32,7 @@ function convertToChartData(data: IDataTable[]): IData[] {
   return [
     {
       type: 'line',
+      name: 'Nivel actual',
       data: data
         ?.map((item) => filterValidNumbers(item?.current_level))
         .filter(isValidNumber),
@@ -40,6 +40,7 @@ function convertToChartData(data: IDataTable[]): IData[] {
     },
     {
       type: 'line',
+      name: 'Nivel normal',
       data: data
         ?.map((item) => filterValidNumbers(item?.normal_level))
         .filter(isValidNumber),
@@ -47,6 +48,7 @@ function convertToChartData(data: IDataTable[]): IData[] {
     },
     {
       type: 'line',
+      name: 'Nivel pasado',
       data: data
         ?.map((item) => filterValidNumbers(item?.past_level))
         .filter(isValidNumber),
