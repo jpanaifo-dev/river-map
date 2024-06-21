@@ -1,8 +1,80 @@
 'use client'
 import { useHidrologicalContext } from '@/providers'
+import dynamic from 'next/dynamic'
+
+const AreaChart = dynamic(
+  () =>
+    import('@/components/hidrological/Chart/AreaChart').then(
+      (mod) => mod.AreaChart
+    ),
+  { ssr: false }
+)
+
 import { IDataTable } from '@/types'
 import { LineChart } from '@tremor/react'
-import { AreaChart } from '../../Chart'
+
+interface IData {
+  name: string
+  data: number[]
+}
+
+// import { AreaChart } from '../../Chart'
+
+function convertToChartData(data: IDataTable[]): IData[] {
+  // Utilidad para convertir y filtrar valores válidos
+  const filterValidNumbers = (items: string | undefined | null) =>
+    items ? Number(items) : NaN // Convertimos a número si es válido, de lo contrario NaN
+
+  const isValidNumber = (num: number) => !isNaN(num) // Verificamos si el número es válido (no NaN)
+
+  return [
+    {
+      name: 'Nivel actual',
+      data: data
+        ?.map((item) => filterValidNumbers(item?.current_level))
+        .filter(isValidNumber),
+    },
+    {
+      name: 'Nivel normal',
+      data: data
+        ?.map((item) => filterValidNumbers(item?.normal_level))
+        .filter(isValidNumber),
+    },
+    {
+      name: 'Nivel pasado',
+      data: data
+        ?.map((item) => filterValidNumbers(item?.past_level))
+        .filter(isValidNumber),
+    },
+    // {
+    //   name: 'Umbral bajo',
+    //   data: data
+    //     ?.map((item) => filterValidNumbers(item?.low_threshold))
+    //     .filter(isValidNumber),
+    // },
+    // {
+    //   name: 'Umbral alto',
+    //   data: data
+    //     ?.map((item) => filterValidNumbers(item?.high_threshold))
+    //     .filter(isValidNumber),
+    // },
+  ]
+}
+
+// function createCategories(data: IData[]): string[] {
+//   const uniqueCategories = new Set<string>();
+
+//   data.forEach((item) => {
+//     item.data.forEach((_, index) => {
+//       const date = new Date();
+//       date.setDate(date.getDate() + index);
+//       const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+//       uniqueCategories.add(formattedDate);
+//     });
+//   });
+
+//   return Array.from(uniqueCategories);
+// }
 
 // function convertToChartData(data: IDataTable[]) {
 //   return data?.map((item: IDataTable) => ({
@@ -46,7 +118,9 @@ import { AreaChart } from '../../Chart'
 
 export const HidroLineChart = () => {
   const { data } = useHidrologicalContext()
-  // const dataChart = convertToChartData(data) || []
+  const dataChart = convertToChartData(data) || []
+
+  // const categories = createCategories(dataChart)
 
   // const { minimo, maximo } = getMinMax(dataChart)
 
@@ -84,7 +158,10 @@ export const HidroLineChart = () => {
           }}
         />
       )} */}
-      <AreaChart />
+      <AreaChart
+        series={dataChart}
+        // categories={categories}
+      />
     </>
   )
 }
