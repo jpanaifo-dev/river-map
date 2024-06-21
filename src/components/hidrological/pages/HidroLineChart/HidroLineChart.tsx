@@ -2,52 +2,53 @@
 import { useHidrologicalContext } from '@/providers'
 import { IDataTable } from '@/types'
 import { LineChart } from '@tremor/react'
+import { AreaChart } from '../../Chart'
 
-function convertToChartData(data: IDataTable[]) {
-  return data?.map((item: IDataTable) => ({
-    date: item?.past_date,
-    'Nivel actual': item?.current_level,
-    'Nivel normal': item?.normal_level,
-    'Nivel pasado': item?.past_level,
-    'Umbral bajo': item?.low_threshold,
-    'Umbral alto': item?.high_threshold,
-  }))
-}
+// function convertToChartData(data: IDataTable[]) {
+//   return data?.map((item: IDataTable) => ({
+//     date: item?.past_date,
+//     'Nivel actual': item?.current_level,
+//     'Nivel normal': item?.normal_level,
+//     'Nivel pasado': item?.past_level,
+//     'Umbral bajo': item?.low_threshold,
+//     'Umbral alto': item?.high_threshold,
+//   }))
+// }
 
-interface DataItem {
-  'Nivel actual': string
-  'Nivel normal': string
-  'Nivel pasado': string
-  'Umbral bajo': string
-  'Umbral alto': string
-  date: string
-}
+// interface DataItem {
+//   'Nivel actual': string
+//   'Nivel normal': string
+//   'Nivel pasado': string
+//   'Umbral bajo': string
+//   'Umbral alto': string
+//   date: string
+// }
 
-function getMinMax(data: DataItem[]): {
-  minimo: number
-  maximo: number
-} {
-  // Extraemos todos los valores numéricos de los niveles
-  let valores: number[] = data
-    .flatMap((item) => [
-      parseFloat(item['Nivel actual']),
-      parseFloat(item['Nivel normal']),
-      parseFloat(item['Nivel pasado']),
-    ])
-    .filter((valor) => !isNaN(valor))
+// function getMinMax(data: DataItem[]): {
+//   minimo: number
+//   maximo: number
+// } {
+//   // Extraemos todos los valores numéricos de los niveles
+//   let valores: number[] = data
+//     .flatMap((item) => [
+//       parseFloat(item['Nivel actual']),
+//       parseFloat(item['Nivel normal']),
+//       parseFloat(item['Nivel pasado']),
+//     ])
+//     .filter((valor) => !isNaN(valor))
 
-  // Calcula el mínimo y máximo de los valores
-  let minimo = Math.min(...valores)
-  let maximo = Math.max(...valores)
+//   // Calcula el mínimo y máximo de los valores
+//   let minimo = Math.min(...valores)
+//   let maximo = Math.max(...valores)
 
-  return { minimo, maximo }
-}
+//   return { minimo, maximo }
+// }
 
 export const HidroLineChart = () => {
   const { data } = useHidrologicalContext()
-  const dataChart = convertToChartData(data) || []
+  // const dataChart = convertToChartData(data) || []
 
-  const { minimo, maximo } = getMinMax(dataChart)
+  // const { minimo, maximo } = getMinMax(dataChart)
 
   return (
     <>
@@ -60,7 +61,7 @@ export const HidroLineChart = () => {
           Niveles de agua de la estación hidrológica en el río
         </p>
       </header>
-      {dataChart && (
+      {/* {dataChart && (
         <LineChart
           className="h-full max-h-[450px] w-full"
           data={dataChart}
@@ -82,7 +83,8 @@ export const HidroLineChart = () => {
             console.log('value', value)
           }}
         />
-      )}
+      )} */}
+      <AreaChart />
     </>
   )
 }
