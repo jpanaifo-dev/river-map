@@ -7,7 +7,6 @@ export const ViewTypes = () => {
   const { getParams, updateFilter } = useFilterFromUrl()
 
   const view = getParams('view', '')
-  const isStation = getParams('estacion', '') !== ''
 
   const handleView = (view: string) => {
     updateFilter('view', view)
@@ -23,7 +22,15 @@ export const ViewTypes = () => {
             size="sm"
             className="border"
           >
-            Visor
+            Localización
+          </Button>
+          <Button
+            variant={view === 'umbral' ? 'default' : 'link'}
+            onClick={() => handleView('umbral')}
+            size="sm"
+            className="border"
+          >
+            Umbrales
           </Button>
           <Button
             variant={view === 'table' ? 'default' : 'link'}
@@ -31,7 +38,7 @@ export const ViewTypes = () => {
             size="sm"
             className="border"
           >
-            Ver tabla
+            Niveles de agua
           </Button>
           <Button
             variant={view === 'graphic' ? 'default' : 'link'}
@@ -39,7 +46,7 @@ export const ViewTypes = () => {
             size="sm"
             className="border"
           >
-            Ver gráfico
+            Resumen gráfico
           </Button>
         </div>
       </Suspense>
