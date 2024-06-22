@@ -1,7 +1,19 @@
 import { Suspense } from 'react'
 import { useFilterFromUrl } from '@/hooks'
 import { useHidrologicalContext } from '@/providers'
-import { ViewTypes } from '.'
+import { ViewTypes } from '@/components'
+
+interface IOptViews {
+  key: string
+  name: string
+}
+
+const options: IOptViews[] = [
+  { key: '', name: 'Ubicación' },
+  { key: 'umbral', name: 'Umbrales' },
+  { key: 'table', name: 'Niveles de agua' },
+  { key: 'graphic', name: 'Resumen gráfico' },
+]
 
 export const EstacionDetails = () => {
   const { getParams } = useFilterFromUrl()
@@ -33,7 +45,7 @@ export const EstacionDetails = () => {
                 </p>
                 <section className="flex flex-col gap-2">
                   <p className="text-sm font-bold">Ver datos</p>
-                  <ViewTypes />
+                  <ViewTypes options={options} />
                 </section>
               </main>
             </section>
