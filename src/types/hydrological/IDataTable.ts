@@ -11,13 +11,7 @@ export interface IDataTable {
   normal_level: string
   current_level: string
   past_level: string
-  period: string
-  low_threshold: string
-  high_threshold: string
-  threshold_status: string
-  color: string
 }
-
 
 // id_estacion -> station_id
 // estacion -> station
