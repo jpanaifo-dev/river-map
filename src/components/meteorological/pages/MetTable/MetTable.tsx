@@ -34,10 +34,12 @@ export const MetTable = () => {
         </p>
       </header>
       <Suspense fallback={<div>Loading...</div>}>
-        <TableCustom
-          headers={tableHeadersMet}
-          rows={data}
-        />
+        <main className="w-full bg-white rounded-lg p-2">
+          <TableCustom
+            headers={tableHeadersMet}
+            rows={data}
+          />
+        </main>
       </Suspense>
     </>
   )

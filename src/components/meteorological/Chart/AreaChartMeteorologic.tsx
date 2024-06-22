@@ -8,7 +8,7 @@ interface IProps {
   yAxis?: IYAxis
 }
 
-export const AreaChart = (props: IProps) => {
+export const AreaChartMeteorologic = (props: IProps) => {
   const { series, categories, yAxis } = props
 
   const options = {
@@ -36,7 +36,7 @@ export const AreaChart = (props: IProps) => {
       },
     },
     legend: {
-      data: series.map((item) => item.name),
+      data: series?.map((item) => item.name) || [],
     },
     toolbox: {
       feature: {

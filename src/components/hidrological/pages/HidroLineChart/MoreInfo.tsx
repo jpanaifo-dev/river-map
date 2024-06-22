@@ -12,7 +12,7 @@ export const MoreInfo = (props: IProps) => {
   return (
     <>
       <article className="flex flex-col sm:grid sm:grid-cols-2 gap-3">
-        <section className="flex flex-col gap-3 bg-white rounded-lg shadow-md p-4">
+        <section className="flex flex-col gap-3 bg-white rounded-lg p-4">
           <header>
             <h2 className="font-bold text-sm uppercase">Sobre los umbrales</h2>
           </header>
@@ -34,7 +34,7 @@ export const MoreInfo = (props: IProps) => {
             </p>
           </footer>
         </section>
-        <section className="flex flex-col gap-3 bg-white rounded-lg shadow-md p-4">
+        <section className="flex flex-col gap-3 bg-white rounded-lg p-4">
           <header>
             <h2 className="font-bold text-sm uppercase">Detalles</h2>
           </header>
