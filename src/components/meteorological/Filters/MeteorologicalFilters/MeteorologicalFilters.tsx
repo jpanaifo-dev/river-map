@@ -2,7 +2,7 @@
 'use client'
 import { useEffect, Suspense } from 'react'
 import { useMeteorological } from '@/hooks'
-import { EstacionesData, ViewTypes } from './sections'
+import { EstacionesData, EstacionDetails } from './sections'
 import { HeaderFilters } from '@/components'
 
 export const MeteorologicalFilters = () => {
@@ -22,7 +22,7 @@ export const MeteorologicalFilters = () => {
               options={data?.EstacionHM || []}
               loading={loading}
             />
-            <ViewTypes />
+            <EstacionDetails />
           </Suspense>
         </article>
       </main>
