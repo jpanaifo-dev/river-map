@@ -2,7 +2,7 @@
 import { useHidrologicalContext } from '@/providers'
 import dynamic from 'next/dynamic'
 
-import { IDataTable, IUmbral } from '@/types'
+import { IDataTable, IUmbral, IDataChart, IDataMarkArea } from '@/types'
 
 const AreaChart = dynamic(
   () =>
@@ -14,19 +14,10 @@ const AreaChart = dynamic(
   }
 )
 
-interface IData {
-  type: string
-  name?: string
-  data: Array<number | string>
-  smooth?: boolean
-  symbol?: string
-}
-
-interface IMarkArea {
-  yAxis: number
-}
-
-function convertToChartData(data: IDataTable[]): IData[] {
+function convertToChartData(
+  data: IDataTable[],
+  markArea: Array<IDataMarkArea[]>
+): IDataChart[] {
   // Utilidad para convertir y filtrar valores válidos
   const filterValidNumbers = (items: string | undefined | null) =>
     items ? Number(items) : NaN // Convertimos a número si es válido, de lo contrario NaN
@@ -42,6 +33,9 @@ function convertToChartData(data: IDataTable[]): IData[] {
         ?.map((item) => filterValidNumbers(item?.current_level))
         .filter(isValidNumber),
       smooth: true,
+      itemStyle: {
+        color: 'rgb(0, 0, 255)',
+      },
     },
     {
       type: 'line',
@@ -51,6 +45,9 @@ function convertToChartData(data: IDataTable[]): IData[] {
         ?.map((item) => filterValidNumbers(item?.normal_level))
         .filter(isValidNumber),
       smooth: true,
+      itemStyle: {
+        color: 'rgb(0, 255, 0)',
+      },
     },
     {
       type: 'line',
@@ -60,15 +57,43 @@ function convertToChartData(data: IDataTable[]): IData[] {
         ?.map((item) => filterValidNumbers(item?.past_level))
         .filter(isValidNumber),
       smooth: true,
+      itemStyle: {
+        color: 'rgb(128, 128, 128)',
+      },
+    },
+    {
+      type: 'line',
+      name: 'Off Umbral',
+      symbol: 'none',
+      data: [],
+      markArea: {
+        data: markArea,
+      },
     },
   ]
 }
 
-function convertToMarkArea(data: IUmbral[]): Array<IMarkArea[]> {
+function getColorUmbral(value: string): string {
+  switch (value) {
+    case 'AMARILLO':
+      return 'rgb(255, 255, 0, 0.4)'
+    case 'NARANJA':
+      return 'rgb(255, 165, 0, 0.4)'
+    case 'ROJO':
+      return 'rgb(255, 0, 0, 0.4)'
+    default:
+      return 'rgb(255, 255, 255, 0.4)'
+  }
+}
+
+function convertToMarkArea(data: IUmbral[]): Array<IDataMarkArea[]> {
   return data.map((item) => {
     return [
       {
         yAxis: Number(item?.UmbValor),
+        itemStyle: {
+          color: getColorUmbral(item?.UmbColor),
+        },
       },
       {
         yAxis: Number(item?.UmbValor2),
@@ -77,7 +102,7 @@ function convertToMarkArea(data: IUmbral[]): Array<IMarkArea[]> {
   })
 }
 
-function createCategories(data: IData[]): string[] {
+function createCategories(data: IDataChart[]): string[] {
   const uniqueCategories = new Set<string>()
 
   data.forEach((item) => {
@@ -94,25 +119,26 @@ function createCategories(data: IData[]): string[] {
   return Array.from(uniqueCategories)
 }
 
-function getMinMax(data: IUmbral[]): { minimo: number; maximo: number } {
-  const values = data.map((item) => [
-    Number(item?.UmbValor),
-    Number(item?.UmbValor2),
-  ])
+function getMinMax(data: IDataChart[]): { minimo: number; maximo: number } {
+  const values = data?.map((item) => item.data).flat()
 
-  const minimo = Math.min(...values.flat())
-  const maximo = Math.max(...values.flat())
+  // Excluir valores NaN y convertir a número
+  const validValues = values.filter((item) => !isNaN(Number(item))) as number[]
 
-  return { minimo, maximo }
+  return {
+    minimo: Math.min(...validValues),
+    maximo: Math.max(...validValues),
+  }
 }
 
 export const HidroLineChart = () => {
   const { data, dataUmbral } = useHidrologicalContext()
+  const dataMarkArea = convertToMarkArea(dataUmbral)
 
-  const dataChart = convertToChartData(data) || []
+  const dataChart = convertToChartData(data, dataMarkArea) || []
 
   const categories = createCategories(dataChart)
-  const { minimo, maximo } = getMinMax(dataUmbral)
+  const { minimo, maximo } = getMinMax(dataChart)
 
   return (
     <>
@@ -135,7 +161,6 @@ export const HidroLineChart = () => {
             max: maximo,
             min: minimo,
           }}
-          markArea={convertToMarkArea(dataUmbral)}
         />
       )}
     </>

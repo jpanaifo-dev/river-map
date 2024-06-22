@@ -1,29 +1,11 @@
 'use client'
 import ReactECharts from 'echarts-for-react'
-interface data {
-  name?: string
-  type: string
-  data: Array<number | string>
-  smooth?: boolean
-  symbol?: string
-}
-
-interface IYAxis {
-  name?: string
-  min?: number
-  max?: number
-}
-
-interface IMarkArea {
-  name?: string
-  yAxis: number
-}
+import { IDataChart, IYAxis } from '@/types'
 
 interface IProps {
-  series: data[]
+  series: IDataChart[]
   categories?: string[]
   yAxis?: IYAxis
-  markArea?: IMarkArea[][]
 }
 
 export const AreaChart = (props: IProps) => {
@@ -44,10 +26,6 @@ export const AreaChart = (props: IProps) => {
       },
     ],
     series: series || [],
-    markArea: {
-      silent: true,
-      data: props.markArea || [],
-    },
     tooltip: {
       trigger: 'axis',
     },
