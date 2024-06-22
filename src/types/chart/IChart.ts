@@ -8,6 +8,7 @@ export interface IDataChart {
   markArea?: {
     data: Array<IDataMarkArea[]>
   }
+  areaStyle?: IColorArea
 }
 
 export interface IDataMarkArea {
@@ -23,5 +24,20 @@ export interface IYAxis {
 }
 
 export interface IItemStyle {
+  color: string
+}
+
+export interface IColorArea {
+  type?: string
+  x?: string
+  y?: string
+  x2?: string
+  y2?: string
+  global?: boolean
+  colorStops?: IColorsStop[]
+}
+
+export interface IColorsStop {
+  offset: number
   color: string
 }
