@@ -12,22 +12,36 @@ export const MoreInfo = (props: IProps) => {
   return (
     <>
       <article className="flex flex-col sm:grid sm:grid-cols-2 gap-3">
-        <section className="flex flex-col gap-3">
+        <section className="flex flex-col gap-3 bg-white rounded-lg shadow-md p-4">
           <header>
             <h2 className="font-bold text-sm uppercase">Sobre los umbrales</h2>
           </header>
           <main>
             <UmbralTable dataUmbral={dataUmbral} />
           </main>
+          <footer className="flex flex-col gap-1 text-xs">
+            <p className="font-bold">
+              Creciente:
+              <span className="text-gray-500 font-normal"> Aumento del nivel del río.</span>
+            </p>
+            <p className="font-bold">
+              Estiaje:
+              <span className="text-gray-500 font-normal">
+                {' '}
+                Disminución del nivel del río, generalmente en la época de
+                sequía.
+              </span>
+            </p>
+          </footer>
         </section>
-        <section className="flex flex-col gap-3">
+        <section className="flex flex-col gap-3 bg-white rounded-lg shadow-md p-4">
           <header>
             <h2 className="font-bold text-sm uppercase">Detalles</h2>
           </header>
-          <main>
+          <main className="border rounded-lg">
             <table>
               <tbody className="text-xs">
-                <tr className="border rounded-t-lg">
+                <tr className="rounded-t-lg">
                   <td className="text-white font-bold bg-red-500 text-center p-2">
                     ROJO
                   </td>
@@ -48,7 +62,7 @@ export const MoreInfo = (props: IProps) => {
                     nivel.
                   </td>
                 </tr>
-                <tr className="border rounded-b-lg">
+                <tr className="">
                   <td className="text-white font-bold bg-yellow-300 text-center p-2">
                     AMARILLO
                   </td>

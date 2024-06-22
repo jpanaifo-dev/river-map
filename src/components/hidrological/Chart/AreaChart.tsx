@@ -32,6 +32,11 @@ export const AreaChart = (props: IProps) => {
     legend: {
       data: series.map((item) => item.name),
     },
+    toolbox: {
+      feature: {
+        saveAsImage: {},
+      },
+    },
     dataZoom: [
       {
         type: 'inside',
@@ -46,7 +51,10 @@ export const AreaChart = (props: IProps) => {
   }
 
   return (
-    <div id="area-chart">
+    <div
+      id="area-chart"
+      className="bg-white rounded-lg shadow-md p-4"
+    >
       <ReactECharts
         option={options}
         style={{ height: '470px', width: '100%' }}
