@@ -27,7 +27,7 @@ export const MoreInfo = (props: IProps) => {
           <main>
             <table>
               <tbody className="text-xs">
-                <tr className="border">
+                <tr className="border rounded-t-lg">
                   <td className="text-white font-bold bg-red-500 text-center p-2">
                     ROJO
                   </td>
@@ -48,7 +48,7 @@ export const MoreInfo = (props: IProps) => {
                     nivel.
                   </td>
                 </tr>
-                <tr className="border">
+                <tr className="border rounded-b-lg">
                   <td className="text-white font-bold bg-yellow-300 text-center p-2">
                     AMARILLO
                   </td>

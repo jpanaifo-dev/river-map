@@ -8,16 +8,14 @@ export function convertToChartData(
   const filterValidNumbers = (items: string | undefined | null) =>
     items ? Number(items) : NaN // Convertimos a número si es válido, de lo contrario NaN
 
-  const isValidNumber = (num: number) => !isNaN(num) // Verificamos si el número es válido (no NaN)
+  // const isValidNumber = (num: number) => !isNaN(num) // Verificamos si el número es válido (no NaN)
 
   return [
     {
       type: 'line',
       name: 'Nivel actual',
       symbol: 'none',
-      data: data
-        ?.map((item) => filterValidNumbers(item?.current_level))
-        .filter(isValidNumber),
+      data: data?.map((item) => filterValidNumbers(item?.current_level)),
       smooth: true,
       itemStyle: {
         color: 'rgb(0, 0, 255)',
@@ -27,9 +25,8 @@ export function convertToChartData(
       type: 'line',
       name: 'Nivel normal',
       symbol: 'none',
-      data: data
-        ?.map((item) => filterValidNumbers(item?.normal_level))
-        .filter(isValidNumber),
+      data: data?.map((item) => filterValidNumbers(item?.normal_level)),
+      // .filter(isValidNumber),
       smooth: true,
       itemStyle: {
         color: 'rgb(0, 255, 0)',
@@ -39,9 +36,8 @@ export function convertToChartData(
       type: 'line',
       name: 'Nivel pasado',
       symbol: 'none',
-      data: data
-        ?.map((item) => filterValidNumbers(item?.past_level))
-        .filter(isValidNumber),
+      data: data?.map((item) => filterValidNumbers(item?.past_level)),
+      // .filter(isValidNumber),
       smooth: true,
       itemStyle: {
         color: 'rgb(128, 128, 128)',
