@@ -29,12 +29,13 @@ export interface IItemStyle {
 
 export interface IColorArea {
   type?: string
-  x?: string
-  y?: string
-  x2?: string
-  y2?: string
+  x?: number
+  y?: number
+  x2?: number
+  y2?: number
   global?: boolean
   colorStops?: IColorsStop[]
+  color?: any
 }
 
 export interface IColorsStop {
