@@ -88,21 +88,17 @@ export function convertToMarkArea(data: IUmbral[]): Array<IDataMarkArea[]> {
   })
 }
 
-export function createCategories(data: IDataChart[]): string[] {
+export function createCategories(data: IDataTable[]): string[] {
+  console.log(data)
   const uniqueCategories = new Set<string>()
 
   data.forEach((item) => {
-    item.data.forEach((_, index) => {
-      const date = new Date()
-      date.setDate(date.getDate() + index)
-      const formattedDate = `${date.getDate()}/${
-        date.getMonth() + 1
-      }/${date.getFullYear()}`
-      uniqueCategories.add(formattedDate)
-    })
+    uniqueCategories.add(item.current_date)
   })
 
   return Array.from(uniqueCategories)
+    .sort((a, b) => new Date(a).getTime() - new Date(b).getTime())
+    .map((item) => item.split('T')[0])
 }
 
 export function getMinMax(data: IDataChart[]): {

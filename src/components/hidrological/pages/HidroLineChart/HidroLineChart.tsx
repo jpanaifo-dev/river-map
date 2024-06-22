@@ -26,7 +26,7 @@ export const HidroLineChart = () => {
 
   const dataChart = convertToChartData(data, dataMarkArea) || []
 
-  const categories = createCategories(dataChart)
+  const categories = createCategories(data)
   const { minimo, maximo } = getMinMax(dataChart)
 
   return (

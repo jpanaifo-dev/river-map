@@ -12,7 +12,7 @@ export const MoreInfo = (props: IProps) => {
   return (
     <>
       <article className="flex flex-col sm:grid sm:grid-cols-2 gap-3">
-        <section>
+        <section className="flex flex-col gap-3">
           <header>
             <h2 className="font-bold text-sm uppercase">Sobre los umbrales</h2>
           </header>
@@ -20,7 +20,7 @@ export const MoreInfo = (props: IProps) => {
             <UmbralTable dataUmbral={dataUmbral} />
           </main>
         </section>
-        <section>
+        <section className="flex flex-col gap-3">
           <header>
             <h2 className="font-bold text-sm uppercase">Detalles</h2>
           </header>

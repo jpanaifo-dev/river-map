@@ -22,7 +22,7 @@ export const UmbralTable = (props: IProps) => {
 
   return (
     <div>
-      <table className="table-auto border-collapse border border-gray-400 w-full">
+      <table className="table-auto border-collapse border rounded-lg border-gray-400 w-full text-xs">
         <thead>
           <tr>
             <th className="border border-gray-300 p-2">UMBRALES</th>
