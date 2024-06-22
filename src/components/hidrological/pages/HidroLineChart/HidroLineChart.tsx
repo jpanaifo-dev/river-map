@@ -30,7 +30,7 @@ export const HidroLineChart = () => {
   const { minimo, maximo } = getMinMax(dataChart)
 
   return (
-    <main className="w-full flex flex-col gap-4">
+    <main className="w-full flex flex-col gap-4 ">
       <header className="pb-2">
         <h1 className="font-bold text-sm uppercase">
           Estación Hidrológica {data[0]?.station || 'No registrado'} - Niveles

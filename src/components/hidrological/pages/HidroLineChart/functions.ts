@@ -8,8 +8,6 @@ export function convertToChartData(
   const filterValidNumbers = (items: string | undefined | null) =>
     items ? Number(items) : NaN // Convertimos a número si es válido, de lo contrario NaN
 
-  // const isValidNumber = (num: number) => !isNaN(num) // Verificamos si el número es válido (no NaN)
-
   return [
     {
       type: 'line',
@@ -37,7 +35,6 @@ export function convertToChartData(
       name: 'Nivel pasado',
       symbol: 'none',
       data: data?.map((item) => filterValidNumbers(item?.past_level)),
-      // .filter(isValidNumber),
       smooth: true,
       itemStyle: {
         color: 'rgb(128, 128, 128)',
@@ -85,7 +82,6 @@ export function convertToMarkArea(data: IUmbral[]): Array<IDataMarkArea[]> {
 }
 
 export function createCategories(data: IDataTable[]): string[] {
-  console.log(data)
   const uniqueCategories = new Set<string>()
 
   data.forEach((item) => {

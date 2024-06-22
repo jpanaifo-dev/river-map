@@ -34,10 +34,12 @@ export const HidrologicalTable = () => {
       </header>
 
       <Suspense fallback={<div>Loading...</div>}>
-        <TableCustom
-          headers={tableHeaders}
-          rows={data}
-        />
+        <main className='w-full bg-white rounded-lg'>
+          <TableCustom
+            headers={tableHeaders}
+            rows={data}
+          />
+        </main>
       </Suspense>
     </>
   )
