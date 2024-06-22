@@ -2,8 +2,7 @@
 import { useHidrologicalContext } from '@/providers'
 import dynamic from 'next/dynamic'
 
-import { IDataTable } from '@/types'
-// import { LineChart } from '@tremor/react'
+import { IDataTable, IUmbral } from '@/types'
 
 const AreaChart = dynamic(
   () =>
@@ -21,6 +20,10 @@ interface IData {
   data: Array<number | string>
   smooth?: boolean
   symbol?: string
+}
+
+interface IMarkArea {
+  yAxis: number
 }
 
 function convertToChartData(data: IDataTable[]): IData[] {
@@ -58,19 +61,20 @@ function convertToChartData(data: IDataTable[]): IData[] {
         .filter(isValidNumber),
       smooth: true,
     },
-    // {
-    //   name: 'Umbral bajo',
-    //   data: data
-    //     ?.map((item) => filterValidNumbers(item?.low_threshold))
-    //     .filter(isValidNumber),
-    // },
-    // {
-    //   name: 'Umbral alto',
-    //   data: data
-    //     ?.map((item) => filterValidNumbers(item?.high_threshold))
-    //     .filter(isValidNumber),
-    // },
   ]
+}
+
+function convertToMarkArea(data: IUmbral[]): Array<IMarkArea[]> {
+  return data.map((item) => {
+    return [
+      {
+        yAxis: Number(item?.UmbValor),
+      },
+      {
+        yAxis: Number(item?.UmbValor2),
+      },
+    ]
+  })
 }
 
 function createCategories(data: IData[]): string[] {
@@ -90,45 +94,25 @@ function createCategories(data: IData[]): string[] {
   return Array.from(uniqueCategories)
 }
 
-// function convertToChartData(data: IDataTable[]) {
-//   return data?.map((item: IDataTable) => ({
-//     date: item?.past_date,
-//     'Nivel actual': item?.current_level,
-//     'Nivel normal': item?.normal_level,
-//     'Nivel pasado': item?.past_level,
-//     'Umbral bajo': item?.low_threshold,
-//     'Umbral alto': item?.high_threshold,
-//   }))
-// }
+function getMinMax(data: IUmbral[]): { minimo: number; maximo: number } {
+  const values = data.map((item) => [
+    Number(item?.UmbValor),
+    Number(item?.UmbValor2),
+  ])
 
-// interface DataItem {
-//   'Nivel actual': string
-//   'Nivel normal': string
-//   'Nivel pasado': string
-//   'Umbral bajo': string
-//   'Umbral alto': string
-//   date: string
-// }
+  const minimo = Math.min(...values.flat())
+  const maximo = Math.max(...values.flat())
 
-function getMinMax(data: IData[]): { minimo: number; maximo: number } {
-  const values = data
-    .map((item) => item.data)
-    .reduce((acc, item) => acc.concat(item), [])
-    .map((value) => Number(value))
-
-  return {
-    minimo: Math.min(...values),
-    maximo: Math.max(...values),
-  }
+  return { minimo, maximo }
 }
 
 export const HidroLineChart = () => {
-  const { data } = useHidrologicalContext()
+  const { data, dataUmbral } = useHidrologicalContext()
+
   const dataChart = convertToChartData(data) || []
 
   const categories = createCategories(dataChart)
-
-  const { minimo, maximo } = getMinMax(dataChart)
+  const { minimo, maximo } = getMinMax(dataUmbral)
 
   return (
     <>
@@ -141,29 +125,7 @@ export const HidroLineChart = () => {
           Niveles de agua de la estación hidrológica en el río
         </p>
       </header>
-      {/* {dataChart && (
-        <LineChart
-          className="h-full max-h-[450px] w-full"
-          data={dataChart}
-          index="date"
-          minValue={minimo}
-          maxValue={maximo}
-          xAxisLabel="Tiempo (día)/(mes)/(año)"
-          yAxisLabel="Nivel de agua (m)"
-          yAxisWidth={65}
-          categories={[
-            'Nivel actual',
-            'Nivel normal',
-            'Nivel pasado',
-            'Umbral bajo',
-            'Umbral alto',
-          ]}
-          colors={['indigo', 'green', 'cyan', 'yellow', 'red']}
-          onValueChange={(value) => {
-            console.log('value', value)
-          }}
-        />
-      )} */}
+
       {dataChart && (
         <AreaChart
           series={dataChart}
@@ -173,6 +135,7 @@ export const HidroLineChart = () => {
             max: maximo,
             min: minimo,
           }}
+          markArea={convertToMarkArea(dataUmbral)}
         />
       )}
     </>

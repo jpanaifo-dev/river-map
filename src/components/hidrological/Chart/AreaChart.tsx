@@ -14,10 +14,16 @@ interface IYAxis {
   max?: number
 }
 
+interface IMarkArea {
+  name?: string
+  yAxis: number
+}
+
 interface IProps {
   series: data[]
   categories?: string[]
   yAxis?: IYAxis
+  markArea?: IMarkArea[][]
 }
 
 export const AreaChart = (props: IProps) => {
@@ -38,6 +44,10 @@ export const AreaChart = (props: IProps) => {
       },
     ],
     series: series || [],
+    markArea: {
+      silent: true,
+      data: props.markArea || [],
+    },
     tooltip: {
       trigger: 'axis',
     },
