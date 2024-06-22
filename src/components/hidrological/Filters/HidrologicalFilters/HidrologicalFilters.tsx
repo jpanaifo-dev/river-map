@@ -15,10 +15,10 @@ export const HidrologicalFilters = () => {
     <>
       <main className="flex flex-col gap-3 w-full p-4">
         <header>
-          <h1 className="font-bold">Facilíta tu búsqueda</h1>
-          <p className="text-xs text-gray-500">
-            Filtra la información específica que deseas obtener de las
-            estaciones hidrológicas
+          <h1 className="font-bold text-white">Selección de estación</h1>
+          <p className="text-xs text-gray-300">
+            Para visualizar la información de la estación hidrológica,
+            seleccione una estación de la lista.
           </p>
         </header>
         <article className="flex flex-col gap-2">

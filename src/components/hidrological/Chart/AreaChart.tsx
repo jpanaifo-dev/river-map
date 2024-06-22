@@ -53,7 +53,7 @@ export const AreaChart = (props: IProps) => {
   return (
     <div
       id="area-chart"
-      className="bg-white rounded-lg shadow-md p-4"
+      className="bg-white rounded-lg p-4"
     >
       <ReactECharts
         option={options}

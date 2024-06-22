@@ -22,7 +22,7 @@ export const UmbralTable = () => {
           Umbrales registrados en la estación hidrológica en el río
         </p>
       </header>
-      <section className="mb-4 w-full max-w-[650px]">
+      <section className="w-full max-w-[650px] bg-white p-4 rounded-lg">
         <TableCustom
           headers={umbralHeader}
           rows={dataUmbral}

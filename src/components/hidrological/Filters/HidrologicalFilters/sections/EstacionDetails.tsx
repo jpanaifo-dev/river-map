@@ -12,7 +12,7 @@ export const EstacionDetails = () => {
   return (
     <>
       {estacion !== '' && (
-        <section className="flex flex-col gap-1 border p-2 rounded-md">
+        <section className="flex flex-col gap-1 border p-2 rounded-md bg-slate-50">
           <Suspense fallback={<div>Loading...</div>}>
             <section className="flex flex-col gap-1">
               <header className="flex flex-col gap-1 font-medium">
