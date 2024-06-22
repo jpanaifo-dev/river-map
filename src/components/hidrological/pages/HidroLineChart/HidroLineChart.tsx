@@ -18,6 +18,7 @@ import {
   createCategories,
   getMinMax,
 } from './functions'
+import { MoreInfo } from './MoreInfo'
 
 export const HidroLineChart = () => {
   const { data, dataUmbral } = useHidrologicalContext()
@@ -29,7 +30,7 @@ export const HidroLineChart = () => {
   const { minimo, maximo } = getMinMax(dataChart)
 
   return (
-    <>
+    <main className="w-full flex flex-col gap-4">
       <header className="pb-2">
         <h1 className="font-bold text-sm uppercase">
           Estación Hidrológica {data[0]?.station || 'No registrado'} - Niveles
@@ -51,6 +52,7 @@ export const HidroLineChart = () => {
           }}
         />
       )}
-    </>
+      <MoreInfo dataUmbral={dataUmbral} />
+    </main>
   )
 }

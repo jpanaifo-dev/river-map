@@ -1,4 +1,4 @@
-import { IColor } from './IColor'
+import { IColorUmbral } from './IColor'
 import { EUmbralPeriodo } from './IPeriod'
 
 export interface IUmbral {
@@ -7,5 +7,5 @@ export interface IUmbral {
   UmbValor: number
   UmbValor2: number
   UmbralPeriodo: EUmbralPeriodo
-  UmbColor: IColor
+  UmbColor: IColorUmbral
 }
