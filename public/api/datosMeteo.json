@@ -1,0 +1,1154 @@
+{
+  "EstacionHM": [
+    {
+      "EstacionId": 1,
+      "EstacionNombre": "AMAZONAS_IQUITOS",
+      "EstacionTipo": "01",
+      "EstacionLatitud": -3.75,
+      "EstacionLongitud": -73.25,
+      "EstacionAltitud": 100
+    },
+    {
+      "EstacionId": 2,
+      "EstacionNombre": "CONTAMANA",
+      "EstacionTipo": "02",
+      "EstacionLatitud": -7.351438,
+      "EstacionLongitud": -75.012267,
+      "EstacionAltitud": null
+    },
+    {
+      "EstacionId": 3,
+      "EstacionNombre": "TAMSHIYACU",
+      "EstacionTipo": "02",
+      "EstacionLatitud": -4.003346,
+      "EstacionLongitud": -73.161588,
+      "EstacionAltitud": null
+    },
+    {
+      "EstacionId": 4,
+      "EstacionNombre": "REQUENA",
+      "EstacionTipo": "02",
+      "EstacionLatitud": -5.041314,
+      "EstacionLongitud": -73.840311,
+      "EstacionAltitud": null
+    }
+  ],
+  "VariablesMeteorologicasMeteo": [
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "26/05/2024",
+      "Fecha2": null,
+      "TMax": 29.2,
+      "TMin": 22.8,
+      "PP": 4.1
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "27/05/2024",
+      "Fecha2": null,
+      "TMax": 28.4,
+      "TMin": 22.4,
+      "PP": 0
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "28/05/2024",
+      "Fecha2": null,
+      "TMax": 26.8,
+      "TMin": 21.6,
+      "PP": 0
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "29/05/2024",
+      "Fecha2": null,
+      "TMax": 25.4,
+      "TMin": 21,
+      "PP": 0
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "30/05/2024",
+      "Fecha2": null,
+      "TMax": 22.8,
+      "TMin": 19.4,
+      "PP": 0
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "31/05/2024",
+      "Fecha2": null,
+      "TMax": 27.4,
+      "TMin": 19.8,
+      "PP": 0
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "01/06/2024",
+      "Fecha2": null,
+      "TMax": 30.6,
+      "TMin": 20,
+      "PP": 0
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "02/06/2024",
+      "Fecha2": null,
+      "TMax": 31.4,
+      "TMin": 20.8,
+      "PP": 0.1
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "03/06/2024",
+      "Fecha2": null,
+      "TMax": 32.2,
+      "TMin": 23.4,
+      "PP": 36.6
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "04/06/2024",
+      "Fecha2": null,
+      "TMax": 30.6,
+      "TMin": 23.2,
+      "PP": 3.6
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "05/06/2024",
+      "Fecha2": null,
+      "TMax": 31.6,
+      "TMin": 23,
+      "PP": 48
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "06/06/2024",
+      "Fecha2": null,
+      "TMax": 28.6,
+      "TMin": 23.2,
+      "PP": 38.6
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "07/06/2024",
+      "Fecha2": null,
+      "TMax": 30.4,
+      "TMin": 22.8,
+      "PP": 3.4
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "08/06/2024",
+      "Fecha2": null,
+      "TMax": 30.2,
+      "TMin": 23.8,
+      "PP": 3.4
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "09/06/2024",
+      "Fecha2": null,
+      "TMax": 33.2,
+      "TMin": 22.2,
+      "PP": 1.1
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "10/06/2024",
+      "Fecha2": null,
+      "TMax": 29.6,
+      "TMin": 23.2,
+      "PP": 0
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "11/06/2024",
+      "Fecha2": null,
+      "TMax": 31.6,
+      "TMin": 24.8,
+      "PP": 0.3
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "12/06/2024",
+      "Fecha2": null,
+      "TMax": 32.4,
+      "TMin": 23.8,
+      "PP": 0
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "13/06/2024",
+      "Fecha2": null,
+      "TMax": 32.8,
+      "TMin": 23.2,
+      "PP": 0
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "14/06/2024",
+      "Fecha2": null,
+      "TMax": 33,
+      "TMin": 24.2,
+      "PP": 0
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "15/06/2024",
+      "Fecha2": null,
+      "TMax": 32.4,
+      "TMin": 24.2,
+      "PP": 0
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "16/06/2024",
+      "Fecha2": null,
+      "TMax": 31.8,
+      "TMin": 22.8,
+      "PP": 8.5
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "17/06/2024",
+      "Fecha2": null,
+      "TMax": 33,
+      "TMin": 23,
+      "PP": 0
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "18/06/2024",
+      "Fecha2": null,
+      "TMax": 34.4,
+      "TMin": 24,
+      "PP": 0
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "19/06/2024",
+      "Fecha2": null,
+      "TMax": 33.8,
+      "TMin": 24.6,
+      "PP": 1.5
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "20/06/2024",
+      "Fecha2": null,
+      "TMax": 31,
+      "TMin": 24,
+      "PP": 34.5
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "21/06/2024",
+      "Fecha2": null,
+      "TMax": 31,
+      "TMin": 23.2,
+      "PP": 15.6
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "22/06/2024",
+      "Fecha2": null,
+      "TMax": 31.6,
+      "TMin": 23.2,
+      "PP": 0
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "23/06/2024",
+      "Fecha2": null,
+      "TMax": 34.2,
+      "TMin": 23.2,
+      "PP": 0
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "24/06/2024",
+      "Fecha2": null,
+      "TMax": 33.6,
+      "TMin": 23.4,
+      "PP": 2.2
+    },
+    {
+      "EstacionId": 1,
+      "Estacion": null,
+      "Fecha": "25/06/2024",
+      "Fecha2": null,
+      "TMax": null,
+      "TMin": 24.2,
+      "PP": null
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "26/05/2024",
+      "Fecha2": null,
+      "TMax": 27.4,
+      "TMin": 21.6,
+      "PP": 82.1
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "27/05/2024",
+      "Fecha2": null,
+      "TMax": 25.6,
+      "TMin": 17,
+      "PP": 0
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "28/05/2024",
+      "Fecha2": null,
+      "TMax": 25.4,
+      "TMin": 18.2,
+      "PP": 0
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "29/05/2024",
+      "Fecha2": null,
+      "TMax": 24.6,
+      "TMin": 16.7,
+      "PP": 0
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "30/05/2024",
+      "Fecha2": null,
+      "TMax": 23.8,
+      "TMin": 15.9,
+      "PP": 0
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "31/05/2024",
+      "Fecha2": null,
+      "TMax": 24.5,
+      "TMin": 17,
+      "PP": 0
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "01/06/2024",
+      "Fecha2": null,
+      "TMax": 26.6,
+      "TMin": 17,
+      "PP": 0
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "02/06/2024",
+      "Fecha2": null,
+      "TMax": 31.4,
+      "TMin": 17.4,
+      "PP": 0
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "03/06/2024",
+      "Fecha2": null,
+      "TMax": 31.6,
+      "TMin": 17,
+      "PP": 0
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "04/06/2024",
+      "Fecha2": null,
+      "TMax": 30.7,
+      "TMin": 18.4,
+      "PP": 0
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "05/06/2024",
+      "Fecha2": null,
+      "TMax": 32,
+      "TMin": 21,
+      "PP": 0
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "06/06/2024",
+      "Fecha2": null,
+      "TMax": 32.8,
+      "TMin": 20.9,
+      "PP": 0
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "07/06/2024",
+      "Fecha2": null,
+      "TMax": 33.2,
+      "TMin": 20.6,
+      "PP": 0
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "08/06/2024",
+      "Fecha2": null,
+      "TMax": 33.3,
+      "TMin": 20.6,
+      "PP": 0
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "09/06/2024",
+      "Fecha2": null,
+      "TMax": 33.1,
+      "TMin": 18.8,
+      "PP": 2
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "10/06/2024",
+      "Fecha2": null,
+      "TMax": 31.5,
+      "TMin": 21.2,
+      "PP": 4.5
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "11/06/2024",
+      "Fecha2": null,
+      "TMax": 31,
+      "TMin": 20.6,
+      "PP": 0
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "12/06/2024",
+      "Fecha2": null,
+      "TMax": 33.4,
+      "TMin": 20.4,
+      "PP": 0
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "13/06/2024",
+      "Fecha2": null,
+      "TMax": 34.4,
+      "TMin": 21.6,
+      "PP": 0
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "14/06/2024",
+      "Fecha2": null,
+      "TMax": 35,
+      "TMin": 20.8,
+      "PP": 0
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "15/06/2024",
+      "Fecha2": null,
+      "TMax": 33.4,
+      "TMin": 22,
+      "PP": 0
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "16/06/2024",
+      "Fecha2": null,
+      "TMax": 34,
+      "TMin": 21.4,
+      "PP": 14.1
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "17/06/2024",
+      "Fecha2": null,
+      "TMax": 33.8,
+      "TMin": 21,
+      "PP": 0
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "18/06/2024",
+      "Fecha2": null,
+      "TMax": 34.1,
+      "TMin": 20.8,
+      "PP": 0
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "19/06/2024",
+      "Fecha2": null,
+      "TMax": 31.8,
+      "TMin": 21.2,
+      "PP": 6.9
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "20/06/2024",
+      "Fecha2": null,
+      "TMax": 26.4,
+      "TMin": 20.8,
+      "PP": 5.7
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "21/06/2024",
+      "Fecha2": null,
+      "TMax": 31,
+      "TMin": 19.6,
+      "PP": 0
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "22/06/2024",
+      "Fecha2": null,
+      "TMax": 32.8,
+      "TMin": 20.5,
+      "PP": 0
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "23/06/2024",
+      "Fecha2": null,
+      "TMax": 33.8,
+      "TMin": 20.6,
+      "PP": 0
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "24/06/2024",
+      "Fecha2": null,
+      "TMax": 33.7,
+      "TMin": 21.2,
+      "PP": 0
+    },
+    {
+      "EstacionId": 2,
+      "Estacion": null,
+      "Fecha": "25/06/2024",
+      "Fecha2": null,
+      "TMax": null,
+      "TMin": 21,
+      "PP": null
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "26/05/2024",
+      "Fecha2": null,
+      "TMax": 29.6,
+      "TMin": 23.8,
+      "PP": 1
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "27/05/2024",
+      "Fecha2": null,
+      "TMax": 26.4,
+      "TMin": 21.8,
+      "PP": 0
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "28/05/2024",
+      "Fecha2": null,
+      "TMax": 26.2,
+      "TMin": 22,
+      "PP": 0.3
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "29/05/2024",
+      "Fecha2": null,
+      "TMax": 26.4,
+      "TMin": 20.2,
+      "PP": 0.6
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "30/05/2024",
+      "Fecha2": null,
+      "TMax": 26.4,
+      "TMin": 18.2,
+      "PP": 0
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "31/05/2024",
+      "Fecha2": null,
+      "TMax": 27,
+      "TMin": 18.6,
+      "PP": 0
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "01/06/2024",
+      "Fecha2": null,
+      "TMax": 30.2,
+      "TMin": 20,
+      "PP": 0
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "02/06/2024",
+      "Fecha2": null,
+      "TMax": 31.8,
+      "TMin": 19.4,
+      "PP": 0
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "03/06/2024",
+      "Fecha2": null,
+      "TMax": 33.2,
+      "TMin": 20.8,
+      "PP": 0.6
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "04/06/2024",
+      "Fecha2": null,
+      "TMax": 28.4,
+      "TMin": 23.2,
+      "PP": 10
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "05/06/2024",
+      "Fecha2": null,
+      "TMax": 30,
+      "TMin": 23,
+      "PP": 1.6
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "06/06/2024",
+      "Fecha2": null,
+      "TMax": 31.2,
+      "TMin": 22.2,
+      "PP": 5.6
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "07/06/2024",
+      "Fecha2": null,
+      "TMax": 29.4,
+      "TMin": 22.8,
+      "PP": 2.1
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "08/06/2024",
+      "Fecha2": null,
+      "TMax": 27.6,
+      "TMin": 21.8,
+      "PP": 22.5
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "09/06/2024",
+      "Fecha2": null,
+      "TMax": 30.6,
+      "TMin": 23.6,
+      "PP": 0
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "10/06/2024",
+      "Fecha2": null,
+      "TMax": 32.2,
+      "TMin": 22.4,
+      "PP": 0
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "11/06/2024",
+      "Fecha2": null,
+      "TMax": 30.8,
+      "TMin": 23.4,
+      "PP": 5.7
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "12/06/2024",
+      "Fecha2": null,
+      "TMax": 32.4,
+      "TMin": 23.8,
+      "PP": 11.3
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "13/06/2024",
+      "Fecha2": null,
+      "TMax": 32,
+      "TMin": 23.2,
+      "PP": 0.8
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "14/06/2024",
+      "Fecha2": null,
+      "TMax": 32.6,
+      "TMin": 23.4,
+      "PP": 4.5
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "15/06/2024",
+      "Fecha2": null,
+      "TMax": 33,
+      "TMin": 24.6,
+      "PP": 6.9
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "16/06/2024",
+      "Fecha2": null,
+      "TMax": 31.2,
+      "TMin": 24,
+      "PP": 0
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "17/06/2024",
+      "Fecha2": null,
+      "TMax": 32.4,
+      "TMin": 23.6,
+      "PP": 0
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "18/06/2024",
+      "Fecha2": null,
+      "TMax": 33,
+      "TMin": 22.4,
+      "PP": 0
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "19/06/2024",
+      "Fecha2": null,
+      "TMax": 32.2,
+      "TMin": 23.4,
+      "PP": 0
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "20/06/2024",
+      "Fecha2": null,
+      "TMax": 31.4,
+      "TMin": 23.6,
+      "PP": 44.9
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "21/06/2024",
+      "Fecha2": null,
+      "TMax": 30.6,
+      "TMin": 22.2,
+      "PP": 0
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "22/06/2024",
+      "Fecha2": null,
+      "TMax": 32,
+      "TMin": 22.8,
+      "PP": 0
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "23/06/2024",
+      "Fecha2": null,
+      "TMax": 33.4,
+      "TMin": 21.8,
+      "PP": 0
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "24/06/2024",
+      "Fecha2": null,
+      "TMax": 34,
+      "TMin": 22.2,
+      "PP": 1.5
+    },
+    {
+      "EstacionId": 4,
+      "Estacion": null,
+      "Fecha": "25/06/2024",
+      "Fecha2": null,
+      "TMax": null,
+      "TMin": 23.4,
+      "PP": null
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "26/05/2024",
+      "Fecha2": null,
+      "TMax": 28.2,
+      "TMin": 23.2,
+      "PP": 8.6
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "27/05/2024",
+      "Fecha2": null,
+      "TMax": 26.2,
+      "TMin": 22,
+      "PP": 0
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "28/05/2024",
+      "Fecha2": null,
+      "TMax": 27.2,
+      "TMin": 22.4,
+      "PP": 0
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "29/05/2024",
+      "Fecha2": null,
+      "TMax": 26.8,
+      "TMin": 20.8,
+      "PP": 0
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "30/05/2024",
+      "Fecha2": null,
+      "TMax": 27,
+      "TMin": 20.4,
+      "PP": 0
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "31/05/2024",
+      "Fecha2": null,
+      "TMax": null,
+      "TMin": 21.4,
+      "PP": null
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "01/06/2024",
+      "Fecha2": null,
+      "TMax": 30.8,
+      "TMin": 24.6,
+      "PP": 0
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "02/06/2024",
+      "Fecha2": null,
+      "TMax": 31.4,
+      "TMin": 25.2,
+      "PP": 0
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "03/06/2024",
+      "Fecha2": null,
+      "TMax": 30.4,
+      "TMin": 25,
+      "PP": 17.9
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "04/06/2024",
+      "Fecha2": null,
+      "TMax": 28.2,
+      "TMin": 23.6,
+      "PP": 7.2
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "05/06/2024",
+      "Fecha2": null,
+      "TMax": 29.4,
+      "TMin": 23.2,
+      "PP": 28.6
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "06/06/2024",
+      "Fecha2": null,
+      "TMax": 28.4,
+      "TMin": 23.2,
+      "PP": 62.8
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "07/06/2024",
+      "Fecha2": null,
+      "TMax": 30.2,
+      "TMin": 22.4,
+      "PP": 0
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "08/06/2024",
+      "Fecha2": null,
+      "TMax": 29.8,
+      "TMin": 24,
+      "PP": 20
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "09/06/2024",
+      "Fecha2": null,
+      "TMax": 29.8,
+      "TMin": 23.6,
+      "PP": 4.2
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "10/06/2024",
+      "Fecha2": null,
+      "TMax": 29.6,
+      "TMin": 23.2,
+      "PP": 2.4
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "11/06/2024",
+      "Fecha2": null,
+      "TMax": 29,
+      "TMin": 23.4,
+      "PP": 5.2
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "12/06/2024",
+      "Fecha2": null,
+      "TMax": 29.6,
+      "TMin": 23.2,
+      "PP": 3.6
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "13/06/2024",
+      "Fecha2": null,
+      "TMax": 29.8,
+      "TMin": 23.4,
+      "PP": 0
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "14/06/2024",
+      "Fecha2": null,
+      "TMax": 29.6,
+      "TMin": 23.8,
+      "PP": 0
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "15/06/2024",
+      "Fecha2": null,
+      "TMax": 28.8,
+      "TMin": 23,
+      "PP": 3.4
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "16/06/2024",
+      "Fecha2": null,
+      "TMax": 29.6,
+      "TMin": 23.4,
+      "PP": 11.5
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "17/06/2024",
+      "Fecha2": null,
+      "TMax": 30.4,
+      "TMin": 23.2,
+      "PP": 0
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "18/06/2024",
+      "Fecha2": null,
+      "TMax": 28.4,
+      "TMin": 22.8,
+      "PP": 0
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "19/06/2024",
+      "Fecha2": null,
+      "TMax": 30.6,
+      "TMin": 24.6,
+      "PP": 5.2
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "20/06/2024",
+      "Fecha2": null,
+      "TMax": 29.4,
+      "TMin": 23,
+      "PP": 7.2
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "21/06/2024",
+      "Fecha2": null,
+      "TMax": 29.2,
+      "TMin": 23.6,
+      "PP": 2.4
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "22/06/2024",
+      "Fecha2": null,
+      "TMax": 29.8,
+      "TMin": 22.8,
+      "PP": 0
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "23/06/2024",
+      "Fecha2": null,
+      "TMax": 31.8,
+      "TMin": 26.2,
+      "PP": 0
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "24/06/2024",
+      "Fecha2": null,
+      "TMax": 32.4,
+      "TMin": 24.2,
+      "PP": 0
+    },
+    {
+      "EstacionId": 3,
+      "Estacion": null,
+      "Fecha": "25/06/2024",
+      "Fecha2": null,
+      "TMax": null,
+      "TMin": 24.2,
+      "PP": null
+    }
+  ]
+}
