@@ -46,18 +46,6 @@ function convertToChartData(data: IDataTable[]): IData[] {
         ?.map((item) => filterValidNumbers(item?.past_level))
         .filter(isValidNumber),
     },
-    // {
-    //   name: 'Umbral bajo',
-    //   data: data
-    //     ?.map((item) => filterValidNumbers(item?.low_threshold))
-    //     .filter(isValidNumber),
-    // },
-    // {
-    //   name: 'Umbral alto',
-    //   data: data
-    //     ?.map((item) => filterValidNumbers(item?.high_threshold))
-    //     .filter(isValidNumber),
-    // },
   ]
 }
 
