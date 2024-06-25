@@ -2,6 +2,7 @@
 import { Suspense } from 'react'
 
 import dynamic from 'next/dynamic'
+import { HMDataProvider } from '@/providers/HMDataProvider'
 const HidrologicalProvider = dynamic(() =>
   import('@/providers').then((mod) => mod.HidrologicalProvider)
 )
@@ -15,7 +16,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <>
       <Suspense fallback={<div>Loading...</div>}>
         <HidrologicalProvider>
-          <MeteorologicalProvider>{children}</MeteorologicalProvider>
+          <MeteorologicalProvider>
+            <HMDataProvider>{children}</HMDataProvider>
+          </MeteorologicalProvider>
         </HidrologicalProvider>
       </Suspense>
     </>

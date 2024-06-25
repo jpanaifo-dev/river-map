@@ -45,17 +45,13 @@ function filterByStation(data: IDataTableMet[], id_station: string) {
   return data.filter((item) => item.station_id.toString() === id_station)
 }
 
-const MeteorologicalContext = createContext({
+const HMDataContext = createContext({
   data: [] as IDataTableMet[],
   stations: [] as IStationHM[],
   loading: false,
 })
 
-export const MeteorologicalProvider = ({
-  children,
-}: {
-  children: React.ReactNode
-}) => {
+export const HMDataProvider = ({ children }: { children: React.ReactNode }) => {
   const [dataStation, setDataSation] = useState<IStationHM[]>([])
   const { data, getMeteoroData, loading } = useMeteorological()
   const { getParams } = useFilterFromUrl()
@@ -78,7 +74,7 @@ export const MeteorologicalProvider = ({
   const filteredByStation = filterByStation(rows || [], id_station)
 
   return (
-    <MeteorologicalContext.Provider
+    <HMDataContext.Provider
       value={{
         data: filteredByStation,
         stations: dataStation,
@@ -86,8 +82,8 @@ export const MeteorologicalProvider = ({
       }}
     >
       <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
-    </MeteorologicalContext.Provider>
+    </HMDataContext.Provider>
   )
 }
 
-export const useMeteorologicalContext = () => useContext(MeteorologicalContext)
+export const useHMDataContext = () => useContext(HMDataContext)
