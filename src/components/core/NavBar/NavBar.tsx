@@ -65,13 +65,13 @@ export const NavBar = () => {
           </NavigationMenuItem>
           <NavigationMenuItem>
             <Link
-              href="/info-meteorologica"
+              href="/info-automatica"
               legacyBehavior
               passHref
             >
               <NavigationMenuLink
                 className={navigationMenuTriggerStyle()}
-                active={pathname === '/info-meteorologica'}
+                active={pathname === '/info-automatica'}
               >
                 Estación Automática
               </NavigationMenuLink>
