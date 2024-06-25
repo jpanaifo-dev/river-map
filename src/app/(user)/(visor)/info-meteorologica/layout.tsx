@@ -1,12 +1,10 @@
 'use client'
-import { FilterLayout, MeteorologicalFilters } from '@/components'
+import { FilterLayout, MetFilters } from '@/components'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <FilterLayout filters={<MeteorologicalFilters />}>
-        {children}
-      </FilterLayout>
+      <FilterLayout filters={<MetFilters />}>{children}</FilterLayout>
     </>
   )
 }

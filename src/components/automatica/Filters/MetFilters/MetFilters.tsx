@@ -6,7 +6,7 @@ import { EstacionesData, EstacionDetails } from './sections'
 import { HeaderFilters } from '@/components'
 
 export const MetFilters = () => {
-  const { getMeteoroData, data, loading } = useMeteorological()
+  const { dataHM, getMeteoroData, loading } = useMeteorological()
 
   useEffect(() => {
     getMeteoroData()
@@ -19,7 +19,7 @@ export const MetFilters = () => {
         <article className="flex flex-col gap-2">
           <Suspense fallback={<div>Loading...</div>}>
             <EstacionesData
-              options={data?.EstacionHM || []}
+              options={dataHM?.EstacionHM || []}
               loading={loading}
             />
             <EstacionDetails />
