@@ -18,12 +18,13 @@ interface IProps<T extends Record<string, any>> {
     value: string
   }[]
   rows: T[]
+  hiddenFooter?: boolean
 }
 
 export const TableCustom = <T extends Record<string, any>>(
   props: IProps<T>
 ) => {
-  const { headers, rows } = props
+  const { headers, rows, hiddenFooter } = props
   const itemsPerPage = 15
   const [currentPage, setCurrentPage] = useState(1)
 
@@ -70,36 +71,38 @@ export const TableCustom = <T extends Record<string, any>>(
           ))}
         </TableBody>
       </Table>
-      <footer className="w-full flex justify-between items-center px-4 my-4 bg-white border-t border-gray-200">
-        <section className="flex justify-between items-center px-4 py-2 bg-white ">
-          <h1 className="text-sm font-bold">
-            Total de registros: {rows.length}
-          </h1>
-        </section>
-        <section className="flex items-center gap-3 pt-2">
-          <div className="w-full">
-            <h1 className="text-sm font-bold w-full">
-              Página {currentPage} de {Math.ceil(rows.length / itemsPerPage)}
+      {!hiddenFooter && (
+        <footer className="w-full flex justify-between items-center px-4 my-4 bg-white border-t border-gray-200">
+          <section className="flex justify-between items-center px-4 py-2 bg-white ">
+            <h1 className="text-sm font-bold">
+              Total de registros: {rows.length}
             </h1>
-          </div>
-          <div className="flex gap-2 items-center">
-            <Button
-              onClick={() => handlePaginationClick(currentPage - 1)}
-              disabled={currentPage === 1}
-              size="sm"
-            >
-              Previous
-            </Button>
-            <Button
-              onClick={() => handlePaginationClick(currentPage + 1)}
-              disabled={currentPage === Math.ceil(rows.length / itemsPerPage)}
-              size="sm"
-            >
-              Next
-            </Button>
-          </div>
-        </section>
-      </footer>
+          </section>
+          <section className="flex items-center gap-3 pt-2">
+            <div className="w-full">
+              <h1 className="text-sm font-bold w-full">
+                Página {currentPage} de {Math.ceil(rows.length / itemsPerPage)}
+              </h1>
+            </div>
+            <div className="flex gap-2 items-center">
+              <Button
+                onClick={() => handlePaginationClick(currentPage - 1)}
+                disabled={currentPage === 1}
+                size="sm"
+              >
+                Previous
+              </Button>
+              <Button
+                onClick={() => handlePaginationClick(currentPage + 1)}
+                disabled={currentPage === Math.ceil(rows.length / itemsPerPage)}
+                size="sm"
+              >
+                Next
+              </Button>
+            </div>
+          </section>
+        </footer>
+      )}
     </main>
   )
 }

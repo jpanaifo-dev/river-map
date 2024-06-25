@@ -3,3 +3,9 @@ export enum IColor {
   Naranja = 'NARANJA',
   Verde = 'VERDE',
 }
+
+export enum IColorUmbral {
+  Amarillo = 'AMARILLO',
+  Naranja = 'NARANJA',
+  Rojo = 'ROJO',
+}

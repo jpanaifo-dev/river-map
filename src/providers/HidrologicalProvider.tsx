@@ -24,10 +24,6 @@ function getStation(stations: IStation[], id_station: string) {
   return stations.find((item) => item.EstId.toString() === id_station)
 }
 
-function getUmbral(umbrals: IUmbral[], id_umbral: string) {
-  return umbrals.find((item) => item.EstId.toString() === id_umbral)
-}
-
 const convertDate = (dateStr: string) => {
   if (dateStr === '') return 'No registrado'
   const months = [
@@ -56,35 +52,30 @@ const convertDate = (dateStr: string) => {
 }
 
 function converData(data: IDataHidro): IDataTable[] {
-  const { Nivel, Estacion, Umbral } = data
+  const { Nivel, Estacion } = data
 
   const newList: IDataTable[] = Nivel?.map((item) => {
     const station = getStation(Estacion, item.EstId.toString())
-    const umbral = getUmbral(Umbral, item.EstId.toString())
     return {
+      //Estacion data
       station_id: item.EstId.toString(),
       station: station?.EstNombre || 'No registrado',
       station_color: station?.EstColor || 'No registrado',
       river: station?.EstRio || 'No registrado',
       institution: station?.EstInstitucion || 'No registrado',
-      date: item?.NivelFecha || 'No registrado',
-      // past_date: item?.NivelFechaPasado || 'No registrado',
-      // current_date: item?.NivelFechaActual || 'No registrado',
-      past_date: convertDate(item?.NivelFechaPasado || ''),
-      current_date: convertDate(item?.NivelFechaActual || ''),
-      normal_level: item?.NivelNormal.toString() || 'No registrado',
-      current_level: item?.NivelAHActual?.toString() || 'No registrado',
-      past_level: item?.NivelAHPasado?.toString() || 'No registrado',
-      period: umbral?.UmbralPeriodo || 'No registrado',
       station_period: station?.Periodo || 'No registrado',
-      high_threshold: umbral?.UmbValor.toString() || 'No registrado',
-      low_threshold: umbral?.UmbValor2.toString() || 'No registrado',
       threshold_status: getThresholdStatus(
         Number(item?.NivelAHActual) || 0,
         Number(item?.NivelAHActual) || 0,
         Number(item?.NivelAHPasado) || 0
       ),
-      color: umbral?.UmbColor || 'No registrado',
+      //Nivel values
+      date: item?.NivelFecha || 'No registrado',
+      past_date: convertDate(item?.NivelFechaPasado || ''),
+      current_date: convertDate(item?.NivelFechaActual || ''),
+      current_level: item?.NivelAHActual?.toString() || 'No registrado',
+      normal_level: item?.NivelNormal.toString() || 'No registrado',
+      past_level: item?.NivelAHPasado?.toString() || 'No registrado',
     }
   })
 
@@ -96,9 +87,14 @@ function filterByStation(data: IDataTable[], id_station: string) {
   return data.filter((item) => item.station_id.toString() === id_station)
 }
 
+function filterUmbralByEstacion(data: IUmbral[], id_estacion: string) {
+  return data.filter((item) => item.EstId.toString() === id_estacion)
+}
+
 const HidrologicalContext = createContext({
   data: [] as IDataTable[],
   dataFiltered: [] as IStation[],
+  dataUmbral: [] as IUmbral[],
   loading: false,
 })
 
@@ -128,11 +124,13 @@ export const HidrologicalProvider = ({
 
   const rows: IDataTable[] = data ? converData(data) : []
   const filteredByStation = filterByStation(rows || [], id_station)
+  const filteredUmbral = filterUmbralByEstacion(data?.Umbral || [], id_station)
 
   return (
     <HidrologicalContext.Provider
       value={{
         data: filteredByStation,
+        dataUmbral: filteredUmbral,
         dataFiltered,
         loading,
       }}
