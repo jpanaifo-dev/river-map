@@ -1,4 +1,5 @@
 export interface IDataTableMH {
+  //Estacion data
   station_id: string
   station: string
   station_type: string
