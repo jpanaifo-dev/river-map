@@ -22,7 +22,7 @@ function converData(data: IMeteorological): IDataTableMH[] {
       station_alt: station?.EstacionAltitud.toString() || 'No registrado',
       //Temperatura data
       date: item.Fecha,
-      date_last: item.Fecha2,
+      date_last: item.Fecha2 || 'No registrado',
       precipitacion_pluvial: item?.PP?.toString() || 'No registrado',
       temperatura_max: item?.TMax?.toString() || 'No registrado',
       temperatura_min: item?.TMin.toString() || 'No registrado',
