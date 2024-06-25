@@ -7,7 +7,7 @@ import { HeaderFilters } from '@/components'
 
 export const MetFilters = () => {
   const { dataHM, getMeteoroData, loading } = useMeteorological()
-
+  console.log(dataHM)
   useEffect(() => {
     getMeteoroData()
   }, [])

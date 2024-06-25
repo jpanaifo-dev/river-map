@@ -44,17 +44,18 @@ export const NavBar = () => {
           </NavigationMenuItem>
           {menuItems.map((item, index) => (
             <NavigationMenuItem key={index}>
-              <Link
-                href={item.href}
-                passHref
+              <NavigationMenuLink
+                asChild
+                className={navigationMenuTriggerStyle()}
+                active={pathname === item.href}
               >
-                <NavigationMenuLink
-                  className={navigationMenuTriggerStyle()}
-                  active={pathname === item.href}
+                <Link
+                  href={item.href}
+                  passHref
                 >
                   {item.label}
-                </NavigationMenuLink>
-              </Link>
+                </Link>
+              </NavigationMenuLink>
             </NavigationMenuItem>
           ))}
         </NavigationMenuList>
