@@ -7,7 +7,9 @@ const AreaChart = dynamic(
     import('@/components/hidrological/Chart/AreaChart').then(
       (mod) => mod.AreaChart
     ),
-  { ssr: false }
+  {
+    ssr: false,
+  }
 )
 
 import { IDataTable } from '@/types'
@@ -105,15 +107,16 @@ function convertToChartData(data: IDataTable[]): IData[] {
 // }
 
 export const HidroLineChart = () => {
-  const { data } = useHidrologicalContext()
-  const dataChart = convertToChartData(data) || []
+  const { data, dataUmbral } = useHidrologicalContext()
+  const dataMarkArea = convertToMarkArea(dataUmbral)
 
-  // const categories = createCategories(dataChart)
+  const dataChart = convertToChartData(data, dataMarkArea) || []
 
-  // const { minimo, maximo } = getMinMax(dataChart)
+  const categories = createCategories(data)
+  const { minimo, maximo } = getMinMax(dataChart)
 
   return (
-    <>
+    <main className="w-full flex flex-col gap-4 ">
       <header className="pb-2">
         <h1 className="font-bold text-sm uppercase">
           Estación Hidrológica {data[0]?.station || 'No registrado'} - Niveles
@@ -123,33 +126,19 @@ export const HidroLineChart = () => {
           Niveles de agua de la estación hidrológica en el río
         </p>
       </header>
-      {/* {dataChart && (
-        <LineChart
-          className="h-full max-h-[450px] w-full"
-          data={dataChart}
-          index="date"
-          minValue={minimo}
-          maxValue={maximo}
-          xAxisLabel="Tiempo (día)/(mes)/(año)"
-          yAxisLabel="Nivel de agua (m)"
-          yAxisWidth={65}
-          categories={[
-            'Nivel actual',
-            'Nivel normal',
-            'Nivel pasado',
-            'Umbral bajo',
-            'Umbral alto',
-          ]}
-          colors={['indigo', 'green', 'cyan', 'yellow', 'red']}
-          onValueChange={(value) => {
-            console.log('value', value)
+
+      {dataChart && (
+        <AreaChart
+          series={dataChart}
+          categories={categories}
+          yAxis={{
+            name: 'Nivel de agua (m)',
+            max: maximo,
+            min: minimo,
           }}
         />
-      )} */}
-      <AreaChart
-        series={dataChart}
-        // categories={categories}
-      />
-    </>
+      )}
+      <MoreInfo dataUmbral={dataUmbral} />
+    </main>
   )
 }
