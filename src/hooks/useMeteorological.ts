@@ -34,7 +34,9 @@ export const useMeteorological = () => {
 
   return {
     data,
-    getMeteoroData,
+    dataHM,
     loading,
+    getMeteoroData,
+    getMeteorologicalData,
   }
 }
