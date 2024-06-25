@@ -1,3 +1,3 @@
-import { AreaChartMeteorologic } from './AreaChartMeteorologic'
+import { AreaChartHMeteorologic } from './AreaChartHMeteorologic'
 
-export { AreaChartMeteorologic }
+export { AreaChartHMeteorologic }

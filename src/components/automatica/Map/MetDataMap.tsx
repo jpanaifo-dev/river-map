@@ -19,7 +19,7 @@ interface IProps {
   dataStation: IStationHM[]
 }
 
-export const MetDataMap = (props: IProps) => {
+export const HMetDataMap = (props: IProps) => {
   const { dataStation } = props
   const { getParams, updateFilter } = useFilterFromUrl()
 

@@ -8,7 +8,7 @@ interface IProps {
   yAxis?: IYAxis
 }
 
-export const AreaChartMeteorologic = (props: IProps) => {
+export const AreaChartHMeteorologic = (props: IProps) => {
   const { series, categories, yAxis } = props
 
   const options = {

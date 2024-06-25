@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import { useMeteorologicalContext } from '@/providers'
 
 const DataMap = dynamic(
-  () => import('../../map/MetDataMap').then((mod) => mod.MetDataMap),
+  () => import('@/components/automatica/Chart').then((mod) => mod.MetDataMap),
   { ssr: false }
 )
 
