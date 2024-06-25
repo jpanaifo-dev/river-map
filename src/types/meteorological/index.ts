@@ -1,6 +1,4 @@
-// import { IDataMet } from './IDataMet'
-// import { IAutoValoresHM } from './IAutoValores'
-// import { IStationHM } from './IStationHm'
-// import { IDataTableMet } from './IDataTableMet'
+import { IMeteorological } from './IMeteorological'
+import { IVarMeteorological } from './IVarMeteorological'
 
-// export type { IDataMet, IAutoValoresHM, IStationHM, IDataTableMet }
+export type { IMeteorological, IVarMeteorological }
