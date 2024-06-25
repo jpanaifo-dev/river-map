@@ -6,10 +6,10 @@ import { EstacionesData, EstacionDetails } from './sections'
 import { HeaderFilters } from '@/components'
 
 export const MetFilters = () => {
-  const { dataHM, getMeteoroData, loading } = useMeteorological()
+  const { dataHM, getMeteorologicalData, loading } = useMeteorological()
   console.log(dataHM)
   useEffect(() => {
-    getMeteoroData()
+    getMeteorologicalData()
   }, [])
 
   return (
