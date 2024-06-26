@@ -1,8 +1,8 @@
 'use client'
 import dynamic from 'next/dynamic'
-import { useMeteorologicalContext } from '@/providers'
+import { useHMDataContext } from '@/providers'
 
-const DataMap = dynamic(
+const HDataMap = dynamic(
   () =>
     import('@/components/automatica/Map/HMetDataMap').then(
       (mod) => mod.HMetDataMap
@@ -11,11 +11,11 @@ const DataMap = dynamic(
 )
 
 export const HMetMap = () => {
-  const { stations } = useMeteorologicalContext()
+  const { stations } = useHMDataContext()
 
   return (
     <>
-      <DataMap dataStation={stations} />
+      <HDataMap dataStation={stations} />
     </>
   )
 }
