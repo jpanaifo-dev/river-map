@@ -3,20 +3,18 @@ import { Suspense } from 'react'
 import { useMeteorologicalContext } from '@/providers'
 import { TableCustom } from '@/components'
 
-const tableHeadersMet = [
+const tableHeaders = [
   { key: 'station_id', value: 'ID de Estación' },
   { key: 'station', value: 'Estación' },
   { key: 'station_type', value: 'Tipo de Estación' },
-  { key: 'station_lat', value: 'Latitud de la Estación' },
   { key: 'station_lng', value: 'Longitud de la Estación' },
+  { key: 'station_lat', value: 'Latitud de la Estación' },
   { key: 'station_alt', value: 'Altitud de la Estación' },
-  { key: 'auto_date', value: 'Fecha Automática' },
-  { key: 'auto_temp', value: 'Temperatura Automática (°C)' },
-  { key: 'auto_hr', value: 'Humedad Relativa Automática (%)' },
-  { key: 'auto_radiacion', value: 'Radiación Automática (W/m²)' },
-  { key: 'auto_wind_dir', value: 'Dirección del Viento Automática (°)' },
-  { key: 'auto_wind_vel', value: 'Velocidad del Viento Automática (m/s)' },
-  { key: 'auto_precip', value: 'Precipitación Automática (mm)' },
+  { key: 'date', value: 'Fecha de Registro' },
+  { key: 'date_last', value: 'Última Fecha Registrada' },
+  { key: 'precipitacion_pluvial', value: 'Precipitación Pluvial (mm)' },
+  { key: 'temperatura_max', value: 'Temperatura Máxima (°C)' },
+  { key: 'temperatura_min', value: 'Temperatura Mínima (°C)' },
 ]
 
 export const HMetTable = () => {
@@ -36,7 +34,7 @@ export const HMetTable = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <main className="w-full bg-white rounded-lg p-2">
           <TableCustom
-            headers={tableHeadersMet}
+            headers={tableHeaders}
             rows={data}
           />
         </main>
