@@ -43,6 +43,14 @@ const HMDataContext = createContext({
   loading: false,
 })
 
+const filterByStationId = (
+  data: IStationHM[],
+  id_station: string
+): IStationHM[] => {
+  if (id_station === '') return data
+  return data.filter((item) => item.EstacionId.toString() === id_station)
+}
+
 export const HMDataProvider = ({ children }: { children: React.ReactNode }) => {
   const [dataStation, setDataSation] = useState<IStationHM[]>([])
   const { dataHM, getMeteorologicalData, loading } = useMeteorological()
@@ -64,12 +72,13 @@ export const HMDataProvider = ({ children }: { children: React.ReactNode }) => {
 
   const rows: IDataTableMH[] = dataHM ? converData(dataHM) : []
   const filteredByStation = filterByStation(rows || [], id_station)
+  const filteredStation = filterByStationId(dataStation, id_station)
 
   return (
     <HMDataContext.Provider
       value={{
         data: filteredByStation,
-        stations: dataStation,
+        stations: filteredStation,
         loading,
       }}
     >
