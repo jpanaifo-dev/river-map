@@ -19,7 +19,7 @@ const tableHeadersMet = [
   { key: 'auto_precip', value: 'Precipitación Automática (mm)' },
 ]
 
-export const MetTable = () => {
+export const HMetTable = () => {
   const { data } = useMeteorologicalContext()
 
   return (
