@@ -1,6 +1,6 @@
 'use client'
-import { useMeteorologicalContext } from '@/providers'
-import { IDataTableMet, IDataChart } from '@/types'
+import { useHMDataContext } from '@/providers'
+import { IDataChart, IDataTableMH } from '@/types'
 import dynamic from 'next/dynamic'
 
 const AreaChartMeteorologic = dynamic(
@@ -10,7 +10,7 @@ const AreaChartMeteorologic = dynamic(
   }
 )
 
-function convertToChartData(data: IDataTableMet[]): IDataChart[] {
+function convertToChartData(data: IDataTableMH[]): IDataChart[] {
   // Utilidad para convertir y filtrar valores válidos
   const filterValidNumbers = (items: string | undefined | null) =>
     items ? Number(items) : NaN // Convertimos a número si es válido, de lo contrario NaN
@@ -18,9 +18,9 @@ function convertToChartData(data: IDataTableMet[]): IDataChart[] {
   return [
     {
       type: 'line',
-      name: 'Humedad (%)',
+      name: 'Temperatura máxima',
       symbol: 'none',
-      data: data?.map((item) => filterValidNumbers(item?.auto_hr)),
+      data: data?.map((item) => filterValidNumbers(item?.temperatura_max)),
       smooth: true,
       itemStyle: {
         color: 'rgba(88,160,253,1)',
@@ -50,9 +50,9 @@ function convertToChartData(data: IDataTableMet[]): IDataChart[] {
     },
     {
       type: 'line',
-      name: 'Radiación (W/m²)',
+      name: 'Temperatura mínima',
       symbol: 'none',
-      data: data?.map((item) => filterValidNumbers(item?.auto_radiacion)),
+      data: data?.map((item) => filterValidNumbers(item?.temperatura_min)),
       smooth: true,
       itemStyle: {
         color: 'rgba(255,165,0,1)',
@@ -72,29 +72,13 @@ function convertToChartData(data: IDataTableMet[]): IDataChart[] {
         ],
       },
     },
+
     {
       type: 'line',
-      name: 'Temperatura (°C)',
-      data: data?.map((item) => filterValidNumbers(item?.auto_temp)),
-      smooth: true,
-      itemStyle: {
-        color: 'rgb(0,0,0)',
-      },
-    },
-    {
-      type: 'line',
-      name: 'Velocidad del Viento (m/s)',
-      symbol: 'none',
-      data: data?.map((item) => filterValidNumbers(item?.auto_wind_vel)),
-      smooth: true,
-      itemStyle: {
-        color: 'rgb(128, 128, 128)',
-      },
-    },
-    {
-      type: 'line',
-      name: 'Dirección del Viento (°)',
-      data: data?.map((item) => filterValidNumbers(item?.auto_wind_dir)),
+      name: 'Presipitación ',
+      data: data?.map((item) =>
+        filterValidNumbers(item?.precipitacion_pluvial)
+      ),
       smooth: true,
       itemStyle: {
         color: 'rgba(0,255,0,0.5)',
@@ -103,32 +87,9 @@ function convertToChartData(data: IDataTableMet[]): IDataChart[] {
   ]
 }
 
-// function getMinMax(data: DataItem[]): {
-//   minimo: number
-//   maximo: number
-// } {
-//   // Extraemos todos los valores numéricos de los niveles
-//   let valores: number[] = data
-//     .flatMap((item) => [
-//       parseFloat(item['Humedad (%)']),
-//       parseFloat(item['Radiación (W/m²)']),
-//       parseFloat(item['Temperatura (°C)']),
-//       parseFloat(item['Velocidad del Viento (m/s)']),
-//     ])
-//     .filter((valor) => !isNaN(valor))
-
-//   // Calcula el mínimo y máximo de los valores
-//   let minimo = Math.min(...valores)
-//   let maximo = Math.max(...valores)
-
-//   return { minimo, maximo }
-// }
-
 export const HMetLineChart = () => {
-  const { data } = useMeteorologicalContext()
+  const { data } = useHMDataContext()
   const dataChart = convertToChartData(data) || []
-
-  // const { minimo, maximo } = getMinMax(dataChart)
 
   return (
     <>
@@ -144,7 +105,7 @@ export const HMetLineChart = () => {
       <main className="w-full bg-white rounded-lg p-2">
         <AreaChartMeteorologic
           series={dataChart}
-          categories={data?.map((item) => item?.auto_date) || []}
+          categories={data?.map((item) => item?.date) || []}
           // minimo={minimo}
           // maximo={maximo}
         />

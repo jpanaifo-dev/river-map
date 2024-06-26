@@ -1,6 +1,6 @@
 'use client'
 import { Suspense } from 'react'
-import { useMeteorologicalContext } from '@/providers'
+import { useHMDataContext, useMeteorologicalContext } from '@/providers'
 import { TableCustom } from '@/components'
 
 const tableHeaders = [
@@ -18,7 +18,7 @@ const tableHeaders = [
 ]
 
 export const HMetTable = () => {
-  const { data } = useMeteorologicalContext()
+  const { data } = useHMDataContext()
 
   return (
     <>
