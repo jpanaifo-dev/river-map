@@ -14,18 +14,18 @@ function converData(data: IMeteorological): IDataTableMH[] {
   const newList: IDataTableMH[] = VariablesMeteorologicasMeteo?.map((item) => {
     const station = getStation(EstacionHM, item.EstacionId.toString())
     return {
-      station_id: item.EstacionId.toString(),
+      station_id: item.EstacionId?.toString(),
       station: station?.EstacionNombre || 'Sin nombre',
-      station_type: station?.EstacionTipo.toString() || 'Sin tipo',
-      station_lng: station?.EstacionLongitud.toString() || 'No registrado',
-      station_lat: station?.EstacionLatitud.toString() || 'No registrado',
-      station_alt: station?.EstacionAltitud.toString() || 'No registrado',
+      station_type: station?.EstacionTipo?.toString() || 'Sin tipo',
+      station_lng: station?.EstacionLongitud?.toString() || 'No registrado',
+      station_lat: station?.EstacionLatitud?.toString() || 'No registrado',
+      station_alt: station?.EstacionAltitud?.toString() || 'No registrado',
       //Temperatura data
       date: item.Fecha,
       date_last: item.Fecha2 || 'No registrado',
       precipitacion_pluvial: item?.PP?.toString() || 'No registrado',
       temperatura_max: item?.TMax?.toString() || 'No registrado',
-      temperatura_min: item?.TMin.toString() || 'No registrado',
+      temperatura_min: item?.TMin?.toString() || 'No registrado',
     }
   })
 

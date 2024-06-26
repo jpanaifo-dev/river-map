@@ -1,5 +1,5 @@
 import { MetTable } from './MetTable/MetTable'
-import { MetLineChart } from './DataAutoLineChart/DataAutoLineChart'
-import { MetMap } from './MetMap/MetMap'
+import { HMetLineChart } from './HMetLineChart/HMetLineChart'
+import { HMetMap } from './HMetMap/HMetMap'
 
-export { MetTable, MetLineChart, MetMap }
+export { MetTable, HMetLineChart, HMetMap }

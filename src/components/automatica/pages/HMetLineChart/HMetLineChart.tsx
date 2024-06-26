@@ -124,7 +124,7 @@ function convertToChartData(data: IDataTableMet[]): IDataChart[] {
 //   return { minimo, maximo }
 // }
 
-export const DataAutoLineChart = () => {
+export const HMetLineChart = () => {
   const { data } = useMeteorologicalContext()
   const dataChart = convertToChartData(data) || []
 
