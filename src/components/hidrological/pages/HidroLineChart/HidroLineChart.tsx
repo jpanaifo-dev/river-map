@@ -46,6 +46,7 @@ export const HidroLineChart = () => {
           series={dataChart}
           categories={categories}
           yAxis={{
+            type: 'value',
             name: 'Nivel de agua (m)',
             max: maximo,
             min: minimo,
