@@ -5,7 +5,7 @@ import { IDataChart, IYAxis } from '@/types'
 interface IProps {
   series: IDataChart[]
   categories?: string[]
-  yAxis?: IYAxis
+  yAxis?: IYAxis[]
 }
 
 export const AreaChartMeteorologic = (props: IProps) => {
@@ -17,14 +17,7 @@ export const AreaChartMeteorologic = (props: IProps) => {
       type: 'category',
       data: categories || [],
     },
-    yAxis: [
-      {
-        type: 'value',
-        name: yAxis?.name,
-        min: yAxis?.min,
-        max: yAxis?.max,
-      },
-    ],
+    yAxis: yAxis || [{ type: 'value' }],
     series: series || [],
     tooltip: {
       trigger: 'axis',

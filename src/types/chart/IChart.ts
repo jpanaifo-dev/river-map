@@ -18,9 +18,22 @@ export interface IDataMarkArea {
 }
 
 export interface IYAxis {
+  type: string
   name?: string
   min?: number
   max?: number
+  position?: string
+  alignTicks?: boolean
+  axisLine?: {
+    show: boolean
+    lineStyle: {
+      color: string
+    }
+  }
+  axisLabel?: {
+    formatter: string
+  }
+  offset?: number
 }
 
 export interface IItemStyle {

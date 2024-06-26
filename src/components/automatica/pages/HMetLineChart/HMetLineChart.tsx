@@ -1,6 +1,6 @@
 'use client'
 import { useHMDataContext } from '@/providers'
-import { IDataChart, IDataTableMH } from '@/types'
+import { IDataChart, IDataTableMH, IYAxis } from '@/types'
 import dynamic from 'next/dynamic'
 
 const AreaChartMeteorologic = dynamic(
@@ -19,73 +19,55 @@ function convertToChartData(data: IDataTableMH[]): IDataChart[] {
     {
       type: 'line',
       name: 'Temperatura máxima',
-      symbol: 'none',
       data: data?.map((item) => filterValidNumbers(item?.temperatura_max)),
       smooth: true,
       itemStyle: {
-        color: 'rgba(88,160,253,1)',
-      },
-      areaStyle: {
-        type: 'linear',
-        x: 0,
-        y: 0,
-        x2: 0,
-        y2: 1,
-        global: false,
-        colorStops: [
-          {
-            offset: 0,
-            color: 'rgba(255,165,0,0.6)',
-          },
-          {
-            offset: 0.5,
-            color: 'rgba(255,165,0,0.3)',
-          },
-          {
-            offset: 1,
-            color: 'rgba(255,165,0,0)',
-          },
-        ],
+        color: 'rgba(255, 0, 0, 1)',
       },
     },
     {
       type: 'line',
       name: 'Temperatura mínima',
-      symbol: 'none',
       data: data?.map((item) => filterValidNumbers(item?.temperatura_min)),
       smooth: true,
       itemStyle: {
         color: 'rgba(255,165,0,1)',
       },
-      areaStyle: {
-        type: 'linear',
-        global: false,
-        colorStops: [
-          {
-            offset: 0,
-            color: 'rgba(255,165,0,1)',
-          },
-          {
-            offset: 1,
-            color: 'rgba(255,165,0,0)',
-          },
-        ],
-      },
     },
 
     {
-      type: 'line',
-      name: 'Presipitación ',
+      type: 'bar',
+      name: 'Precipitación ',
       data: data?.map((item) =>
         filterValidNumbers(item?.precipitacion_pluvial)
       ),
       smooth: true,
       itemStyle: {
-        color: 'rgba(0,255,0,0.5)',
+        //Coloca un celeste oceano en rgb
+        color: 'rgba(0, 191, 255, 0.4)',
       },
     },
   ]
 }
+
+const yAxis: IYAxis[] = [
+  {
+    type: 'value',
+    name: 'Precipitation',
+    position: 'right',
+    alignTicks: true,
+    offset: 80,
+    axisLine: {
+      show: true,
+      lineStyle: {
+        color: '#91CC75',
+      },
+    },
+    axisLabel: {
+      formatter: '{value} ml',
+    },
+  },
+]
 
 export const HMetLineChart = () => {
   const { data } = useHMDataContext()
@@ -106,8 +88,6 @@ export const HMetLineChart = () => {
         <AreaChartMeteorologic
           series={dataChart}
           categories={data?.map((item) => item?.date) || []}
-          // minimo={minimo}
-          // maximo={maximo}
         />
       </main>
     </>
