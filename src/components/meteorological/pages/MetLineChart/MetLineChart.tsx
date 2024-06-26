@@ -145,8 +145,6 @@ export const MetLineChart = () => {
         <AreaChartMeteorologic
           series={dataChart}
           categories={data?.map((item) => item?.auto_date) || []}
-          // minimo={minimo}
-          // maximo={maximo}
         />
       </main>
     </>

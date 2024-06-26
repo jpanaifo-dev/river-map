@@ -53,6 +53,21 @@ function convertToChartData(data: IDataTableMH[]): IDataChart[] {
 const yAxis: IYAxis[] = [
   {
     type: 'value',
+    name: 'Evaporation',
+    position: 'right',
+    alignTicks: true,
+    axisLine: {
+      show: true,
+      lineStyle: {
+        color: '#5470C6',
+      },
+    },
+    axisLabel: {
+      formatter: '{value} ml',
+    },
+  },
+  {
+    type: 'value',
     name: 'Precipitation',
     position: 'right',
     alignTicks: true,
@@ -65,6 +80,21 @@ const yAxis: IYAxis[] = [
     },
     axisLabel: {
       formatter: '{value} ml',
+    },
+  },
+  {
+    type: 'value',
+    name: '温度',
+    position: 'left',
+    alignTicks: true,
+    axisLine: {
+      show: true,
+      lineStyle: {
+        color: '#EE6666',
+      },
+    },
+    axisLabel: {
+      formatter: '{value} °C',
     },
   },
 ]
@@ -88,6 +118,11 @@ export const HMetLineChart = () => {
         <AreaChartMeteorologic
           series={dataChart}
           categories={data?.map((item) => item?.date) || []}
+          yAxis={yAxis}
+          grid={{
+            right: '10%',
+            left: 0,
+          }}
         />
       </main>
     </>

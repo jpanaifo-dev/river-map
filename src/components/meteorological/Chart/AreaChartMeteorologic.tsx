@@ -6,13 +6,18 @@ interface IProps {
   series: IDataChart[]
   categories?: string[]
   yAxis?: IYAxis[]
+  grid?: {
+    right?: string | number
+    bottom?: string | number
+    left?: string | number
+  }
 }
 
 export const AreaChartMeteorologic = (props: IProps) => {
-  const { series, categories, yAxis } = props
+  const { series, categories, yAxis, grid } = props
 
   const options = {
-    grid: { right: 8, bottom: 80, left: 56 },
+    grid: grid || { right: 8, bottom: 80, left: 56 },
     xAxis: {
       type: 'category',
       data: categories || [],

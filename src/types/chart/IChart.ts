@@ -9,6 +9,7 @@ export interface IDataChart {
     data: Array<IDataMarkArea[]>
   }
   areaStyle?: IColorArea
+  yAxisIndex?: number
 }
 
 export interface IDataMarkArea {
