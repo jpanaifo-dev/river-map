@@ -13,6 +13,13 @@ import {
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
+const menuItems = [
+  { label: 'Inicio', href: '/' },
+  { label: 'Estación Automática', href: '/info-automatica' },
+  { label: 'Estación Hidrológica', href: '/info-hidrologica' },
+  { label: 'Estación Meteorologica', href: '/info-meteorologica' },
+]
+
 export const NavBar = () => {
   const pathname = usePathname()
   return (
@@ -35,48 +42,22 @@ export const NavBar = () => {
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
-          <NavigationMenuItem>
-            <Link
-              href="/"
-              legacyBehavior
-              passHref
-            >
+          {menuItems.map((item, index) => (
+            <NavigationMenuItem key={index}>
               <NavigationMenuLink
+                asChild
                 className={navigationMenuTriggerStyle()}
-                active={pathname === '/'}
+                active={pathname === item.href}
               >
-                Inicio
+                <Link
+                  href={item.href}
+                  passHref
+                >
+                  {item.label}
+                </Link>
               </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <Link
-              href="/info-hidrologica"
-              legacyBehavior
-              passHref
-            >
-              <NavigationMenuLink
-                className={navigationMenuTriggerStyle()}
-                active={pathname === '/info-hidrologica'}
-              >
-                Estación Hidrológica
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <Link
-              href="/info-meteorologica"
-              legacyBehavior
-              passHref
-            >
-              <NavigationMenuLink
-                className={navigationMenuTriggerStyle()}
-                active={pathname === '/info-meteorologica'}
-              >
-                Estación Automática
-              </NavigationMenuLink>
-            </Link>
-          </NavigationMenuItem>
+            </NavigationMenuItem>
+          ))}
         </NavigationMenuList>
       </NavigationMenu>
     </nav>

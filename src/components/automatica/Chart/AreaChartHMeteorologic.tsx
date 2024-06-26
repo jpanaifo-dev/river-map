@@ -5,24 +5,26 @@ import { IDataChart, IYAxis } from '@/types'
 interface IProps {
   series: IDataChart[]
   categories?: string[]
-  yAxis?: IYAxis[]
-  grid?: {
-    right?: string | number
-    bottom?: string | number
-    left?: string | number
-  }
+  yAxis?: IYAxis
 }
 
-export const AreaChartMeteorologic = (props: IProps) => {
-  const { series, categories, yAxis, grid } = props
+export const AreaChartHMeteorologic = (props: IProps) => {
+  const { series, categories, yAxis } = props
 
   const options = {
-    grid: grid || { right: 8, bottom: 80, left: 56 },
+    grid: { right: 8, bottom: 80, left: 56 },
     xAxis: {
       type: 'category',
       data: categories || [],
     },
-    yAxis: yAxis || [{ type: 'value' }],
+    yAxis: [
+      {
+        type: 'value',
+        name: yAxis?.name,
+        min: yAxis?.min,
+        max: yAxis?.max,
+      },
+    ],
     series: series || [],
     tooltip: {
       trigger: 'axis',

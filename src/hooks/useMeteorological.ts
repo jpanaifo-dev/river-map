@@ -1,10 +1,11 @@
 'use client'
 import { useState } from 'react'
-import { fetchInfoMeteorological } from '@/api'
-import { IDataMet } from '@/types'
+import { fetchInfoMeteorological, fetchInfoHM } from '@/api'
+import { IDataMet, IMeteorological } from '@/types'
 
 export const useMeteorological = () => {
   const [data, setData] = useState<IDataMet | null>(null)
+  const [dataHM, setDataHM] = useState<IMeteorological | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
 
   const getMeteoroData = async () => {
@@ -19,9 +20,23 @@ export const useMeteorological = () => {
     setLoading(false)
   }
 
+  const getMeteorologicalData = async () => {
+    setLoading(true)
+    const res = await fetchInfoHM()
+    if (res) {
+      const data: IMeteorological = (await res.json()) as IMeteorological
+      setDataHM(data)
+    } else {
+      setData(null)
+    }
+    setLoading(false)
+  }
+
   return {
     data,
-    getMeteoroData,
+    dataHM,
     loading,
+    getMeteoroData,
+    getMeteorologicalData,
   }
 }

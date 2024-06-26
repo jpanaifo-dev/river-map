@@ -45,6 +45,14 @@ function filterByStation(data: IDataTableMet[], id_station: string) {
   return data.filter((item) => item.station_id.toString() === id_station)
 }
 
+function filterByStationId(
+  data: IStationHM[],
+  id_station: string
+): IStationHM[] {
+  if (id_station === '') return data
+  return data.filter((item) => item.EstacionId.toString() === id_station)
+}
+
 const MeteorologicalContext = createContext({
   data: [] as IDataTableMet[],
   stations: [] as IStationHM[],
@@ -76,12 +84,13 @@ export const MeteorologicalProvider = ({
 
   const rows: IDataTableMet[] = data ? converData(data) : []
   const filteredByStation = filterByStation(rows || [], id_station)
+  const filteredStation = filterByStationId(dataStation, id_station)
 
   return (
     <MeteorologicalContext.Provider
       value={{
         data: filteredByStation,
-        stations: dataStation,
+        stations: filteredStation,
         loading,
       }}
     >

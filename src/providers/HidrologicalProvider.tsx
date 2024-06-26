@@ -1,9 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 import { useContext, createContext, useEffect, useState, Suspense } from 'react'
-import { useHidrological } from '@/hooks'
 import { IDataHidro, IDataTable, IStation, IUmbral } from '@/types'
-import { useFilterFromUrl } from '@/hooks'
+import { useFilterFromUrl,useHidrological  } from '@/hooks'
 
 function filterData(data: IStation[], id_estacion: string) {
   if (id_estacion === '') return data
